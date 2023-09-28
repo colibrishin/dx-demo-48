@@ -23,5 +23,11 @@
       <Filter>Scens</Filter>
     </ClCompile>
     <ClCompile Include="yaPlayerScript.cpp" />
+    <ClCompile Include="yaPortal.hpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="yaPortal.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
