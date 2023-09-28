@@ -59,6 +59,17 @@ namespace ya::graphics
 		} depth_stencil;
 	};
 
+	/*struct DebugMesh
+	{
+		enums::COLLIDERTYPE type;
+		math::Vector3 position;
+		math::Vector3 scale;
+		math::Vector3 rotation;
+		float radius;
+		float duration;
+		float time;
+	};*/
+
 	struct GpuBuffer
 	{
 		Microsoft::WRL::ComPtr<ID3D11Buffer> buffer;

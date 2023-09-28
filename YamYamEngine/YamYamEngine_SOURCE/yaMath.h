@@ -146,6 +146,32 @@ namespace ya::math
         Vector2 operator+ () const noexcept { return *this; }
         Vector2 operator- () const noexcept { return Vector2(-x, -y); }
 
+        // API 추가
+        void clear()
+        {
+            x = 0.0f;
+            y = 0.0f;
+        }
+
+        float length()
+        {
+            return sqrtf(x * x + y * y);
+        }
+
+        Vector2 normalize()
+        {
+            float len = length();
+            x /= len;
+            y /= len;
+
+            return *this;
+        }
+
+        inline float Dot(Vector2& v1, Vector2& v2)
+        {
+            return v1.x * v2.x + v1.y * v2.y;
+        }
+
         // Vector operations
         bool InBounds(const Vector2& Bounds) const noexcept;
 
@@ -214,6 +240,8 @@ namespace ya::math
         static const Vector2 UnitY;
     };
 
+  
+
     // Binary operators
     Vector2 operator+ (const Vector2& V1, const Vector2& V2) noexcept;
     Vector2 operator- (const Vector2& V1, const Vector2& V2) noexcept;
@@ -227,6 +255,35 @@ namespace ya::math
     // 3D vector
     struct Vector3 : public XMFLOAT3
     {
+        // API 코드 추가
+        void clear()
+        {
+            x = 0.0f;
+            y = 0.0f;
+        }
+
+        float length()
+        {
+            return sqrtf(x * x + y * y + z*z);
+        }
+
+        Vector3 normalize()
+        {
+            float len = length();
+            x /= len;
+            y /= len;
+            z /= len;
+
+            return *this;
+        }
+
+        inline float Dot(Vector3& v1, Vector3& v2, Vector3& v3)
+        {
+            return v1.x * v2.x * v3.x + v1.y * v2.y * v3.y + v1.z * v2.z * v3.z;
+        }
+
+        //////////////////////////////////////////////////
+
         Vector3() noexcept : XMFLOAT3(0.f, 0.f, 0.f) {}
         constexpr explicit Vector3(float ix) noexcept : XMFLOAT3(ix, ix, ix) {}
         constexpr Vector3(float ix, float iy, float iz) noexcept : XMFLOAT3(ix, iy, iz) {}

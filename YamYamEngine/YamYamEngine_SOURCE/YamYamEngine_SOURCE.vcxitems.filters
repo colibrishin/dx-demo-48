@@ -64,6 +64,18 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)yaScript.cpp">
       <Filter>Engine\Component</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)yaCamera.cpp">
+      <Filter>Engine\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)yaCollisionManager.cpp">
+      <Filter>Engine\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)yaCollider.cpp">
+      <Filter>Engine\Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)yaRigidbody.cpp">
+      <Filter>Engine\Component\Rigidbody</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)yaApplication.h">
@@ -147,6 +159,18 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)yaScript.h">
       <Filter>Engine\Component</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)yaCamera.h">
+      <Filter>Engine\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)yaCollisionManager.h">
+      <Filter>Engine\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)yaCollider.h">
+      <Filter>Engine\Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)yaRigidbody.h">
+      <Filter>Engine\Component\Rigidbody</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
@@ -199,6 +223,18 @@
     </Filter>
     <Filter Include="Engine\Component">
       <UniqueIdentifier>{bd404344-8200-434d-9075-871fa03ca54c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Camera">
+      <UniqueIdentifier>{790a886e-8a00-4c26-9cf6-d10b9822d849}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Collision">
+      <UniqueIdentifier>{e8caf2e8-4a7d-4e63-aeb9-f341455f66a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\Collider">
+      <UniqueIdentifier>{a34211cd-b1e6-40da-aeef-bb18b60de67c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\Rigidbody">
+      <UniqueIdentifier>{a63414e4-c5e3-4483-a563-f4e2831b2768}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -16,7 +16,10 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)yaApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)yaCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)yaCanvas.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)yaCollider.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)yaCollisionManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)yaComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)yaConstantBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)yaEntity.h" />
@@ -35,6 +38,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)yaMaterial.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)yaResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)yaResources.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)yaRigidbody.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)yaScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)yaSceneManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)yaScript.h" />
@@ -44,6 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)yaApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)yaCamera.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)yaCollider.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)yaCollisionManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)yaComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)yaConstantBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)yaEntity.cpp" />
@@ -58,6 +65,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)yaMaterial.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)yaResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)yaResources.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)yaRigidbody.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)yaScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)yaSceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)yaScript.cpp" />

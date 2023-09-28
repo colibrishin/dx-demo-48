@@ -22,6 +22,7 @@ namespace ya
 		virtual void LateUpdate() = 0;
 		virtual void Render() = 0;
 
+
 		GameObject* GetOwner() { return mOwner; }
 		UINT GetUpdateOrder() { return (UINT)mType; }
 
