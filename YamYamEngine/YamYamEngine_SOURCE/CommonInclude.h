@@ -79,3 +79,6 @@ constexpr bool has_flag(E lhs, E rhs)
 	return (lhs & rhs) == rhs;
 }
 
+template <typename T> int Sign(T val) {
+	return (T(0) < val) - (val < T(0));
+}
