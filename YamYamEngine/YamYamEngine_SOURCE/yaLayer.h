@@ -17,6 +17,8 @@ namespace ya
 
 		void AddGameObject(GameObject*  gameObject);
 
+		std::vector<GameObject*>& GetGameObjects() { return mGameObjects; }
+
 	private:
 		std::vector<GameObject*> mGameObjects;
 	};

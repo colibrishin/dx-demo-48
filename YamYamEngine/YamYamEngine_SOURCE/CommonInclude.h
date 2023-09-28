@@ -4,6 +4,7 @@
 #include <cstring>
 #include <cstdint>
 #include <type_traits>
+#include <bitset>
 
 #define arraysize(a) (sizeof(a) / sizeof(a[0]))
 

@@ -19,6 +19,7 @@ namespace ya
 		virtual void Render();
 
 		Layer* GetLayer(UINT index) { return& mLayers[index]; }
+		Layer& GetLayer(LAYER type) { return mLayers[(UINT)type]; }
 		void AddGameObject(GameObject* gameObject, UINT layerIndex);
 
 	private:

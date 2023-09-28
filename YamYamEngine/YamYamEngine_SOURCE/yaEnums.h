@@ -5,7 +5,17 @@ namespace ya::enums
 	enum LAYER
 	{
 		NONE = 0,
-
+		COLLIDER_BOX,
+		BACKGROUND,
+		TILE,
+		FLOOR,
+		ATTACK,
+		PLAYER,
+		ITEM,
+		MONSTER,
+		BOSS,
+		EFFECT,
+		UI,
 		MAX = 16,
 	};
 
@@ -129,6 +139,15 @@ namespace ya::enums
 		SAMPLER_COUNT,
 	};
 
+	enum class COLLIDERTYPE
+	{
+		RECT,
+		CIRCLE,
+		CUBE,
+		SPHERE,
+		END,
+	};
+
 	enum COMPONENTTYPE
 	{
 		COMPONENT = 0,
@@ -137,13 +156,15 @@ namespace ya::enums
 
 		//render
 		MESH,
-		TILE,
+		/*TILE,*/
 		PARTICLE,
 		SKYBOX,
 		DECAL,
 
 		//etc
 		SCRIPT,
+		RIGIDBODY,
+		COLLIDER,
 		END,
 	};
 }
