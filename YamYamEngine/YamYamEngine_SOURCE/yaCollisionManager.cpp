@@ -104,8 +104,8 @@ namespace ya
 	{
 		// 두 충돌체의 ID를 확인
 		ColliderID ID;
-		ID.left = (UINT)left->GetCollisionNumber();
-		ID.right = (UINT)right->GetCollisionNumber();
+		ID.left = (UINT)left->GetID();
+		ID.right = (UINT)right->GetID();
 
 		// 이전 충돌체의 정보를 가져와서 확인한다.
 		std::map<UINT64, bool>::iterator iter
