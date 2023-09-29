@@ -19,11 +19,15 @@ namespace ya
 
 		void Initialize() override;
 	private:
-		// Æ÷Å»ÀÇ ¾Õ ¹æÇâ
+		// í¬íƒˆì´ ì‚¬ìš©ëœ ì‹œê°„
+		float m_timer_;
+		// í¬íƒˆê³¼ ë²½ì˜ ê°ë„
+		float m_angle_;
+		// í¬íƒˆì˜ ì• ë°©í–¥
 		Vector2 m_forward_;
-		// Â¦ÀÌ µÇ´Â ¹İ´ëÆí Æ÷Å»
+		// Â¦ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½İ´ï¿½ï¿½ï¿½ ï¿½ï¿½Å»
 		Portal* m_ptr_pair_;
-		// ºÙ¾îÀÖ´Â º®
+		// ï¿½Ù¾ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½
 		GameObject* m_ptr_wall_;
 	};
 }
