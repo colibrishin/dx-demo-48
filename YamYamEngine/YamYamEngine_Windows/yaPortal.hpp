@@ -15,15 +15,21 @@ namespace ya
 
 		void OnCollisionEnter(Collider* other) override;
 
-		void SetPosition(Vector2 position);
+		void SetOtherPortal(Portal* other_portal);
 
 		void Initialize() override;
+		void Update() override;
+		void LateUpdate() override;
+		void Render() override;
+		void OnCollisionStay(Collider* other) override;
+		void OnCollisionExit(Collider* other) override;
+
 	private:
-		// Æ÷Å»ÀÇ ¾Õ ¹æÇâ
+		// í¬íƒˆì˜ ì• ë°©í–¥
 		Vector2 m_forward_;
-		// Â¦ÀÌ µÇ´Â ¹İ´ëÆí Æ÷Å»
+		// ì§ì´ ë˜ëŠ” ë°˜ëŒ€í¸ í¬íƒˆ
 		Portal* m_ptr_pair_;
-		// ºÙ¾îÀÖ´Â º®
+		// ë¶™ì–´ìˆëŠ” ë²½
 		GameObject* m_ptr_wall_;
 	};
 }

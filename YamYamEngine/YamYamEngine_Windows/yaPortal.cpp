@@ -6,6 +6,7 @@ namespace ya
 	{
 		AddComponent<Collider>();
 		AddComponent<Transform>();
+		GetComponent<Collider>()->SetSize({ 1.0f, 1.0f });
 
 		// 포탈은 벽에 붙어있어야 함
 		// TODO: GameObject가 벽인지 확인하기
@@ -16,17 +17,22 @@ namespace ya
 	{
 		GameObject::OnCollisionEnter(other);
 
-		// 짝이 되는 포탈이 없으면 정지
+		// 짝이 되는 포탈이 없으면 무시
 		if (m_ptr_pair_ == nullptr)
 		{
 			return;
 		}
 
-		// TODO: 만약 벽과 부딪히면 아무것도 안하기
-
 		const auto& other_object = other->GetOwner();
 		const auto& other_transform = other_object->GetComponent<Transform>();
 		const auto& pair_position = m_ptr_pair_->GetComponent<Transform>()->GetPosition();
+
+		// TODO: 만약 벽과 부딪히면 아무것도 안하기
+		// 위치를 얻어올 수 없거나, 물리 효과가 적용되지 않는 물체면 아무것도 안함
+		if(other_transform == nullptr || other_object->GetComponent<Rigidbody>() == nullptr)
+		{
+			return;
+		}
 
 		// 물체가 부딪히면 반대 포탈로 이동
 		other_transform->SetPosition(pair_position);
@@ -63,15 +69,25 @@ namespace ya
 		// TODO: 포탈을 빠져나온 물체가 다시 반대편 포탈에 바로 들어가지 않도록 방지
 	}
 
-	void Portal::SetPosition(Vector2 position)
+	void Portal::SetOtherPortal(Portal* other_portal)
 	{
-		GetComponent<Transform>()->SetPosition({ position.x, position.y, 1 });
+		m_ptr_pair_ = other_portal;
 	}
 
 	void Portal::Initialize()
 	{
 		GameObject::Initialize();
+	}
 
+	void Portal::Update()
+	{
+		GameObject::Update();
+
+		// Transform과 Collider의 위치 정보를 동기화
+		const auto tr_position = GetComponent<Transform>()->GetPosition();
+		GetComponent<Collider>()->SetPosition({ tr_position.x, tr_position.y });
+
+		// 벽이 움직일 경우를 대비해 매 프레임마다 벽의 위치를 받아옴
 		const auto wall = m_ptr_wall_->GetComponent<Transform>()->GetPosition();
 		const auto portal = GetComponent<Transform>()->GetPosition();
 
@@ -84,5 +100,25 @@ namespace ya
 		// 포탈이 벽보다 y축으로 뒤에 있을 경우 => {0.~, -0.9~}
 		// 기울어 있을 경우 두 성분이 섞여 있음
 		m_forward_ = Vector2{ delta.x, delta.y };
+	}
+
+	void Portal::LateUpdate()
+	{
+		GameObject::LateUpdate();
+	}
+
+	void Portal::Render()
+	{
+		GameObject::Render();
+	}
+
+	void Portal::OnCollisionStay(Collider* other)
+	{
+		GameObject::OnCollisionStay(other);
+	}
+
+	void Portal::OnCollisionExit(Collider* other)
+	{
+		GameObject::OnCollisionExit(other);
 	}
 }
