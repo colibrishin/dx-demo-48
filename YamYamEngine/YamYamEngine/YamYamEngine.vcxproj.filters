@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{6ce46e0e-7ebe-46af-bd62-c0afde8aa59a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collision">
+      <UniqueIdentifier>{98e04d2c-7e9a-4fa0-bc1a-97db152ac055}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component">
+      <UniqueIdentifier>{83f7b4dd-1bab-45ca-b13e-a64d165d49c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Collider">
+      <UniqueIdentifier>{1e90298d-c89e-42b3-a55d-554fc05895bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\RigidBody">
+      <UniqueIdentifier>{cab72b86-5c69-474a-9226-51ed0667d79d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\MeshRenderer">
+      <UniqueIdentifier>{2743f9e0-8ce1-4afa-9d5d-c5e46f565f0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Script">
+      <UniqueIdentifier>{55a92508-892e-4f7a-aec7-e485684f98e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Transform">
+      <UniqueIdentifier>{760d90c8-954b-4af1-a94a-89eadf7d4db1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{1a859451-b61a-418c-a46a-769583db4722}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{838071d3-4689-4edf-a665-7b340d0ba3b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers">
+      <UniqueIdentifier>{6aae7cc4-759c-49e1-b49f-17410f67f212}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\API">
+      <UniqueIdentifier>{9ec5fde2-7871-4f39-b6e0-8cca11686824}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers\Input">
+      <UniqueIdentifier>{3c918bde-8560-4bb9-ab61-59d52d8bc2dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers\Mathematics">
+      <UniqueIdentifier>{6e6ea440-9e72-4009-b51c-94d39de526f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers\Time">
+      <UniqueIdentifier>{6fa46e2e-8d41-413c-ba78-e2011ec41aaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="High Level Interface">
+      <UniqueIdentifier>{f269be4e-cad4-4ef0-b4ab-f60601fd3eb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{c0dd52ed-778c-4f27-8f4c-99403a8520c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Manager">
+      <UniqueIdentifier>{4a7cb4ab-059d-4d36-bde3-4c733243c303}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Mesh">
+      <UniqueIdentifier>{264009ab-cb7b-4de4-b20a-e43513ccc143}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Shader">
+      <UniqueIdentifier>{2883faab-8f23-4f3c-9371-16225bbca072}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Material">
+      <UniqueIdentifier>{915ae397-2e83-48c8-8e40-7f021cf2ad8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{d1636260-bbab-48dd-bb98-dd120d329c95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{1af30c69-228a-4b68-8ea6-2939d0beb2db}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCamera.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCollisionManager.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCollider.h">
+      <Filter>Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="yaMeshRenderer.h">
+      <Filter>Component\MeshRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="yaTransform.h">
+      <Filter>Component\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="yaScript.h">
+      <Filter>Component\Script</Filter>
+    </ClInclude>
+    <ClInclude Include="yaRigidbody.h">
+      <Filter>Component\RigidBody</Filter>
+    </ClInclude>
+    <ClInclude Include="yaEntity.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="yaGameObject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="yaRenderer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="yaGraphics.h">
+      <Filter>Graphics\API</Filter>
+    </ClInclude>
+    <ClInclude Include="yaGraphicsDevice_DX11.h">
+      <Filter>Graphics\API</Filter>
+    </ClInclude>
+    <ClInclude Include="yaTime.h">
+      <Filter>Helpers\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="yaMath.h">
+      <Filter>Helpers\Mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="yaInput.h">
+      <Filter>Helpers\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="yaApplication.h">
+      <Filter>High Level Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="yaMaterial.h">
+      <Filter>Resource\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="yaShader.h">
+      <Filter>Resource\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="yaMesh.h">
+      <Filter>Resource\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="yaResources.h">
+      <Filter>Resource\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="yaResource.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="yaLayer.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="yaScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="yaSceneManager.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="yaCanvas.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="yaConstantBuffer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="yaComponent.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCamera.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCollisionManager.cpp">
+      <Filter>Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="yaCollider.cpp">
+      <Filter>Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="yaMeshRenderer.cpp">
+      <Filter>Component\MeshRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="yaTransform.cpp">
+      <Filter>Component\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="yaScript.cpp">
+      <Filter>Component\Script</Filter>
+    </ClCompile>
+    <ClCompile Include="yaRigidbody.cpp">
+      <Filter>Component\RigidBody</Filter>
+    </ClCompile>
+    <ClCompile Include="yaEntity.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="yaGameObject.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="yaRenderer.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="yaGraphicsDevice_DX11.cpp">
+      <Filter>Graphics\API</Filter>
+    </ClCompile>
+    <ClCompile Include="yaTime.cpp">
+      <Filter>Helpers\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="yaMath.cpp">
+      <Filter>Helpers\Mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="yaInput.cpp">
+      <Filter>Helpers\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="yaApplication.cpp">
+      <Filter>High Level Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="yaMaterial.cpp">
+      <Filter>Resource\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="yaShader.cpp">
+      <Filter>Resource\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="yaMesh.cpp">
+      <Filter>Resource\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="yaResources.cpp">
+      <Filter>Resource\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="yaResource.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="yaLayer.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="yaScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="yaSceneManager.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="yaConstantBuffer.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="yaComponent.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>

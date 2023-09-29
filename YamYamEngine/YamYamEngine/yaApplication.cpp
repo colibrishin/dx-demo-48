@@ -1,4 +1,6 @@
 #include "yaApplication.h"
+
+#include "yaCollisionManager.h"
 #include "yaGraphicsDevice_DX11.h"
 
 #include "yaInput.h"
@@ -29,6 +31,7 @@ namespace ya
 
 		renderer::Initialize();
 		SceneManager::Initialize();
+		CollisionManager::Initialize();
 	}
 
 	void Application::Update()
@@ -37,6 +40,7 @@ namespace ya
 		Input::Update();
 
 		SceneManager::Update();
+		CollisionManager::Update();
 	}
 
 	void Application::LateUpdate()

@@ -19,11 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCProjectVersion>16.0</VCProjectVersion>
+    <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{8d1c292d-2794-48f6-8278-e2adeb5589c0}</ProjectGuid>
-    <RootNamespace>YamYamEngineWindows</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+    <ProjectGuid>{b065ef14-6b17-40e1-b105-44890cf3f472}</ProjectGuid>
+    <RootNamespace>YamYamEngine</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -55,7 +55,8 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Label="Shared" />
+  <ImportGroup Label="Shared">
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -75,9 +76,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalIncludeDirectories>$(SolutionDir)YamYamEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -93,9 +95,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalIncludeDirectories>$(SolutionDir)YamYamEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -111,10 +114,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>$(SolutionDir)YamYamEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -130,10 +133,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>$(SolutionDir)YamYamEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -144,21 +147,68 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="yaLoadScene.h" />
-    <ClInclude Include="yaPlayerScript.h" />
-    <ClInclude Include="yaPlayScene.h" />
-    <ClInclude Include="yaPortal.hpp" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="yaApplication.h" />
+    <ClInclude Include="yaCamera.h" />
+    <ClInclude Include="yaCanvas.h" />
+    <ClInclude Include="yaCollider.h" />
+    <ClInclude Include="yaCollisionManager.h" />
+    <ClInclude Include="yaComponent.h" />
+    <ClInclude Include="yaConstantBuffer.h" />
+    <ClInclude Include="yaEntity.h" />
+    <ClInclude Include="yaGameObject.h" />
+    <ClInclude Include="yaGraphics.h" />
+    <ClInclude Include="yaGraphicsDevice_DX11.h" />
+    <ClInclude Include="yaInput.h" />
+    <ClInclude Include="yaLayer.h" />
+    <ClInclude Include="yaMaterial.h" />
+    <ClInclude Include="yaMath.h" />
+    <ClInclude Include="yaMesh.h" />
+    <ClInclude Include="yaMeshRenderer.h" />
+    <ClInclude Include="yaRenderer.h" />
+    <ClInclude Include="yaResource.h" />
+    <ClInclude Include="yaResources.h" />
+    <ClInclude Include="yaRigidbody.h" />
+    <ClInclude Include="yaScene.h" />
+    <ClInclude Include="yaSceneManager.h" />
+    <ClInclude Include="yaScript.h" />
+    <ClInclude Include="yaShader.h" />
+    <ClInclude Include="yaTime.h" />
+    <ClInclude Include="yaTransform.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="yaPlayerScript.cpp" />
-    <ClCompile Include="yaPlayScene.cpp" />
-    <ClCompile Include="yaPortal.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\YamYamEngine\YamYamEngine.vcxproj">
-      <Project>{b065ef14-6b17-40e1-b105-44890cf3f472}</Project>
-      <LinkLibraryDependencies>true</LinkLibraryDependencies>
-    </ProjectReference>
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="yaApplication.cpp" />
+    <ClCompile Include="yaCamera.cpp" />
+    <ClCompile Include="yaCollider.cpp" />
+    <ClCompile Include="yaCollisionManager.cpp" />
+    <ClCompile Include="yaComponent.cpp" />
+    <ClCompile Include="yaConstantBuffer.cpp" />
+    <ClCompile Include="yaEntity.cpp" />
+    <ClCompile Include="yaGameObject.cpp" />
+    <ClCompile Include="yaGraphicsDevice_DX11.cpp" />
+    <ClCompile Include="yaInput.cpp" />
+    <ClCompile Include="yaLayer.cpp" />
+    <ClCompile Include="yaMaterial.cpp" />
+    <ClCompile Include="yaMath.cpp" />
+    <ClCompile Include="yaMesh.cpp" />
+    <ClCompile Include="yaMeshRenderer.cpp" />
+    <ClCompile Include="yaRenderer.cpp" />
+    <ClCompile Include="yaResource.cpp" />
+    <ClCompile Include="yaResources.cpp" />
+    <ClCompile Include="yaRigidbody.cpp" />
+    <ClCompile Include="yaScene.cpp" />
+    <ClCompile Include="yaSceneManager.cpp" />
+    <ClCompile Include="yaScript.cpp" />
+    <ClCompile Include="yaShader.cpp" />
+    <ClCompile Include="yaTime.cpp" />
+    <ClCompile Include="yaTransform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,6 +1,8 @@
 #include "yaCollisionManager.h"
-#include "yaScene.h"			// ÇØ´ç ¾À ¾È¿¡ ÀÖ´Â ·¹ÀÌ¾îµéÀ» °¡Á®¿Í¾ß ÇÔ
+#include "yaScene.h"			// í•´ë‹¹ ì”¬ ì•ˆì— ìˆëŠ” ë ˆì´ì–´ë“¤ì„ ê°€ì ¸ì™€ì•¼ í•¨
 #include "yaSceneManager.h"
+#include <DirectXCollision.h>
+#include <SimpleMath.h>
 
 namespace ya
 {
@@ -9,16 +11,29 @@ namespace ya
 
 	void CollisionManager::Initialize()
 	{
-	}
-
-	void CollisionManager::Update()
-	{
-		Scene* activeScene = SceneManager::GetActiveScene();		// ¾ÀÀ» °¡Á®¿È
+		// ë ˆì´ì–´ê°„ ì¶©ëŒì„ í‘œì‹œí•˜ëŠ”ë° ì‚¬ìš©í•  ë°°ì—´ ì´ˆê¸°í™”
 		for (size_t row = 0; row < LAYER_MAX; row++)
 		{
 			for (size_t col = 0; col < LAYER_MAX; col++)
 			{
-				if (mLayerMasks[row][col] == true)					// Ãæµ¹µÇ¾úÀ» ¶§	
+				mLayerMasks[row][col] = false;
+				if (row == col)
+				{
+					mLayerMasks[row][col] = true;
+				}
+			}
+		}
+
+	}
+
+	void CollisionManager::Update()
+	{
+		Scene* activeScene = SceneManager::GetActiveScene();		// ì”¬ì„ ê°€ì ¸ì˜´
+		for (size_t row = 0; row < LAYER_MAX; row++)
+		{
+			for (size_t col = 0; col < LAYER_MAX; col++)
+			{
+				if (mLayerMasks[row][col] == true)					// ì¶©ëŒë˜ì—ˆì„ ë•Œ	
 				{
 					LayerCollision(activeScene, (LAYER)row, (LAYER)col);
 				}
@@ -36,16 +51,16 @@ namespace ya
 
 	void CollisionManager::Clear()
 	{
-		// ¾ÀÀÌ ³Ñ¾î°¬À» ¶§ ±âÁ¸ Ãæµ¹ Á¤º¸ ÃÊ±âÈ­
-		// mLayerMasks->reset() for¹® µ¹·Á¾ßÇÔ
+		// ì”¬ì´ ë„˜ì–´ê°”ì„ ë•Œ ê¸°ì¡´ ì¶©ëŒ ì •ë³´ ì´ˆê¸°í™”
+		// mLayerMasks->reset() forë¬¸ ëŒë ¤ì•¼í•¨
 		mLayerMasks->reset();
 		mCollisionMap.clear();
 	}
 
 	void CollisionManager::CollisionLayerCheck(LAYER left, LAYER right, bool enable)
 	{
-		// ¹è¿­À» »ç¿ëÇÏ¿© ·¹ÀÌ¾î°£ Ãæµ¹À» Ç¥½ÃÇÏ´Âµ¥ 
-		// 2Â÷¿ø ¹è¿­ÀÇ ¹İ¸¸ »ç¿ëÇÏ±â À§ÇÑ ÄÚµå
+		// ë°°ì—´ì„ ì‚¬ìš©í•˜ì—¬ ë ˆì´ì–´ê°„ ì¶©ëŒì„ í‘œì‹œí•˜ëŠ”ë° 
+		// 2ì°¨ì› ë°°ì—´ì˜ ë°˜ë§Œ ì‚¬ìš©í•˜ê¸° ìœ„í•œ ì½”ë“œ
 
 		int row = -1;
 		int col = -1;
@@ -63,7 +78,7 @@ namespace ya
 		mLayerMasks[row][col] = enable;
 	}
 
-	// Ãæµ¹ Ã¼Å©ÇÏ´Â ÇÔ¼ö
+	// ì¶©ëŒ ì²´í¬í•˜ëŠ” í•¨ìˆ˜
 	void CollisionManager::LayerCollision(Scene* scene, LAYER left, LAYER right)
 	{
 		// finds left layer objects
@@ -74,10 +89,10 @@ namespace ya
 		std::vector<GameObject*>& rights = rightLayer.GetGameObjects();
 
 		// finds right layer Objects
-		// Ãæµ¹ Ã¼Å©
+		// ì¶©ëŒ ì²´í¬
 		for (GameObject* left : lefts)
 		{
-			// Ãæµ¹Ã¼°¡ ¾ø´Ù¸é continue
+			// ì¶©ëŒì²´ê°€ ì—†ë‹¤ë©´ continue
 			Collider* leftCol = left->GetComponent<Collider>();
 			if (leftCol == nullptr)
 				continue;
@@ -86,15 +101,15 @@ namespace ya
 			{
 				Collider* rightCol = right->GetComponent<Collider>();
 
-				// Ãæµ¹Ã¼°¡ ¾ø´Ù¸é continue
+				// ì¶©ëŒì²´ê°€ ì—†ë‹¤ë©´ continue
 				if (rightCol == nullptr)
 					continue;
 
-				// ÀÚ±â ÀÚ½Å°ú °°Àº °æ¿ì continue
+				// ìê¸° ìì‹ ê³¼ ê°™ì€ ê²½ìš° continue
 				if (left == right)
 					continue;
 
-				// Ãæµ¹¿¬»ê
+				// ì¶©ëŒì—°ì‚°
 				ColliderCollision(leftCol, rightCol);
 			}
 		}
@@ -102,27 +117,27 @@ namespace ya
 
 	void CollisionManager::ColliderCollision(Collider* left, Collider* right)
 	{
-		// µÎ Ãæµ¹Ã¼ÀÇ ID¸¦ È®ÀÎ
+		// ë‘ ì¶©ëŒì²´ì˜ IDë¥¼ í™•ì¸
 		ColliderID ID;
 		ID.left = (UINT)left->GetID();
 		ID.right = (UINT)right->GetID();
 
-		// ÀÌÀü Ãæµ¹Ã¼ÀÇ Á¤º¸¸¦ °¡Á®¿Í¼­ È®ÀÎÇÑ´Ù.
+		// ì´ì „ ì¶©ëŒì²´ì˜ ì •ë³´ë¥¼ ê°€ì ¸ì™€ì„œ í™•ì¸í•œë‹¤.
 		std::map<UINT64, bool>::iterator iter
 			= mCollisionMap.find(ID.id);
 
-		// Ãæµ¹Á¤º¸°¡ ¾ø´Ù¸é »ı¼º
+		// ì¶©ëŒì •ë³´ê°€ ì—†ë‹¤ë©´ ìƒì„±
 		if (iter == mCollisionMap.end())
 		{
 			mCollisionMap.insert(std::make_pair(ID.id, false));
 			iter = mCollisionMap.find(ID.id);
 		}
 
-		// Ãæµ¹ÇÔ¼ö È£Ãâ
-		// Ãæµ¹Çß´Ù¸é 
+		// ì¶©ëŒí•¨ìˆ˜ í˜¸ì¶œ
+		// ì¶©ëŒí–ˆë‹¤ë©´ 
 		if (Intersect(left, right))
 		{
-			// Ã³À½ Ãæµ¹ÇÏ´Â »óÅÂ
+			// ì²˜ìŒ ì¶©ëŒí•˜ëŠ” ìƒíƒœ
 			if (iter->second == false)
 			{
 				left->OnCollisionEnter(right);
@@ -131,7 +146,7 @@ namespace ya
 				iter->second = true;
 
 			}
-			else // Ãæµ¹ ÁßÀÎ»óÅÂ
+			else // ì¶©ëŒ ì¤‘ì¸ìƒíƒœ
 			{
 				left->OnCollisionStay(right);
 				right->OnCollisionStay(left);
@@ -139,7 +154,7 @@ namespace ya
 		}
 		else
 		{
-			// Ãæµ¹À» ºüÁ®³ª°£»óÅÂ
+			// ì¶©ëŒì„ ë¹ ì ¸ë‚˜ê°„ìƒíƒœ
 			if (iter->second == true)
 			{
 				left->OnCollisionExit(right);
@@ -150,23 +165,23 @@ namespace ya
 		}
 	}
 
-	bool CollisionManager::Intersect(Collider* left, Collider* right)	// Ãæµ¹ »óÅÂ ¿©ºÎ
+	bool CollisionManager::Intersect(Collider* left, Collider* right)	// ì¶©ëŒ ìƒíƒœ ì—¬ë¶€
 	{
-		Vector2 leftPos = left->GetPosition();
-		Vector2 rightPos = right->GetPosition();
+		const auto left_position = left->GetPosition();
+		const auto right_position = right->GetPosition();
+		const auto left_size = left->GetSize();
+		const auto right_size = right->GetSize();
 
-		Vector2 leftSize = left->GetSize();
-		Vector2 rightSize = right->GetSize();
+		DirectX::SimpleMath::Rectangle leftRect{
+			static_cast<long>(left_position.x), static_cast<long>(left_position.y), static_cast<long>(left_size.x),
+			static_cast<long>(left_size.y)
+		};
+		DirectX::SimpleMath::Rectangle RightRect{
+			static_cast<long>(left_position.x), static_cast<long>(left_position.y), static_cast<long>(left_size.x),
+			static_cast<long>(left_size.y)
+		};
 
-		// fabs Àı´ë°ª
-		// x Ãæµ¹ && y Ãæµ¹(2·Î ³ª´©´Â °Ç ¿ø¿¡¼­Ã³·³ ¹İÁö¸§À» ±¸ÇÏ·Á°í)
-		if (fabs(leftPos.x - rightPos.x) < fabs(leftSize.x / 2.0f + rightSize.x / 2.0f)
-			&& fabs(leftPos.y - rightPos.y) < fabs(leftSize.y / 2.0f + rightSize.y / 2.0f))
-		{
-			return true;
-		}
-
-		return false;
+		return leftRect.Intersects(RightRect);
 	}
 
 }

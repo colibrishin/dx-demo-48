@@ -5,13 +5,13 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Editor_Windows", "Editor_Windows\Editor_Windows.vcxproj", "{7D577E03-48C5-483C-B750-B1439F3BA4B8}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "YamYamEngine_SOURCE", "YamYamEngine_SOURCE\YamYamEngine_SOURCE.vcxitems", "{91E07428-776D-47CA-AA0F-10EAA7ACFC34}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "YamYamEngine_Windows", "YamYamEngine_Windows\YamYamEngine_Windows.vcxproj", "{8D1C292D-2794-48F6-8278-E2ADEB5589C0}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Editor_SOURCE", "Editor_SOURCE\Editor_SOURCE.vcxitems", "{A57C38E7-87D0-4928-8F4A-3EBEF2FFC2BF}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Shaders_SOURCE", "Shaders_SOURCE\Shaders_SOURCE.vcxitems", "{E1969CDA-87DD-4F7D-B4CA-4E1EAEF8E251}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "YamYamEngine", "YamYamEngine\YamYamEngine.vcxproj", "{B065EF14-6B17-40E1-B105-44890CF3F472}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +37,14 @@ Global
 		{8D1C292D-2794-48F6-8278-E2ADEB5589C0}.Release|x64.Build.0 = Release|x64
 		{8D1C292D-2794-48F6-8278-E2ADEB5589C0}.Release|x86.ActiveCfg = Release|Win32
 		{8D1C292D-2794-48F6-8278-E2ADEB5589C0}.Release|x86.Build.0 = Release|Win32
+		{B065EF14-6B17-40E1-B105-44890CF3F472}.Debug|x64.ActiveCfg = Debug|x64
+		{B065EF14-6B17-40E1-B105-44890CF3F472}.Debug|x64.Build.0 = Debug|x64
+		{B065EF14-6B17-40E1-B105-44890CF3F472}.Debug|x86.ActiveCfg = Debug|Win32
+		{B065EF14-6B17-40E1-B105-44890CF3F472}.Debug|x86.Build.0 = Debug|Win32
+		{B065EF14-6B17-40E1-B105-44890CF3F472}.Release|x64.ActiveCfg = Release|x64
+		{B065EF14-6B17-40E1-B105-44890CF3F472}.Release|x64.Build.0 = Release|x64
+		{B065EF14-6B17-40E1-B105-44890CF3F472}.Release|x86.ActiveCfg = Release|Win32
+		{B065EF14-6B17-40E1-B105-44890CF3F472}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,8 +54,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Editor_SOURCE\Editor_SOURCE.vcxitems*{7d577e03-48c5-483c-b750-b1439f3ba4b8}*SharedItemsImports = 4
-		YamYamEngine_SOURCE\YamYamEngine_SOURCE.vcxitems*{8d1c292d-2794-48f6-8278-e2adeb5589c0}*SharedItemsImports = 4
-		YamYamEngine_SOURCE\YamYamEngine_SOURCE.vcxitems*{91e07428-776d-47ca-aa0f-10eaa7acfc34}*SharedItemsImports = 9
 		Editor_SOURCE\Editor_SOURCE.vcxitems*{a57c38e7-87d0-4928-8f4a-3ebef2ffc2bf}*SharedItemsImports = 9
 		Shaders_SOURCE\Shaders_SOURCE.vcxitems*{e1969cda-87dd-4f7d-b4ca-4e1eaef8e251}*SharedItemsImports = 9
 	EndGlobalSection

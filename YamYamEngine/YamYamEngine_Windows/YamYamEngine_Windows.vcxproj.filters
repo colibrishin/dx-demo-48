@@ -17,17 +17,18 @@
     </ClInclude>
     <ClInclude Include="yaLoadScene.h" />
     <ClInclude Include="yaPlayerScript.h" />
+    <ClInclude Include="yaPortal.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="yaPlayScene.cpp">
       <Filter>Scens</Filter>
     </ClCompile>
     <ClCompile Include="yaPlayerScript.cpp" />
-    <ClCompile Include="yaPortal.hpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="yaPortal.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
