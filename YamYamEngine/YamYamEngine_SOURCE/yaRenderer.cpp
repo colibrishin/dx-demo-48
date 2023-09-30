@@ -33,9 +33,6 @@ namespace ya::renderer
 		vertexes[2].color = Vector4(0.f, 0.f, 1.f, 1.f);
 
 		std::vector<UINT> indexes;
-		indexes.push_back(0);
-		indexes.push_back(2);
-		indexes.push_back(3);
 
 		indexes.push_back(0);
 		indexes.push_back(1);
