@@ -27,6 +27,10 @@ namespace ya
 	{
 	}
 
+	void Collider::LateUpdate()
+	{
+	}
+
 	void Collider::Render()
 	{
 		

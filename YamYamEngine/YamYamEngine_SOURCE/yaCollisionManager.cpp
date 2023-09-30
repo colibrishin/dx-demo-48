@@ -9,6 +9,20 @@ namespace ya
 
 	void CollisionManager::Initialize()
 	{
+		// 같은 레이어간의 충돌을 할 수 있도록 세팅
+		for (int i = 0; i < LAYER_MAX; i++)
+		{
+			for (int j = 0; j < LAYER_MAX; j++)
+			{
+				mLayerMasks[i][j] = false;
+				
+				// 레이어가 같으면
+				if (i == j)
+				{
+					mLayerMasks[i][j] = true;
+				}
+			}
+		}
 	}
 
 	void CollisionManager::Update()
@@ -26,11 +40,7 @@ namespace ya
 		}
 	}
 
-	void CollisionManager::LateUpdate()
-	{
-	}
-
-	void CollisionManager::Render(HDC hdc)
+	void CollisionManager::Render()
 	{
 	}
 

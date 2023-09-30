@@ -13,6 +13,7 @@ namespace ya
 
 		virtual void Initialize() override;
 		virtual void Update() override;
+		virtual void LateUpdate() override;
 		virtual void Render() override;
 
 		void OnCollisionEnter(Collider* other);		// 충돌 시작
