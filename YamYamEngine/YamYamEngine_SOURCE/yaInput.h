@@ -6,7 +6,7 @@ using namespace ya::math;
 
 namespace ya
 {
-	enum class KEY_CODE
+	enum class eKeyCode
 	{
 		//Alphabet
 		Q, W, E, R, T, Y, U, I, O, P,
@@ -30,12 +30,12 @@ namespace ya
 
 		END,
 	};
-	enum KEY_STATE
+	enum class eKeyState
 	{
-		DOWN,
-		PRESSED,
-		UP,
-		NONE,
+		Down,
+		Up,
+		Pressed,
+		None
 	};
 
 	class Input
@@ -43,17 +43,29 @@ namespace ya
 	public:
 		struct Key
 		{
-			KEY_CODE  eType;
-			KEY_STATE eState;
-			bool	  bPressed;
+			eKeyCode Code;
+			eKeyState State;
+			bool bPressed;
 		};
 
 		static void Initialize();
 		static void Update();
 
-		static __forceinline KEY_STATE GetKeyState(KEY_CODE keyCode)
+		__forceinline static bool GetKeyDown(eKeyCode code)
 		{
-			return mKeys[static_cast<UINT>(keyCode)].eState;
+			return mKeys[(int)code].State == eKeyState::Down;
+		}
+		__forceinline static bool GetKeyUp(eKeyCode code)
+		{
+			return mKeys[(int)code].State == eKeyState::Up;
+		}
+		__forceinline static bool GetKey(eKeyCode code)
+		{
+			return mKeys[(int)code].State == eKeyState::Pressed;
+		}
+		__forceinline static bool GetKeyNone(eKeyCode code)
+		{
+			return mKeys[(int)code].State == eKeyState::None;
 		}
 
 		static __forceinline Vector2 GetMousPosition()

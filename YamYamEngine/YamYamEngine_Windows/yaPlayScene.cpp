@@ -5,6 +5,9 @@
 #include "yaTransform.h"
 #include "yaMeshRenderer.h"
 #include "yaPlayerScript.h"
+#include "yaPlayer.h"
+#include "yaInput.h"
+#include "yaRigidbody.h"
 
 namespace ya
 {
@@ -20,20 +23,20 @@ namespace ya
 
 	void PlayScene::Initialize()
 	{
-		{
-			GameObject* object = new GameObject();
-			Transform* tr = object->AddComponent<Transform>();
-			tr->SetPosition(Vector3(0.5f, 0.2f, 0.0f));
-			tr->SetScale(Vector3(2.0f, 2.0f, 1.0f));
+		Scene::Initialize();
 
-			MeshRenderer* meshRenderer = object->AddComponent<MeshRenderer>();
-			meshRenderer->SetMesh(Resources::Find<Mesh>(L"TriangleMesh"));
-			meshRenderer->SetShader(Resources::Find<Shader>(L"TriangleShader"));
+		Player* player = new Player();
 
-			AddGameObject(object, LAYER::NONE);
-			object->AddComponent<PlayerScript>();
-			//object->AddComponent<PlayerScript2>();
-		}
+		Transform* tr = player->AddComponent<Transform>();
+		tr->SetPosition(Vector3(0.5f, 0.2f, 0.0f));
+		tr->SetScale(Vector3(1.0f, 1.0f, 1.0f));
+
+		MeshRenderer* meshRenderer = player->AddComponent<MeshRenderer>();
+		meshRenderer->SetMesh(Resources::Find<Mesh>(L"TriangleMesh"));
+		meshRenderer->SetShader(Resources::Find<Shader>(L"TriangleShader"));
+
+		AddGameObject(player, LAYER::NONE);
+		player->AddComponent<PlayerScript>();
 	}
 
 	void PlayScene::Update()

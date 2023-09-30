@@ -7,7 +7,8 @@ namespace ya
 {
 	std::vector<Input::Key> Input::mKeys;
 	Vector2 Input::mMousPosition;
-	int ASCII[(UINT)KEY_CODE::END] =
+
+	int ASCII[(UINT)eKeyCode::END] =
 	{
 		//Alphabet
 		'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
@@ -33,11 +34,11 @@ namespace ya
 
 	void Input::Initialize()
 	{
-		for (UINT i = 0; i < (UINT)KEY_CODE::END; i++)
+		for (UINT i = 0; i < (UINT)eKeyCode::END; i++)
 		{
 			Key key;
-			key.eType = (KEY_CODE)i;
-			key.eState = KEY_STATE::NONE;
+			key.Code = (eKeyCode)i;
+			key.State = eKeyState::None;
 			key.bPressed = false;
 
 			mKeys.push_back(key);
@@ -46,52 +47,71 @@ namespace ya
 
 	void Input::Update()
 	{
-		if (GetFocus())
-		{
-			//KEY
-			for (UINT i = 0; i < (UINT)KEY_CODE::END; ++i)
-			{
-				// 해당키가 현재 눌려있다.
-				if (GetAsyncKeyState(ASCII[i]) & 0x8000)
-				{
-					// 이전 프레임에도 눌려 있었다.
-					if (mKeys[i].bPressed)
-						mKeys[i].eState = KEY_STATE::PRESSED;
-					else
-						mKeys[i].eState = KEY_STATE::DOWN;
+        HWND hwnd = application.GetHwnd();
+        HWND Nowhwnd = GetFocus();
 
-					mKeys[i].bPressed = true;
-				}
-				else // 해당키가 현재 안눌려있다.
-				{
-					// 이전 프레임에는 눌려 있었다.
-					if (mKeys[i].bPressed)
-						mKeys[i].eState = KEY_STATE::UP;
-					else // 이전 프레임에도 안눌려 있었다.
-						mKeys[i].eState = KEY_STATE::NONE;
+        POINT MousePos = {};
 
-					mKeys[i].bPressed = false;
-				}
-			}
+        // 현재 마우스 Pos 를 받아온다
+        GetCursorPos(&MousePos);
 
-			POINT mousePos = {};
-			GetCursorPos(&mousePos);
-			ScreenToClient(application.GetHwnd(), &mousePos);
-			mMousPosition.x = mousePos.x;
-			mMousPosition.y = mousePos.y;
-		}
-		else
-		{
-			for (UINT i = 0; i < (UINT)KEY_CODE::END; ++i)
-			{
-				if (KEY_STATE::DOWN == mKeys[i].eState || KEY_STATE::PRESSED == mKeys[i].eState)
-					mKeys[i].eState = KEY_STATE::UP;
-				else if (KEY_STATE::UP == mKeys[i].eState)
-					mKeys[i].eState = KEY_STATE::NONE;
+        // 마우스 Pos 를 스크린 좌표에서 특정 클라이언트 좌표로 바꿔준다
+        ScreenToClient(hwnd, &MousePos);
+        mMousPosition.x = (float)MousePos.x;
+        mMousPosition.y = (float)MousePos.y;
 
-				mKeys[i].bPressed = false;
-			}
-		}
+        if (hwnd == Nowhwnd)
+        {
+            for (int i = 0; i < (int)eKeyCode::END; i++)
+            {
+                //이전에 누른 적이 없고 호출 시점에서 눌린 상태 (0x8000)
+                if (GetAsyncKeyState(ASCII[i]) & 0x8000)
+                {
+                    //이전 눌려져 있던 상태 (pressed)
+                    if (mKeys[i].bPressed == true) //true
+                    {
+                        mKeys[i].State = eKeyState::Pressed;
+                    }
+                    else
+                    {
+                        mKeys[i].State = eKeyState::Down;
+                    }
 
+                    mKeys[i].bPressed = true;
+                }
+                //else if (GetAsyncKeyState(ASCII[i]) & 0)
+                else //이전에 누른 적이 없고 호출 시점에서 입력이 안된 상태 (0x0000)
+                {
+                    //이전에 눌려져 있던 상태
+                    if (mKeys[i].bPressed == true)
+                    {
+                        mKeys[i].State = eKeyState::Up;
+                    }
+                    else
+                    {
+                        mKeys[i].State = eKeyState::None;
+                    }
+
+                    mKeys[i].bPressed = false;
+                }
+            }
+
+        }
+        else // 현재 포커스중이 아니다 
+        {
+            for (UINT i = 0; i < (UINT)eKeyCode::END; i++)
+            {
+                mKeys[i].bPressed = false;
+
+                if (mKeys[i].State == eKeyState::Down or mKeys[i].State == eKeyState::Pressed)
+                {
+                    mKeys[i].State = eKeyState::Up;
+                }
+                else if (mKeys[i].State == eKeyState::Up)
+                {
+                    mKeys[i].State = eKeyState::None;
+                }
+            }
+        }
 	}
 }

@@ -22,7 +22,7 @@ namespace ya
 		//	Transform* tr = new Transform();
 		//	tr->SetPosition(Vector3(-0.5f, -0.2f, 0.0f));
 		//	object->AddComponent(tr);
-
+		
 		//	MeshRenderer* meshRenderer = new MeshRenderer();
 		//	meshRenderer->SetMesh(Resources::Find<Mesh>(L"TriangleMesh"));
 		//	meshRenderer->SetShader(Resources::Find<Shader>(L"TriangleShader"));

@@ -10,18 +10,33 @@
     <Filter Include="GameObjects">
       <UniqueIdentifier>{ddf577a3-351d-416f-92c0-6086e4c11f0a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{6659dd5f-8960-4ad2-b7c9-57c3cc90c63d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="yaPlayScene.h">
       <Filter>Scens</Filter>
     </ClInclude>
-    <ClInclude Include="yaLoadScene.h" />
-    <ClInclude Include="yaPlayerScript.h" />
+    <ClInclude Include="yaPlayerScript.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="yaLoadScene.h">
+      <Filter>Scens</Filter>
+    </ClInclude>
+    <ClInclude Include="yaPlayer.h">
+      <Filter>Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="yaPlayScene.cpp">
       <Filter>Scens</Filter>
     </ClCompile>
-    <ClCompile Include="yaPlayerScript.cpp" />
+    <ClCompile Include="yaPlayerScript.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="yaPlayer.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

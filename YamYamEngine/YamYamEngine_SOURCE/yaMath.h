@@ -520,9 +520,9 @@ namespace ya::math
     {
         Matrix() noexcept
             : XMFLOAT4X4(1.f, 0, 0, 0,
-                0, 1.f, 0, 0,
-                0, 0, 1.f, 0,
-                0, 0, 0, 1.f)
+                         0, 1.f, 0, 0,
+                         0, 0, 1.f, 0,
+                         0, 0, 0, 1.f)
         {
         }
         constexpr Matrix(float m00, float m01, float m02, float m03,
