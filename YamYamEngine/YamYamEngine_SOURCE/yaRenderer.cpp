@@ -43,8 +43,11 @@ namespace ya::renderer
 		mesh->CreateIndexBuffer(indexes.data(), indexes.size());
 		Resources::Insert(L"TriangleMesh", mesh);
 		
-		constantBuffers[(UINT)graphics::eCBType::Transform] = new ConstantBuffer();
+		constantBuffers[(UINT)graphics::eCBType::Transform] = new ConstantBuffer(eCBType::Transform);
 		constantBuffers[(UINT)graphics::eCBType::Transform]->Create(sizeof(TransformCB));
+
+		constantBuffers[(UINT)graphics::eCBType::Perspective] = new ConstantBuffer(eCBType::Perspective);
+		constantBuffers[(UINT)graphics::eCBType::Perspective]->Create(sizeof(PerspectiveCB));
 		//mesh->CreateConstantBuffer(nullptr, sizeof(Vector4));
 	}
 

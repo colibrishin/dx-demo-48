@@ -17,6 +17,7 @@
 
 #define CBSLOT_TRANSFORM		0
 #define CBSLOT_GRID				1
+#define CBSLOT_PERSPECTIVE		2
 
 namespace ya::graphics
 {
@@ -36,6 +37,7 @@ namespace ya::graphics
 	{
 		Transform,
 		Test,
+		Perspective,
 		End,
 	};
 

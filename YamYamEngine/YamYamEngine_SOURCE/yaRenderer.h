@@ -30,6 +30,13 @@ namespace ya::renderer
 		int padd2;
 	};
 
+	CBUFFER(PerspectiveCB, CBSLOT_PERSPECTIVE)
+	{
+		XMMATRIX world;
+		XMMATRIX view;
+		XMMATRIX proj;
+	};
+
 	extern Mesh* mesh;
 	extern Shader* shader;
 	extern ConstantBuffer* constantBuffers[];
