@@ -24,7 +24,14 @@ void ya::Camera::Update()
 
 	XMVECTOR upVector = XMLoadFloat3(&Vector3::Up);
 	XMVECTOR lookAtVector = XMLoadFloat3(&mLookPosition);
-	const XMVECTOR positionVector = XMLoadFloat3(&mPosition);
+	XMVECTOR positionVector = XMLoadFloat3(&mPosition);
+
+	if (mGameObject != nullptr)
+	{
+		auto object_pos = mGameObject->GetComponent<Transform>()->GetPosition();
+		object_pos.z = -2;
+		positionVector = XMLoadFloat3(&object_pos);
+	}
 
 	// 쿼토니안 값에서 회전 행렬을 구함
 	const XMMATRIX rotationMatrix = XMMatrixRotationQuaternion(mRotation);

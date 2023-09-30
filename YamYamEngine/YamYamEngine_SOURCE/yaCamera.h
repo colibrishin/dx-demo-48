@@ -15,10 +15,16 @@ namespace ya
 		static void SetRotation(const Quaternion& rotation) { mRotation = rotation; }
 		// 카메라가 바라보는 방향
 		static void SetLookPosition(const Vector3& position) { mLookPosition = position; }
+		// 추척하는 오브젝트, 설정될 경우 카메라의 위치가 오브젝트를 따라감
+		static void SetTarget(GameObject* gameObject) { mGameObject = gameObject; }
+		// 오브젝트 추적을 중단하고 카메라의 위치로 되돌아감.
+		static void ResetTarget() { mGameObject = nullptr; }
 
 	private:
 		// 현재 카메라 파라메터를 상수 버퍼로 바인딩
 		static void SetConstantBuffer();
+
+		inline static GameObject* mGameObject{};
 
 		inline static Vector3 mLookPosition{};	
 		inline static Vector3 mPosition{};
