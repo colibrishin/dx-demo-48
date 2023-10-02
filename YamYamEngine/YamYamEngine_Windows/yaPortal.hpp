@@ -24,8 +24,8 @@ namespace ya
 		// 포탈과 벽의 각도
 		float m_angle_;
 		// 포탈의 앞 방향
-		Vector2 m_forward_;
-		// ¦�� �Ǵ� �ݴ��� ��Ż
+		Vector3 m_forward_;
+		// 짝이 되는 반대편 포탈
 		Portal* m_ptr_pair_;
 		// �پ��ִ� ��
 		GameObject* m_ptr_wall_;

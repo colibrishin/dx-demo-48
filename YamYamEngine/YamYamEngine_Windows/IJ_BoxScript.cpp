@@ -101,12 +101,12 @@ namespace IJ
 			ya::Vector3 pos_Target = { pos_Player.x, pos_Player.y + 0.1f, pos_Player.z };
 			ya::Vector3 m_Direction = pos_Target - pos_Box;
 			m_Direction.normalize();
-			ya::Vector2 m_Direction_2 = { m_Direction.x, m_Direction.y };
+			ya::Vector3 m_Direction_2= { m_Direction.x, m_Direction.y, 0.0f };
 			rigidbody->AddForce(m_Direction_2 * 1.0f * ya::Time::DeltaTime());
 
 			// 또한 중력을 상쇄하기 위해 중력의 크기만큼 위로 힘을 받습니다
 			// 일단은 기본값인 800.0f 만큼만 힘을 줍니다
-			rigidbody->AddForce({ 0.0f, -800.0f * ya::Time::DeltaTime()});
+			rigidbody->AddForce({ 0.0f, -800.0f * ya::Time::DeltaTime(), 0.0f});
 		}
 	}
 }

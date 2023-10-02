@@ -48,7 +48,7 @@ namespace ya
 
 		// 물체가 이동하던 방향을 반대 포탈의 방향에 맞게 전환
 		const auto& velocity_zero = other_object->GetComponent<Rigidbody>()->GetVelocity();
-		Vector2 velocity_one{};
+		Vector3 velocity_one{};
 
 		// TODO: 벽의 기울기 반영하기
 		// TODO: 성분이 여러개인 경우?
@@ -93,6 +93,6 @@ namespace ya
 		// 포탈이 벽보다 x축으로 뒤에 있을 경우 => {-1, 0}
 		// 포탈이 벽보다 y축으로 앞에 있을 경우 => {0, 1}
 		// 포탈이 벽보다 y축으로 뒤에 있을 경우 => {0, -1}
-		m_forward_ = Vector2{ delta.x, delta.y };
+		m_forward_ = Vector3{ delta.x, delta.y, 0.0f };
 	}
 }
