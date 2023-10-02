@@ -27,6 +27,15 @@
     <ClInclude Include="yaPlayer.h">
       <Filter>Player</Filter>
     </ClInclude>
+    <ClInclude Include="IJ_Box.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="IJ_BoxScript.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="IJ_PlayerAim_Temp.h">
+      <Filter>Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="yaPlayScene.cpp">
@@ -36,6 +45,15 @@
       <Filter>Scripts</Filter>
     </ClCompile>
     <ClCompile Include="yaPlayer.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="IJ_Box.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="IJ_BoxScript.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="IJ_PlayerAim_Temp.cpp">
       <Filter>Player</Filter>
     </ClCompile>
   </ItemGroup>
