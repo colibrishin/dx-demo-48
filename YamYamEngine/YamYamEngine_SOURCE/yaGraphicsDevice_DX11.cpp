@@ -344,7 +344,7 @@ namespace ya::graphics
         // ViewPort, RenderTaget
         RECT winRect;
         GetClientRect(application.GetHwnd(), &winRect);
-        D3D11_VIEWPORT mViewPort = { 0.0f, 0.0f, (FLOAT)(winRect.right - winRect.left), (FLOAT)(winRect.bottom - winRect.top) };
+        D3D11_VIEWPORT mViewPort = { 0.0f, 0.0f, (FLOAT)(winRect.right - winRect.left), (FLOAT)(winRect.bottom - winRect.top), 0.0f, 1.0f };
         BindViewports(&mViewPort);
         mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
     }

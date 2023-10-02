@@ -1,4 +1,6 @@
 #include "yaApplication.h"
+
+#include "yaCamera.h"
 #include "yaGraphicsDevice_DX11.h"
 
 #include "yaInput.h"
@@ -25,6 +27,7 @@ namespace ya
 
 	void Application::Initialize()
 	{
+		Camera::Initialize();
 		Time::Initialize();
 		Input::Initialize();
 
@@ -36,6 +39,7 @@ namespace ya
 	void Application::Update()
 	{
 		Time::Update();
+		Camera::Update();
 		Input::Update();
 		CollisionManager::Update();
 		SceneManager::Update();
