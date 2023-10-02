@@ -37,6 +37,8 @@ namespace ya
 
 
 	private:
+		void UpdatePosition();
+
 		Transform* tr;
 		/*Vector2 mSize;*/
 		Vector3 mSize;

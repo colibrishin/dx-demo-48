@@ -22,11 +22,12 @@ namespace ya
 
 	void Collider::Initialize()
 	{
+		UpdatePosition();
 	}
 
 	void Collider::Update()
 	{
-	
+		UpdatePosition();
 	}
 
 	void Collider::LateUpdate()
@@ -35,15 +36,6 @@ namespace ya
 
 	void Collider::Render()
 	{
-		/*tr = GetOwner()->GetComponent<Transform>();
-		Vector3 pos = tr->GetPosition();
-		mPosition = pos + mOffset;
-
-		pos.x -= mSize.x / 2.0f;
-		pos.y -= mSize.y / 2.0f;
-		pos.x += mOffset.x;
-		pos.y += mOffset.y;*/
-		
 	}
 
 	void Collider::OnCollisionEnter(Collider* other)
@@ -62,5 +54,16 @@ namespace ya
 	void Collider::ColliderOff()
 	{
 
+	}
+
+	void Collider::UpdatePosition()
+	{
+		auto* tr = GetOwner()->GetComponent<Transform>();
+
+		if(tr != nullptr)
+		{
+			SetPosition(tr->GetPosition());
+			SetSize(tr->GetScale());
+		}
 	}
 }
