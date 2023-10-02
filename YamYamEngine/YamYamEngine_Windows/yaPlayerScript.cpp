@@ -4,6 +4,7 @@
 #include "yaTransform.h"
 #include "yaTime.h"
 #include "yaInput.h"
+#include "yaRigidbody.h"
 
 namespace ya
 {
@@ -24,24 +25,28 @@ namespace ya
 	{
 		GameObject* obj = GetOwner();
 		Transform* tr = obj->GetComponent<Transform>();
-		Vector3 pos = tr->GetPosition();
+		Rigidbody* rb = obj->GetComponent<Rigidbody>();
 
 		//Player ÀÌµ¿
 		if (Input::GetKey(eKeyCode::W))
 		{
-			pos.y += 1.0f * Time::DeltaTime();
+			const auto velocity = rb->GetVelocity();
+			rb->SetVelocity({velocity.x, 1.0f, velocity.z});
 		}
 		if (Input::GetKey(eKeyCode::A))
 		{
-			pos.x -= 1.0f * Time::DeltaTime();
+			const auto velocity = rb->GetVelocity();
+			rb->SetVelocity({-1.0f, velocity.y, velocity.z});
 		}
 		if (Input::GetKey(eKeyCode::S))
 		{
-			pos.y -= 1.0f * Time::DeltaTime();
+			const auto velocity = rb->GetVelocity();
+			rb->SetVelocity({velocity.x, -1.0f, velocity.z});
 		}
 		if (Input::GetKey(eKeyCode::D))
 		{
-			pos.x += 1.0f * Time::DeltaTime();
+			const auto velocity = rb->GetVelocity();
+			rb->SetVelocity({1.0f, velocity.y, velocity.z});
 		}
 
 		//Mouse
@@ -59,8 +64,6 @@ namespace ya
 		{
 
 		}
-
-		tr->SetPosition(pos);
 	}
 
 	void PlayerScript::LateUpdate()
