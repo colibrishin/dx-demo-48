@@ -12,7 +12,8 @@ namespace ya
 
 		virtual void Initialize();
 		virtual void Update();
-		virtual void Render(HDC hdc);
+		virtual void LateUpdate() override;
+		virtual void Render();
 
 		void AddForce(Vector2 force) { mForce += force; }
 		void SetMass(float mass) { mMass = mass; }

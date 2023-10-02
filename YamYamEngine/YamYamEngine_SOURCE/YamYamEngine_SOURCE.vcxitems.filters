@@ -55,12 +55,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)yaComponent.cpp">
       <Filter>Engine\Component</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)yaTransform.cpp">
-      <Filter>Engine\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)yaMeshRenderer.cpp">
-      <Filter>Engine\Component</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)yaScript.cpp">
       <Filter>Engine\Component</Filter>
     </ClCompile>
@@ -75,6 +69,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)yaRigidbody.cpp">
       <Filter>Engine\Component\Rigidbody</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)yaMeshRenderer.cpp">
+      <Filter>Engine\Component\MeshRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)yaTransform.cpp">
+      <Filter>Engine\Component\Transform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -150,12 +150,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)yaComponent.h">
       <Filter>Engine\Component</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)yaTransform.h">
-      <Filter>Engine\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)yaMeshRenderer.h">
-      <Filter>Engine\Component</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)yaScript.h">
       <Filter>Engine\Component</Filter>
     </ClInclude>
@@ -170,6 +164,12 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)yaRigidbody.h">
       <Filter>Engine\Component\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)yaMeshRenderer.h">
+      <Filter>Engine\Component\MeshRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)yaTransform.h">
+      <Filter>Engine\Component\Transform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +235,12 @@
     </Filter>
     <Filter Include="Engine\Component\Rigidbody">
       <UniqueIdentifier>{a63414e4-c5e3-4483-a563-f4e2831b2768}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\MeshRenderer">
+      <UniqueIdentifier>{429549bd-ec32-42de-bc2a-9b35bfa74b4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\Transform">
+      <UniqueIdentifier>{37107080-5f05-4653-b7bd-3e797f13b0a1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

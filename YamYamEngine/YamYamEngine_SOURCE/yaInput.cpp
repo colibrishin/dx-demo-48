@@ -3,6 +3,7 @@
 
 extern ya::Application application;
 
+// 
 namespace ya
 {
 	std::vector<Input::Key> Input::mKeys;

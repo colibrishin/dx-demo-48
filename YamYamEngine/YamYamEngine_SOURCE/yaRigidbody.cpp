@@ -119,7 +119,11 @@ namespace ya
 		mForce.clear();
 	}
 
-	void Rigidbody::Render(HDC hdc)
+	void Rigidbody::LateUpdate()
+	{
+	}
+
+	void Rigidbody::Render()
 	{
 
 	}

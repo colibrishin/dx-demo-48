@@ -8,6 +8,7 @@
 namespace ya
 {
 	Player::Player()
+		: HP(100)
 	{
 	}
 	Player::~Player()
@@ -28,5 +29,18 @@ namespace ya
 	void Player::Render()
 	{
 		GameObject::Render();
+	}
+	void Player::OnCollisionEnter(Collider* other)
+	{
+		int a = 0;
+		HP -= 10;
+	}
+	void Player::OnCollisionStay(Collider* other)
+	{
+		int a = 0;
+	}
+	void Player::OnCollisionExit(Collider* other)
+	{
+		int a = 0;
 	}
 }

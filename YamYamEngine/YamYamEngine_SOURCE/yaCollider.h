@@ -1,5 +1,6 @@
 #pragma once
 #include "yaComponent.h"
+#include "yaTransform.h"
 
 namespace ya
 {
@@ -22,19 +23,27 @@ namespace ya
 
 		void ColliderOff();
 
-		Vector2 GetSize() { return mSize; }
-		void SetSize(Vector2 size) { mSize = size; }
+		/*Vector2 GetSize() { return mSize; }
+		void SetSize(Vector2 size) { mSize = size; }*/
+		Vector3 GetSize() { return mSize; }
+		void SetSize(Vector3 size) { mSize = size; }
 		Vector2 GetOffset() { return mOffset; }
 		void SetOffset(Vector2 offset) { mOffset = offset; }
-		Vector2 GetPosition() { return mPosition; }
-		void  SetPosition(Vector2 position) { mPosition = position; }
+		/*Vector2 GetPosition() { return mPosition; }
+		void  SetPosition(Vector2 position) { mPosition = position; }*/
+		Vector3 GetPosition() { return mPosition; }
+		void  SetPosition(Vector3 position) { mPosition = position; }
+
 
 
 	private:
-
-		Vector2 mSize;
+		Transform* tr;
+		/*Vector2 mSize;*/
+		Vector3 mSize;
 		Vector2 mOffset;
-		Vector2 mPosition;
+		/*Vector2 mPosition;*/
+		Vector3 mPosition;
+		//COLLIDERTYPE mType;
 
 		bool mbIsCollision;						// 충돌하는게 눈에 보이게 하고 싶었을 때 변수
 	};

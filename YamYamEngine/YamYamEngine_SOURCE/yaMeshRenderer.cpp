@@ -19,9 +19,7 @@ namespace ya
 
 	void MeshRenderer::Update()
 	{
-		//fhwlr
 
-		//
 	}
 
 	void MeshRenderer::LateUpdate()
