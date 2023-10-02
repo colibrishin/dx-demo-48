@@ -172,15 +172,15 @@ namespace ya
 	// Collider 위치, Transform 위치 동기화 필요
 	bool CollisionManager::Intersect(Collider* left, Collider* right)	// 충돌 상태 여부
 	{
-		Vector3 LeftPos = left->GetOwner()->GetComponent<Transform>()->GetPosition();
-		Vector3 RightPos = right->GetOwner()->GetComponent<Transform>()->GetPosition();
+		Vector3 LeftPos = left->GetPosition();
+		Vector3 RightPos = right->GetPosition();
 
-		Vector3 LeftSize = left->GetOwner()->GetComponent<Transform>()->GetScale();
-		Vector3 RightSize = right->GetOwner()->GetComponent<Transform>()->GetScale();
+		Vector3 LeftSize = left->GetSize();
+		Vector3 RightSize = right->GetSize();
 
 		//충돌체크를 도와주는 구조체(z값 1인 이유 : 2D 평면으로 처리하기 위해)
 		DirectX::BoundingBox LeftRect{ { LeftPos.x, LeftPos.y, 1 }, { LeftSize.x / 2, LeftSize.y / 2, 1  } };
-		DirectX::BoundingBox RightRect{ { RightPos.x, RightPos.y, 1 }, { RightSize.x / 2, RightSize.y / 2, 1 } };
+		DirectX::BoundingBox RightRect{ { RightPos.x, RightPos.y, 1 }, { RightSize.x / 2, RightSize.y / 2 , 1 } };
 
 		//Intersects - 충돌 시 True 반환
 		return LeftRect.Intersects(RightRect);
