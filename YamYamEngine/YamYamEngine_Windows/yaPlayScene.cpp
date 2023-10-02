@@ -9,6 +9,7 @@
 #include "yaInput.h"
 #include "yaRigidbody.h"
 #include "yaCollisionManager.h"
+#include "yaPortal.hpp"
 #include "yaTurret.h"
 #include "yaTurretScript.h"
 
@@ -26,49 +27,99 @@ namespace ya
 	{
 		Scene::Initialize();
 
-		//Player1
-		Player* player = new Player();
+		{
+			Player* player = new Player();
 
-		Transform* tr = player->AddComponent<Transform>();
-		tr->SetPosition(Vector3(-2.5f, 0.2f, 1.0f));
-		tr->SetScale(Vector3(0.5f, 0.5f, 0.5f));
+			MeshRenderer* meshRenderer = player->AddComponent<MeshRenderer>();
+			meshRenderer->SetMesh(Resources::Find<Mesh>(L"TriangleMesh"));
+			meshRenderer->SetShader(Resources::Find<Shader>(L"TriangleShader"));
 
-		MeshRenderer* meshRenderer = player->AddComponent<MeshRenderer>();
-		meshRenderer->SetMesh(Resources::Find<Mesh>(L"TriangleMesh"));
-		meshRenderer->SetShader(Resources::Find<Shader>(L"TriangleShader"));
+			Transform* tr = player->GetComponent<Transform>();
+			auto cld1 = player->GetComponent<Collider>();
+			auto rb = player->GetComponent<Rigidbody>();
+			player->AddComponent<PlayerScript>();
 
-		AddGameObject(player, LAYER::PLAYER);
-		player->AddComponent<PlayerScript>();
-		player->AddComponent<Collider>()->SetSize(Vector3(0.1f, 0.1f, 1.0f));
+			tr->SetPosition(Vector3(-2.5f, 0.2f, 1.0f));
+			tr->SetScale(Vector3(1.0f, 1.0f, 1.0f));
 
-		//Player2
-		//Player* player2 = new Player();
+			cld1->SetSize(Vector3(1.0f, 1.0f, 1.0f));
+			rb->SetGravity(Vector3::Zero);
+			rb->SetFriction(0.25f);
 
-		//Transform* tr2 = player2->AddComponent<Transform>();
-		//tr2->SetPosition(Vector3(0.1f, 0.2f, 1.0f));
-		//tr2->SetScale(Vector3(0.1f, 0.1f, 1.0f));
+			AddGameObject(player, LAYER::PLAYER);
+		}
 
-		//MeshRenderer* meshRenderer2 = player2->AddComponent<MeshRenderer>();
-		//meshRenderer2->SetMesh(Resources::Find<Mesh>(L"TriangleMesh"));
-		//meshRenderer2->SetShader(Resources::Find<Shader>(L"TriangleShader"));
+		GameObject* wall_a = new GameObject();
+		GameObject* wall_b = new GameObject();
 
-		//AddGameObject(player2, LAYER::PLAYER);
-		//player2->AddComponent<Collider>()->SetSize(Vector3(0.1f, 0.1f, 1.0f));
+		// ù��° ��
+		{
+			Transform* tr = wall_a->AddComponent<Transform>();
+			auto cld1 = wall_a->AddComponent<Collider>();
+			tr->SetPosition({1.0f, 0.0f, 1.0f});
+			tr->SetScale(Vector3::One);
 
-		//CollisionManager::CollisionLayerCheck(LAYER::PLAYER, LAYER::PLAYER, true);
+			cld1->SetSize(Vector3::One);
+		}
 
+		// �ι�° ��
+		{
+			Transform* tr = wall_b->AddComponent<Transform>();
+			auto cld1 = wall_b->AddComponent<Collider>();
+			tr->SetPosition(Vector3(-1.0f, 0.0f, 1.0f));
+			tr->SetScale(Vector3::One);
+
+			cld1->SetSize(Vector3::One);
+		}
+
+		Portal* portal_a = new Portal(wall_a);
+		Portal* portal_b = new Portal(wall_b);
+
+		// ù��° ��Ż
+		{
+			MeshRenderer* meshRenderer = portal_a->AddComponent<MeshRenderer>();
+			meshRenderer->SetMesh(Resources::Find<Mesh>(L"TriangleMesh"));
+			meshRenderer->SetShader(Resources::Find<Shader>(L"TriangleShader"));
+
+			Transform* tr = portal_a->GetComponent<Transform>();
+			auto cld1 = portal_a->GetComponent<Collider>();
+			tr->SetPosition({1.1f, 0.0f, 1.0f});
+			tr->SetScale(Vector3::One);
+
+			cld1->SetSize(Vector3::One);
+
+			portal_a->SetOtherPortal(portal_b);
+			AddGameObject(portal_a, LAYER::PORTAL);
+		}
+
+		// �ι�° ��Ż
+		{
+			MeshRenderer* meshRenderer = portal_b->AddComponent<MeshRenderer>();
+			meshRenderer->SetMesh(Resources::Find<Mesh>(L"TriangleMesh"));
+			meshRenderer->SetShader(Resources::Find<Shader>(L"TriangleShader"));
+
+			Transform* tr = portal_b->GetComponent<Transform>();
+			auto cld1 = portal_b->GetComponent<Collider>();
+			tr->SetPosition({-1.1f, 0.0f, 1.0f});
+			tr->SetScale(Vector3::One);
 		//Turret
 		Turret* turret = new Turret();
 
+			cld1->SetSize(Vector3::One);
 		Transform* turrettr = turret->AddComponent<Transform>();
 		turrettr->SetPosition(Vector3(2.5f, 0.2f, 1.0f));
 		turrettr->SetScale(Vector3(0.5f, 0.5f, 0.5f));
 
+			portal_b->SetOtherPortal(portal_a);
+			AddGameObject(portal_b, LAYER::PORTAL);
+		}
 		MeshRenderer* turretmr = turret->AddComponent<MeshRenderer>();
 		turretmr->SetMesh(Resources::Find<Mesh>(L"TriangleMesh"));
 		turretmr->SetShader(Resources::Find<Shader>(L"TriangleShader"));
 		turret->AddComponent<TurretScript>();
 
+		CollisionManager::CollisionLayerCheck(LAYER::PLAYER, LAYER::PLAYER, true);
+		CollisionManager::CollisionLayerCheck(LAYER::PLAYER, LAYER::PORTAL, true);
 		AddGameObject(turret, LAYER::TURRET);
 		turret->AddComponent<Collider>()->SetSize(Vector3(0.1f, 0.1f, 1.0f));
 	}
