@@ -89,6 +89,9 @@ namespace ya
 		Vector3 delta{};
 		(portal - wall).Normalize(delta);
 
+		// 벽이랑 같은 위치에 있을 경우 포탈의 앞방향을 구분할 수 없음
+		assert(delta.x == 0.0f || delta.y == 0.0f);
+
 		// 포탈이 벽보다 x축으로 앞에 있을 경우 => {1, 0}
 		// 포탈이 벽보다 x축으로 뒤에 있을 경우 => {-1, 0}
 		// 포탈이 벽보다 y축으로 앞에 있을 경우 => {0, 1}
