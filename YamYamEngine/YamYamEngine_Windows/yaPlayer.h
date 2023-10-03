@@ -6,6 +6,14 @@ namespace ya
 	class Player : public GameObject
 	{
 	public:
+		enum class eState
+		{
+			Live,
+			Hit,
+			Dead,
+			End,
+		};
+
 		Player();
 		virtual ~Player();
 
@@ -18,9 +26,13 @@ namespace ya
 		virtual void OnCollisionStay(class Collider* other);
 		virtual void OnCollisionExit(class Collider* other);
 
+		void Live();
+		void Hit();
+		void Dead();
 
 
 	private:
+		eState mState;
 		int HP;
 		
 

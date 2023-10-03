@@ -16,6 +16,8 @@ namespace ya
 			Dead,
 		};
 
+		friend static __forceinline void Destroy(GameObject* gameObject);
+
 		GameObject();
 		virtual ~GameObject();
 
@@ -55,8 +57,31 @@ namespace ya
 
 			return nullptr;
 		}
+
+		// Component 삭제해주는 함수
+		template <typename T>
+		void DeleteComponent()
+		{
+			T* comp = nullptr;
+
+			for (std::vector<Component*>::iterator iter = mComponents.begin();
+				iter != mComponents.end(); iter++)
+			{
+				comp = dynamic_cast<T*>(*iter);
+
+				if (comp != nullptr)
+				{
+					delete comp;
+					comp = nullptr;
+					iter = mComponents.erase(iter);
+					return;
+				}
+			}
+		}
+
 		std::vector<Component*>& GetComponents() { return mComponents; }
 		std::vector<Script*>& GetScripts() { return mScripts; }
+		eState GetGameObjectState() { return mState; }
 
 		virtual void Initialize();
 		virtual void Update();
@@ -67,9 +92,22 @@ namespace ya
 		virtual void OnCollisionStay(class Collider* other);
 		virtual void OnCollisionExit(class Collider* other);
 
+		void SetLayer(LAYER LayerType) { mLayer = LayerType; }
+		LAYER GetLayer() { return mLayer; }
+
+
 	private:
 		eState mState;
 		std::vector<Component*> mComponents;
 		std::vector<Script*> mScripts;
+		LAYER mLayer;
+		void death() { mState = eState::Dead; }
+		
 	};
+
+	// 죽은 게임 오브젝트의 메모리룰 제거해주는 함수
+	static __forceinline void Destroy(GameObject* gameObject)
+	{
+		gameObject->death();
+	}
 }

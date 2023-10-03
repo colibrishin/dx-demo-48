@@ -11,7 +11,8 @@
 namespace ya
 {
 	Player::Player()
-		: HP(100)
+		: HP(100),
+		mState(eState::Live)
 	{
 		AddComponent<Transform>();
 		AddComponent<Rigidbody>();
@@ -29,6 +30,24 @@ namespace ya
 	void Player::Update()
 	{
 		GameObject::Update();
+
+		switch (mState)
+		{
+		case ya::Player::eState::Live:
+			Live();
+			break;
+		case ya::Player::eState::Hit:
+			Hit();
+			break;
+		case ya::Player::eState::Dead:
+			Dead();
+			break;
+
+		case ya::Player::eState::End:
+			break;
+		default:
+			break;
+		}
 	}
 	void Player::LateUpdate()
 	{
@@ -40,15 +59,27 @@ namespace ya
 	}
 	void Player::OnCollisionEnter(Collider* other)
 	{
-		int a = 0;
-		HP -= 10;
+		// �Ѿ˰� �浹�ϸ�
+		if (other->GetOwner()->GetLayer() == LAYER::ATTACK)
+		{
+			mState = eState::Hit;
+		}
 	}
 	void Player::OnCollisionStay(Collider* other)
 	{
-		int a = 0;
+	
 	}
 	void Player::OnCollisionExit(Collider* other)
 	{
-		int a = 0;
+	
+	}
+	void Player::Live()
+	{
+	}
+	void Player::Hit()
+	{
+	}
+	void Player::Dead()
+	{
 	}
 }
