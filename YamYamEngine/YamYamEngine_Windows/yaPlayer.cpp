@@ -7,6 +7,7 @@
 #include "yaResources.h"
 #include "yaRigidbody.h"
 #include "yaCollider.h"
+#include "yaRigidbody.h"
 
 namespace ya
 {
@@ -30,6 +31,12 @@ namespace ya
 	void Player::Update()
 	{
 		GameObject::Update();
+
+		// 점프
+		if (Input::GetKeyDown(eKeyCode::LCTRL))
+		{
+			mState = eState::Jump;
+		}
 
 		switch (mState)
 		{
@@ -64,6 +71,12 @@ namespace ya
 		{
 			mState = eState::Hit;
 		}
+
+		// 포탈 충돌 시 처리
+		if (other->GetOwner()->GetLayer() == LAYER::PORTAL)
+		{
+			
+		}
 	}
 	void Player::OnCollisionStay(Collider* other)
 	{
@@ -76,10 +89,25 @@ namespace ya
 	void Player::Live()
 	{
 	}
+	void Player::Jump()
+	{
+		Transform* tr = GetComponent<Transform>();
+		Vector3 position = tr->GetPosition();
+		this->GetComponent<Rigidbody>();
+	}
 	void Player::Hit()
 	{
+		if(HP != 0)
+		{
+			HP -= 10;
+		}
+		else
+		{
+			mState = eState::Dead;
+		}
 	}
 	void Player::Dead()
 	{
+		Destroy(this);
 	}
 }

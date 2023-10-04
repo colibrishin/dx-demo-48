@@ -9,6 +9,7 @@ namespace ya
 		enum class eState
 		{
 			Live,
+			Jump,
 			Hit,
 			Dead,
 			End,
@@ -27,6 +28,7 @@ namespace ya
 		virtual void OnCollisionExit(class Collider* other);
 
 		void Live();
+		void Jump();
 		void Hit();
 		void Dead();
 

@@ -81,7 +81,6 @@ namespace ya
 
 		std::vector<Component*>& GetComponents() { return mComponents; }
 		std::vector<Script*>& GetScripts() { return mScripts; }
-		eState GetGameObjectState() { return mState; }
 
 		virtual void Initialize();
 		virtual void Update();

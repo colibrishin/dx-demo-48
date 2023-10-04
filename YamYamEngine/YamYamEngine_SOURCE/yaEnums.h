@@ -10,6 +10,7 @@ namespace ya::enums
 		TILE,
 		FLOOR,
 		ATTACK,
+		PORTAL,
 		PLAYER,
 		PORTAL,
 		TURRET,

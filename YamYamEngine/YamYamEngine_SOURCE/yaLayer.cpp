@@ -45,22 +45,6 @@ namespace ya
 		{
 			mGameObjects[i]->Render();
 		}
-		
-		// GameObject를 돌면서 GameObject의 상태가 Dead이면 Delete
-		for (std::vector<GameObject*>::iterator iter = mGameObjects.begin();
-			iter != mGameObjects.end();)
-		{
-			if ((*iter)->GetGameObjectState() == GameObject::eState::Dead)
-			{
-				GameObject* deadObj = *iter;
-				delete deadObj;
-				deadObj = nullptr;
-
-				iter = mGameObjects.erase(iter);
-			}
-			else
-				iter++;
-		}
 	}
 
 	void Layer::AddGameObject(GameObject* gameObject)
