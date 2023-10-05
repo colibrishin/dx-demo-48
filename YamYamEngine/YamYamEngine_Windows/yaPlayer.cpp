@@ -13,6 +13,7 @@ namespace ya
 {
 	Player::Player()
 		: HP(100),
+		jumptime(0.f),
 		mState(eState::Live)
 	{
 		AddComponent<Transform>();
@@ -27,6 +28,9 @@ namespace ya
 	void Player::Initialize()
 	{
 		GameObject::Initialize();
+
+		rb = this->GetComponent<Rigidbody>();
+		
 	}
 	void Player::Update()
 	{
@@ -38,11 +42,18 @@ namespace ya
 			mState = eState::Jump;
 		}
 
+
+
 		switch (mState)
 		{
 		case ya::Player::eState::Live:
 			Live();
 			break;
+
+		case ya::Player::eState::Jump:
+			Jump();
+			break;
+
 		case ya::Player::eState::Hit:
 			Hit();
 			break;
@@ -91,9 +102,18 @@ namespace ya
 	}
 	void Player::Jump()
 	{
+		//jumptime += Time::DeltaTime();
+
+		// if(jumptime < )
 		Transform* tr = GetComponent<Transform>();
 		Vector3 position = tr->GetPosition();
-		this->GetComponent<Rigidbody>();
+		
+		Vector3 velocity = rb->GetVelocity();
+		velocity.y = -500.0f;
+		rb->SetVelocity(velocity);
+		rb->SetGround(false);
+
+		//jumptime = 0.f;
 	}
 	void Player::Hit()
 	{

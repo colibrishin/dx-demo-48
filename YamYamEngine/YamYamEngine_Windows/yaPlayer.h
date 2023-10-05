@@ -1,5 +1,6 @@
 #pragma once
 #include "yaGameObject.h"
+#include "yaRigidbody.h"
 
 namespace ya
 {
@@ -36,7 +37,8 @@ namespace ya
 	private:
 		eState mState;
 		int HP;
-		
+		Rigidbody* rb;
+		float jumptime;
 
 	};
 }
