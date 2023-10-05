@@ -13,6 +13,9 @@
     <Filter Include="Player">
       <UniqueIdentifier>{6659dd5f-8960-4ad2-b7c9-57c3cc90c63d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Turret">
+      <UniqueIdentifier>{3fda4ee5-435c-4189-8148-6f63bf648f01}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="yaPlayScene.h">
@@ -36,6 +39,18 @@
     <ClInclude Include="IJ_PlayerAim_Temp.h">
       <Filter>Player</Filter>
     </ClInclude>
+    <ClInclude Include="yaTurret.h">
+      <Filter>Turret</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBullet.h">
+      <Filter>Turret</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBulletScript.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="yaTurretScript.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="yaPlayScene.cpp">
@@ -55,6 +70,18 @@
     </ClCompile>
     <ClCompile Include="IJ_PlayerAim_Temp.cpp">
       <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="yaTurret.cpp">
+      <Filter>Turret</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBullet.cpp">
+      <Filter>Turret</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBulletScript.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="yaTurretScript.cpp">
+      <Filter>Scripts</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
