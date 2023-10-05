@@ -11,6 +11,7 @@ namespace ya::enums
 		FLOOR,
 		ATTACK,
 		PLAYER,
+		PORTAL,
 		TURRET,
 		ITEM,
 		MONSTER,
