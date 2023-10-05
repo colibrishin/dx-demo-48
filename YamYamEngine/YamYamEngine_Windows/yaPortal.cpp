@@ -69,6 +69,7 @@ namespace ya
 	void Portal::Initialize()
 	{
 		GameObject::Initialize();
+	}
 
 	void Portal::Update()
 	{
@@ -97,5 +98,10 @@ namespace ya
 		// 포탈이 벽보다 y축으로 앞에 있을 경우 => {0, 1}
 		// 포탈이 벽보다 y축으로 뒤에 있을 경우 => {0, -1}
 		m_forward_ = Vector3{ delta.x, delta.y, 0.0f };
+	}
+
+	void Portal::SetOtherPortal(Portal* portal)
+	{
+		m_ptr_pair_ = portal;
 	}
 }

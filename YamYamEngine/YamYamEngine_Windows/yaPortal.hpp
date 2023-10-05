@@ -18,6 +18,9 @@ namespace ya
 		void SetPosition(Vector2 position);
 
 		void Initialize() override;
+		void Update() override;
+		void SetOtherPortal(Portal* portal);
+
 	private:
 		// 포탈이 사용된 시간
 		float m_timer_;
@@ -27,7 +30,7 @@ namespace ya
 		Vector3 m_forward_;
 		// 짝이 되는 반대편 포탈
 		Portal* m_ptr_pair_;
-		// �پ��ִ� ��
+		// 포탈이 붙어있는 벽
 		GameObject* m_ptr_wall_;
 	};
 }

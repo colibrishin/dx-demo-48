@@ -102,26 +102,32 @@ namespace ya
 			auto cld1 = portal_b->GetComponent<Collider>();
 			tr->SetPosition({-1.1f, 0.0f, 1.0f});
 			tr->SetScale(Vector3::One);
-		//Turret
-		Turret* turret = new Turret();
+		
 
 			cld1->SetSize(Vector3::One);
-		Transform* turrettr = turret->AddComponent<Transform>();
-		turrettr->SetPosition(Vector3(2.5f, 0.2f, 1.0f));
-		turrettr->SetScale(Vector3(0.5f, 0.5f, 0.5f));
 
 			portal_b->SetOtherPortal(portal_a);
 			AddGameObject(portal_b, LAYER::PORTAL);
 		}
-		MeshRenderer* turretmr = turret->AddComponent<MeshRenderer>();
-		turretmr->SetMesh(Resources::Find<Mesh>(L"TriangleMesh"));
-		turretmr->SetShader(Resources::Find<Shader>(L"TriangleShader"));
-		turret->AddComponent<TurretScript>();
+
+		//Turret
+		{
+			Turret* turret = new Turret();
+
+			Transform* turrettr = turret->AddComponent<Transform>();
+			turrettr->SetPosition(Vector3(2.5f, 0.2f, 1.0f));
+			turrettr->SetScale(Vector3(0.5f, 0.5f, 0.5f));
+
+			MeshRenderer* turretmr = turret->AddComponent<MeshRenderer>();
+			turretmr->SetMesh(Resources::Find<Mesh>(L"TriangleMesh"));
+			turretmr->SetShader(Resources::Find<Shader>(L"TriangleShader"));
+			turret->AddComponent<TurretScript>();
+			AddGameObject(turret, LAYER::TURRET);
+			turret->AddComponent<Collider>()->SetSize(Vector3(0.1f, 0.1f, 1.0f));
+		}
 
 		CollisionManager::CollisionLayerCheck(LAYER::PLAYER, LAYER::PLAYER, true);
 		CollisionManager::CollisionLayerCheck(LAYER::PLAYER, LAYER::PORTAL, true);
-		AddGameObject(turret, LAYER::TURRET);
-		turret->AddComponent<Collider>()->SetSize(Vector3(0.1f, 0.1f, 1.0f));
 	}
 
 	void PlayScene::Update()
