@@ -1,4 +1,4 @@
-﻿#include "yaRigidbody.h"
+#include "yaRigidbody.h"
 #include "yaTime.h"
 #include "yaGameObject.h"
 #include "yaTransform.h"

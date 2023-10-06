@@ -128,6 +128,7 @@ namespace ya::math
         Vector2(Vector2&&) = default;
         Vector2& operator=(Vector2&&) = default;
 
+
         operator XMVECTOR() const noexcept { return XMLoadFloat2(this); }
 
         // Comparison operators

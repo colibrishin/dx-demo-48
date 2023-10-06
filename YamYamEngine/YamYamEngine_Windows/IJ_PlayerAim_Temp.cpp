@@ -4,8 +4,6 @@
 
 #include "yaInput.h"
 
-
-
 namespace IJ
 {
 	PlayerAim_Temp::PlayerAim_Temp()
