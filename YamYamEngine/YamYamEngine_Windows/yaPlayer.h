@@ -9,8 +9,10 @@ namespace ya
 	public:
 		enum class eState
 		{
+			Idle,
 			Live,
 			Jump,
+			Fall,
 			Hit,
 			Dead,
 			End,
@@ -28,8 +30,10 @@ namespace ya
 		virtual void OnCollisionStay(class Collider* other);
 		virtual void OnCollisionExit(class Collider* other);
 
+		void Idle();
 		void Live();
 		void Jump();
+		void Fall();
 		void Hit();
 		void Dead();
 
@@ -38,7 +42,7 @@ namespace ya
 		eState mState;
 		int HP;
 		Rigidbody* rb;
-		float jumptime;
+		//float jumptime;
 
 	};
 }

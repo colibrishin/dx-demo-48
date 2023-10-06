@@ -13,8 +13,8 @@ namespace ya
 {
 	Player::Player()
 		: HP(100),
-		jumptime(0.f),
-		mState(eState::Live)
+		//jumptime(0.f),
+		mState(eState::Idle)
 	{
 		AddComponent<Transform>();
 		AddComponent<Rigidbody>();
@@ -29,20 +29,14 @@ namespace ya
 	{
 		GameObject::Initialize();
 
-		rb = this->GetComponent<Rigidbody>();
+		rb = GetComponent<Rigidbody>();
+		rb->SetGround(true);
+		
 		
 	}
 	void Player::Update()
 	{
 		GameObject::Update();
-
-		// Á¡ÇÁ
-		if (Input::GetKeyDown(eKeyCode::LCTRL))
-		{
-			mState = eState::Jump;
-		}
-
-
 
 		switch (mState)
 		{
@@ -50,13 +44,22 @@ namespace ya
 			Live();
 			break;
 
+		case ya::Player::eState::Idle:
+			Idle();
+			break;
+
 		case ya::Player::eState::Jump:
 			Jump();
+			break;
+
+		case ya::Player::eState::Fall:
+			Fall();
 			break;
 
 		case ya::Player::eState::Hit:
 			Hit();
 			break;
+
 		case ya::Player::eState::Dead:
 			Dead();
 			break;
@@ -77,17 +80,28 @@ namespace ya
 	}
 	void Player::OnCollisionEnter(Collider* other)
 	{
-		// ï¿½Ñ¾Ë°ï¿½ ï¿½æµ¹ï¿½Ï¸ï¿½
-		if (other->GetOwner()->GetLayer() == LAYER::ATTACK)
+		// ï¿½Ñ¾ï¿½ ï¿½æµ¹ ï¿½ï¿½
+		if (other->GetOwner()->GetLayer() == LAYER::ATTACK || other->GetOwner()->GetLayer() == LAYER::MONSTER)
 		{
 			mState = eState::Hit;
 		}
 
-		// Æ÷Å» Ãæµ¹ ½Ã Ã³¸®
-		if (other->GetOwner()->GetLayer() == LAYER::PORTAL)
+		// ï¿½ï¿½Å» ï¿½æµ¹ ï¿½ï¿½ 
+		else if (other->GetOwner()->GetLayer() == LAYER::PORTAL)
 		{
 			
 		}
+
+		else if (other->GetOwner()->GetLayer() == LAYER::TILE)
+		{
+			
+		}
+
+		else if (other->GetOwner()->GetLayer() == LAYER::ITEM)
+		{
+
+		}
+
 	}
 	void Player::OnCollisionStay(Collider* other)
 	{
@@ -97,29 +111,53 @@ namespace ya
 	{
 	
 	}
+	void Player::Idle()
+	{
+		// ï¿½ï¿½ï¿½ï¿½
+		if (Input::GetKeyDown(eKeyCode::W))
+		{
+			mState = eState::Jump;
+		}
+	}
 	void Player::Live()
 	{
 	}
 	void Player::Jump()
 	{
 		//jumptime += Time::DeltaTime();
-
-		// if(jumptime < )
 		Transform* tr = GetComponent<Transform>();
-		Vector3 position = tr->GetPosition();
-		
-		Vector3 velocity = rb->GetVelocity();
-		velocity.y = -500.0f;
+		Vector3 pos = tr->GetPosition();
+
+		Vector2 velocity = rb->GetVelocity();
+		velocity.y = +100.0f;
 		rb->SetVelocity(velocity);
 		rb->SetGround(false);
 
-		//jumptime = 0.f;
+		tr->SetPosition(pos);
+
+		if (Input::GetKeyUp(eKeyCode::W))
+		{
+			mState = eState::Fall;
+		}
+		
+	}
+	void Player::Fall()
+	{
+		Transform* tr = GetComponent<Transform>();
+		Vector3 pos = tr->GetPosition();
+
+		pos.y = -100.0f;
+		//rb->SetGround(true);
+
+		tr->SetPosition(pos);
+
+		mState = eState::Idle;
 	}
 	void Player::Hit()
 	{
 		if(HP != 0)
 		{
-			HP -= 10;
+			HP -= 20;
 		}
 		else
 		{
