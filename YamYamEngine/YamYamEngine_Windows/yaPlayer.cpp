@@ -128,7 +128,7 @@ namespace ya
 		Transform* tr = GetComponent<Transform>();
 		Vector3 pos = tr->GetPosition();
 
-		Vector2 velocity = rb->GetVelocity();
+		Vector3 velocity = rb->GetVelocity();
 		velocity.y = +100.0f;
 		rb->SetVelocity(velocity);
 		rb->SetGround(false);
