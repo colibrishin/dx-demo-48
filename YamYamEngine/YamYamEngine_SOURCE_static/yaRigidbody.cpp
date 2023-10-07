@@ -14,7 +14,7 @@ namespace ya
 	{
 		mLimitedVelocty.x = 200.0f;
 		mLimitedVelocty.y = 1000.0f;
-		mGravity = Vector3(0.0f, 800.0f, 0.0f);
+		mGravity = Vector3(0.0f, 9.8f, 0.0f);
 	}
 
 	Rigidbody::~Rigidbody()
@@ -40,9 +40,14 @@ namespace ya
 		{
 			// 땅위에 있을때
 			Vector3 gravity = mGravity;
-			gravity.normalize();
-			float dot = mVelocity.Dot(gravity);
-			mVelocity -= gravity * dot;
+
+			// 중력 값이 0인 상태에서 정규화를 하면 벡터 값이 nan이 됨
+			if(gravity != Vector3::Zero)
+			{
+				gravity.normalize();
+				float dot = mVelocity.Dot(gravity);
+				mVelocity -= gravity * dot;
+			}
 		}
 		else
 		{
