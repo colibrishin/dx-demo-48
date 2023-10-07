@@ -12,7 +12,6 @@ namespace ya::enums
 		ATTACK,
 		//PORTAL,
 		PLAYER,
-		PORTAL,
 		TURRET,
 		ITEM,
 		MONSTER,

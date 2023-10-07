@@ -1,5 +1,5 @@
 #pragma once
-#include "..\\YamYamEngine_SOURCE\\yaScene.h"
+#include "yaScene.h"
 
 
 namespace ya
