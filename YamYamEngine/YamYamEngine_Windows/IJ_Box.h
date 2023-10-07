@@ -10,8 +10,8 @@ namespace IJ
 		// 지금 보니 그냥 bool 값으로 처리할 수 있을 것 같다
 		enum eBoxState
 		{
-			Idle,
-			Grabbed,
+			IDLE,
+			GRABBED,
 			END,
 		};
 
@@ -23,9 +23,12 @@ namespace IJ
 		virtual void LateUpdate();
 		virtual void Render();
 
-		virtual void OnCollisionEnter(class Collider* other);
-		virtual void OnCollisionStay(class Collider* other);
-		virtual void OnCollisionExit(class Collider* other);
+		virtual void OnCollisionEnter(class ya::Collider* other);
+		virtual void OnCollisionStay(class ya::Collider* other);
+		virtual void OnCollisionExit(class ya::Collider* other);
+
+		void Idle();
+		void Grabbed();
 
 		eBoxState GetBoxState() { return e_Current_Box_State; }
 		void SetBoxState(eBoxState box_state) { e_Current_Box_State = box_state; }

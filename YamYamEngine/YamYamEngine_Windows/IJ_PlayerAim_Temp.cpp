@@ -44,14 +44,14 @@ namespace IJ
 				if (m_Most_Close_Box != nullptr)
 				{
 					m_Box_Grabbing = m_Most_Close_Box;
-					m_Box_Grabbing->SetBoxState(GO_Box::eBoxState::Grabbed);
+					m_Box_Grabbing->SetBoxState(GO_Box::eBoxState::GRABBED);
 					m_Box_Grabbing->SetGrabber(m_Owner_Player);
 				}
 			}
 			// 이미 박스를 들고있으면
 			else
 			{
-				m_Most_Close_Box->SetBoxState(GO_Box::eBoxState::Idle);
+				m_Most_Close_Box->SetBoxState(GO_Box::eBoxState::IDLE);
 			}
 		}
 	}

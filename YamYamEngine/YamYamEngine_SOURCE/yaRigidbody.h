@@ -18,9 +18,10 @@ namespace ya
 		void AddForce(Vector3 force) { mForce += force; }
 		void SetMass(float mass) { mMass = mass; }
 		void SetGround(bool ground) { mbGround = ground; }
-		Vector3 GetVelocity() { return mVelocity; }
 
+		Vector3 GetVelocity() { return mVelocity; }
 		void SetVelocity(Vector3 velocity) { mVelocity = velocity; }
+		Vector3 GetGravity() { return mGravity; }
 		void SetGravity(Vector3 gravity) { mGravity = gravity; }
 		void SetFriction(float friction) { mFriction = friction; }
 

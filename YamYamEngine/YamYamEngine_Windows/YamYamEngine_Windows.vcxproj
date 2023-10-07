@@ -143,7 +143,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="IJ_Box.h" />
-    <ClInclude Include="IJ_BoxScript.h" />
+    <ClInclude Include="IJ_Button.h" />
+    <ClInclude Include="IJ_ButtonConnectedDoor.h" />
+    <ClInclude Include="IJ_ButtonConnectedObject.h" />
     <ClInclude Include="IJ_PlayerAim_Temp.h" />
     <ClInclude Include="yaBullet.h" />
     <ClInclude Include="yaLoadScene.h" />
@@ -157,7 +159,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IJ_Box.cpp" />
-    <ClCompile Include="IJ_BoxScript.cpp" />
+    <ClCompile Include="IJ_Button.cpp" />
+    <ClCompile Include="IJ_ButtonConnectedDoor.cpp" />
+    <ClCompile Include="IJ_ButtonConnectedObject.cpp" />
     <ClCompile Include="IJ_PlayerAim_Temp.cpp" />
     <ClCompile Include="yaBullet.cpp" />
     <ClCompile Include="yaPlayer.cpp" />
