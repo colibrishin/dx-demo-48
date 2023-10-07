@@ -10,7 +10,7 @@ namespace ya::enums
 		TILE,
 		FLOOR,
 		ATTACK,
-		//PORTAL,
+		PORTAL,
 		PLAYER,
 		TURRET,
 		ITEM,
@@ -18,7 +18,7 @@ namespace ya::enums
 		BOSS,
 		EFFECT,
 		UI,
-		MAX = 16,
+		MAX,
 	};
 
 	// Common blendmodes used across multiple systems
