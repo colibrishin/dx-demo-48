@@ -2,6 +2,7 @@
 #include "yaApplication.h"
 #include "yaResources.h"
 #include "yaSquareMesh.hpp"
+#include "yaTexture.hpp"
 #include "yaTriangleMesh.hpp"
 
 extern ya::Application application;
@@ -44,7 +45,7 @@ namespace ya::renderer
 		textureShader->Create(eShaderStage::PS, L"TexturePS.hlsl", "PS_Test");
 		Resources::Insert(L"TextureShader", textureShader);
 
-		// Input layout Á¤Á¡ ±¸Á¶ Á¤º¸, µÎ ½¦ÀÌ´õ ¸ğµÎ °°Àº ÀÔ·Â ±¸Á¶¸¦ »ç¿ëÇÏ¹Ç·Î ÇÑ¹ø¸¸ Á¤ÀÇ
+		// Input layout ì •ì  êµ¬ì¡° ì •ë³´, ë‘ ì‰ì´ë” ëª¨ë‘ ê°™ì€ ì…ë ¥ êµ¬ì¡°ë¥¼ ì‚¬ìš©í•˜ë¯€ë¡œ í•œë²ˆë§Œ ì •ì˜
 		InputLayouts[0].AlignedByteOffset = 0;
 		InputLayouts[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
 		InputLayouts[0].InputSlot = 0;
