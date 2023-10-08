@@ -4,6 +4,7 @@
 #include "yaMesh.h"
 #include "yaShader.h"
 #include "yaConstantBuffer.h"
+#include <WICTextureLoader.h>
 
 extern ya::Application application;
 
@@ -133,10 +134,36 @@ namespace ya::graphics
         return true;
     }
 
-    bool GraphicsDevice_DX11::CreateSampler() 
+    bool GraphicsDevice_DX11::CreateTexture(const std::filesystem::path& path, ID3D11Resource** texture,
+	    ID3D11ShaderResourceView** srv)
     {
+        if (FAILED(CreateWICTextureFromFile(mDevice.Get(), path.c_str(), texture, srv)))
+        {
+	        return false;
+        }
 
-        return false;
+        return true;
+    }
+
+    bool GraphicsDevice_DX11::CreateSampler(ID3D11SamplerState** sampler) 
+    {
+        D3D11_SAMPLER_DESC sampler_desc;
+
+		sampler_desc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+		sampler_desc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+		sampler_desc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+		sampler_desc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+		sampler_desc.MipLODBias = 0.0f;
+		sampler_desc.MaxAnisotropy = 1;
+		sampler_desc.ComparisonFunc = D3D11_COMPARISON_ALWAYS;
+		sampler_desc.BorderColor[0] = 0;
+		sampler_desc.BorderColor[1] = 0;
+		sampler_desc.BorderColor[2] = 0;
+		sampler_desc.BorderColor[3] = 0;
+		sampler_desc.MinLOD = 0;
+		sampler_desc.MaxLOD = D3D11_FLOAT32_MAX;
+
+        return SUCCEEDED(mDevice->CreateSamplerState(&sampler_desc, sampler));
     }
 
     //bool GraphicsDevice_DX11::CreateShader(const graphics::eShaderStage stage, const std::wstring& file, const std::string& funcName)
@@ -280,6 +307,45 @@ namespace ya::graphics
         mContext->PSSetShader(pPixelShader, 0, 0);
     }
 
+    void GraphicsDevice_DX11::BindShaderResourceView(ID3D11ShaderResourceView* srv, graphics::eRSType type, graphics::eShaderStage stage)
+    {
+		switch (stage)
+		{
+			case ya::graphics::eShaderStage::VS:
+			{
+				mContext->VSSetShaderResources((UINT)type, 1, &srv);
+			}
+			break;
+		case ya::graphics::eShaderStage::HS:
+			{
+				mContext->HSSetShaderResources((UINT)type, 1, &srv);
+			}
+			break;
+		case ya::graphics::eShaderStage::DS:
+			{
+				mContext->DSSetShaderResources((UINT)type, 1, &srv);
+			}
+			break;
+		case ya::graphics::eShaderStage::GS:
+			{
+				mContext->GSSetShaderResources((UINT)type, 1, &srv);
+			}
+			break;
+		case ya::graphics::eShaderStage::PS:
+			{
+				mContext->PSSetShaderResources((UINT)type, 1, &srv);
+			}
+			break;
+		case ya::graphics::eShaderStage::CS:
+			{
+				mContext->CSSetShaderResources((UINT)type, 1, &srv);
+			}
+			break;
+		default:
+			break;
+		}
+    }
+
     void GraphicsDevice_DX11::BindViewports(D3D11_VIEWPORT* viewPort)
     {
         mContext->RSSetViewports(1, viewPort);
@@ -365,20 +431,30 @@ namespace ya::graphics
         mSwapChain->Present(0, 0);
     }
 
-    void GraphicsDevice_DX11::Render()
+    void GraphicsDevice_DX11::BindSampler(ID3D11SamplerState* sampler, eShaderStage stage) const
     {
-        //set costant buffer 
-        renderer::constantBuffers[(UINT)graphics::eCBType::Transform]->Bind(eShaderStage::VS);
-
-        //// Input Assembeler 단계에 버텍스버퍼 정보 지정
-        renderer::mesh->BindBuffer();
-        Vector4 pos(0.0f, 0.0f, 0.0f, 0.0f);
-        renderer::constantBuffers[(UINT)graphics::eCBType::Transform]->SetData(&pos);
-
-        // Set Inputlayout, shader
-        renderer::shader->Update();
-
-
-        DrawIndexed(6, 0, 0);
+        switch(stage)
+        {
+	        case ya::graphics::eShaderStage::VS:
+	        	mContext->VSSetSamplers(0, 1, &sampler);
+				break;
+            case ya::graphics::eShaderStage::HS:
+	        	mContext->HSSetSamplers(0, 1, &sampler);
+				break;
+            case ya::graphics::eShaderStage::DS:
+                mContext->DSSetSamplers(0, 1, &sampler);
+				break;
+            case ya::graphics::eShaderStage::GS:
+				mContext->GSSetSamplers(0, 1, &sampler);
+				break;
+            case ya::graphics::eShaderStage::PS:
+                mContext->PSSetSamplers(0, 1, &sampler);
+				break;
+            case ya::graphics::eShaderStage::CS:
+				mContext->CSSetSamplers(0, 1, &sampler);
+				break;
+            default:
+				break;
+        }
     }
 }
