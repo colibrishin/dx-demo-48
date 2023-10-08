@@ -38,8 +38,6 @@ namespace ya::renderer
 		XMMATRIX proj;
 	};
 
-	extern Mesh* mesh;
-	extern Shader* shader;
 	extern ConstantBuffer* constantBuffers[];
 	extern Microsoft::WRL::ComPtr<ID3D11SamplerState> PSSamplerState;
 
