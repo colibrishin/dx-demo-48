@@ -10,7 +10,7 @@ namespace ya
 		Mesh();
 		~Mesh();
 
-		virtual HRESULT Load(const std::wstring& path) override;
+		virtual HRESULT Load(const std::filesystem::path& path) override;
 
 		bool CreateVertexBuffer(void* data, UINT Count);
 		bool CreateIndexBuffer(void* data, UINT Count);

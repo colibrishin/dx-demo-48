@@ -11,7 +11,7 @@ namespace ya
     {
     }
 
-    HRESULT Mesh::Load(const std::wstring& path)
+    HRESULT Mesh::Load(const std::filesystem::path& path)
     {
         return E_NOTIMPL;
     }
@@ -66,7 +66,7 @@ namespace ya
         //set costant buffer 
         //renderer::constantBuffers[(UINT)graphics::CBTYPES::TRANSFORM]->Bind(eShaderStage::VS);
 
-        //// Input Assembeler ´Ü°è¿¡ ¹öÅØ½º¹öÆÛ Á¤º¸ ÁöÁ¤
+        //// Input Assembeler ï¿½Ü°è¿¡ ï¿½ï¿½ï¿½Ø½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         renderer::mesh->BindBuffer();
         //Vector4 pos(0.5f, 0.2f, 0.0f, 0.0f);
         //renderer::constantBuffers[(UINT)graphics::CBTYPES::TRANSFORM]->SetData(&pos);
