@@ -32,7 +32,7 @@ namespace ya
 
 			MeshRenderer* meshRenderer = player->AddComponent<MeshRenderer>();
 			meshRenderer->SetMesh(Resources::Find<Mesh>(L"TriangleMesh"));
-			meshRenderer->SetShader(Resources::Find<Shader>(L"TriangleShader"));
+			meshRenderer->SetShader(Resources::Find<Shader>(L"ColorShader"));
 
 			Transform* tr = player->GetComponent<Transform>();
 			auto cld1 = player->GetComponent<Collider>();
@@ -82,8 +82,9 @@ namespace ya
 		// ù��° ��Ż
 		{
 			MeshRenderer* meshRenderer = portal_a->AddComponent<MeshRenderer>();
-			meshRenderer->SetMesh(Resources::Find<Mesh>(L"TriangleMesh"));
-			meshRenderer->SetShader(Resources::Find<Shader>(L"TriangleShader"));
+			meshRenderer->SetMesh(Resources::Find<Mesh>(L"SquareMesh"));
+			meshRenderer->SetShader(Resources::Find<Shader>(L"TextureShader"));
+			meshRenderer->SetTexture(Resources::Find<Texture>(L"Texture"));
 
 			Transform* tr = portal_a->GetComponent<Transform>();
 			auto cld1 = portal_a->GetComponent<Collider>();
@@ -99,8 +100,8 @@ namespace ya
 		// �ι�° ��Ż
 		{
 			MeshRenderer* meshRenderer = portal_b->AddComponent<MeshRenderer>();
-			meshRenderer->SetMesh(Resources::Find<Mesh>(L"TriangleMesh"));
-			meshRenderer->SetShader(Resources::Find<Shader>(L"TriangleShader"));
+			meshRenderer->SetMesh(Resources::Find<Mesh>(L"SquareMesh"));
+			meshRenderer->SetShader(Resources::Find<Shader>(L"ColorShader"));
 
 			Transform* tr = portal_b->GetComponent<Transform>();
 			auto cld1 = portal_b->GetComponent<Collider>();
@@ -124,7 +125,7 @@ namespace ya
 
 			MeshRenderer* turretmr = turret->AddComponent<MeshRenderer>();
 			turretmr->SetMesh(Resources::Find<Mesh>(L"TriangleMesh"));
-			turretmr->SetShader(Resources::Find<Shader>(L"TriangleShader"));
+			turretmr->SetShader(Resources::Find<Shader>(L"ColorShader"));
 			turret->AddComponent<TurretScript>();
 			AddGameObject(turret, LAYER::TURRET);
 			turret->AddComponent<Collider>()->SetSize(Vector3(0.1f, 0.1f, 1.0f));
