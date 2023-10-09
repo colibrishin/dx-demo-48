@@ -3,12 +3,14 @@ struct VTX_IN
 {
     float3 vPos : POSITION;
     float4 vColor : COLOR;
+    float2 vTex : TEXCOORD0;
 };
 
 struct VTX_OUT
 {
     float4 vPos : SV_Position;
     float4 vColor : COLOR;
+    float2 vTex : TEXCOORD0;
 };
 
 cbuffer TRANSFORM : register(b0)
@@ -37,6 +39,7 @@ VTX_OUT VS_Test(VTX_IN _in)
     output.vPos = mul(output.vPos, cbView);
     output.vPos = mul(output.vPos, cbProj);
     output.vColor = _in.vColor;
+    output.vTex = _in.vTex;
     
     return output;
 }

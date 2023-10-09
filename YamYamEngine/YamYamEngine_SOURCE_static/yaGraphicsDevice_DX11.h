@@ -1,4 +1,6 @@
 #pragma once
+#include <filesystem>
+
 #include "yaGraphics.h"
 
 namespace ya::graphics
@@ -12,7 +14,8 @@ namespace ya::graphics
 		bool CreateSwapChain(DXGI_SWAP_CHAIN_DESC desc) ;
 		bool CreateBuffer(D3D11_BUFFER_DESC* desc, D3D11_SUBRESOURCE_DATA* initial_data, ID3D11Buffer** buffer);
 		bool CreateTexture(const D3D11_TEXTURE2D_DESC desc) ;
-		bool CreateSampler();
+		bool CreateTexture(const std::filesystem::path& path, ID3D11Resource** texture, ID3D11ShaderResourceView** srv);
+		bool CreateSampler(ID3D11SamplerState** sampler);
 		
 		//bool CreateShader(const graphics::eShaderStage stage, const std::wstring& file, const std::string& funcName);
 		bool CreateInputLayout(const D3D11_INPUT_ELEMENT_DESC* pInputElementDescs, UINT NumElements
@@ -28,6 +31,7 @@ namespace ya::graphics
 
 		void BindVertexShader(ID3D11VertexShader* pVertexShader);
 		void BindPixelShader(ID3D11PixelShader* pPixelShader);
+		void BindShaderResourceView(ID3D11ShaderResourceView* srv, graphics::eRSType type, graphics::eShaderStage stage);
 
 		void BindViewports(D3D11_VIEWPORT* viewPort);
 		void BindConstantBuffer(ID3D11Buffer* buffer, void* data, UINT size);
@@ -40,7 +44,7 @@ namespace ya::graphics
 		void DrawIndexed(UINT IndexCount, UINT StartIndexLocation, INT BaseVertexLocation);
 		void Present();
 
-		void Render();
+		void BindSampler(ID3D11SamplerState* sampler, eShaderStage stage) const;
 
 	private:
 		Microsoft::WRL::ComPtr<ID3D11Device>			mDevice;

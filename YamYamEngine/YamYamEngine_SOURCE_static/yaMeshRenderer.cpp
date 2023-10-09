@@ -1,11 +1,12 @@
 #include "yaMeshRenderer.h"
 #include "yaGameObject.h"
+#include "yaRenderer.h"
 #include "yaTransform.h"
 
 namespace ya
 {
 	MeshRenderer::MeshRenderer()
-		: Component(COMPONENTTYPE::MESH)
+		: Component(COMPONENTTYPE::MESH), mMesh(nullptr), mShader(nullptr), mTexture(nullptr), mColor(Vector4(0.f, 0.f, 0.f, 1.f))
 	{
 	}
 
@@ -30,6 +31,11 @@ namespace ya
 	void MeshRenderer::Render()
 	{
 		GetOwner()->GetComponent<Transform>()->SetConstantBuffer();
+
+		if(mTexture != nullptr)
+		{
+			mTexture->Update();
+		}
 
 		mShader->Update();
 		mMesh->Render();

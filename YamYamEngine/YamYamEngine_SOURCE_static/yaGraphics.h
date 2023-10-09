@@ -41,6 +41,13 @@ namespace ya::graphics
 		End,
 	};
 
+	// constant buffers
+	enum class eRSType
+	{
+		Texture,
+		End,
+	};
+
 	struct Viewport
 	{
 		float top_left_x = 0;

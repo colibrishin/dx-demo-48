@@ -11,7 +11,7 @@ namespace ya::graphics
 	Shader::~Shader()
 	{
 	}
-	HRESULT Shader::Load(const std::wstring& path)
+	HRESULT Shader::Load(const std::filesystem::path& path)
 	{
 		return E_NOTIMPL;
 	}

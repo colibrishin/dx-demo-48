@@ -1,9 +1,10 @@
-// HLSL ·Î VertexShader ÀÛ¼ºÇÏ±â
+// HLSL ï¿½ï¿½ VertexShader ï¿½Û¼ï¿½ï¿½Ï±ï¿½
 
 struct VTX_OUT
 {
     float4 vPos : SV_Position;
     float4 vColor : COLOR;
+    float2 vTex : TEXCOORD0;
 };
 
 

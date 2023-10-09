@@ -41,7 +41,7 @@ namespace ya
 
 			MeshRenderer* bulletmr = bullet->AddComponent<MeshRenderer>();
 			bulletmr->SetMesh(Resources::Find<Mesh>(L"TriangleMesh"));
-			bulletmr->SetShader(Resources::Find<Shader>(L"TriangleShader"));
+			bulletmr->SetShader(Resources::Find<Shader>(L"ColorShader"));
 
 			SceneManager::GetActiveScene()->AddGameObject(bullet, LAYER::TURRET);
 
