@@ -28,7 +28,14 @@ namespace ya
 	private:
 		Mesh* mMesh;
 		Shader* mShader;
+
+		bool mbTile;
+		int mTileIndexX;
+		int mTileIndexY;
+		int mTileIndexZ;
+
 		Texture* mTexture;
 		Vector4 mColor;
+		Vector2 mScale;
 	};
 }

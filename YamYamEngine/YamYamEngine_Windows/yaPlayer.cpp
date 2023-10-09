@@ -52,6 +52,10 @@ namespace ya
 			Idle();
 			break;
 
+		case ya::Player::eState::Shoot:
+			Shoot();
+			break;
+
 		case ya::Player::eState::Jump:
 			Jump();
 			break;
@@ -141,6 +145,9 @@ namespace ya
 		}
 	}
 	void Player::Live()
+	{
+	}
+	void Player::Shoot()
 	{
 	}
 	void Player::Jump()

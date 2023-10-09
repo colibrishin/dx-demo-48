@@ -54,6 +54,10 @@
     <ClInclude Include="yaTurretScript.h">
       <Filter>Scripts</Filter>
     </ClInclude>
+    <ClInclude Include="yaToolScene.h">
+      <Filter>Scens</Filter>
+    </ClInclude>
+    <ClInclude Include="yaPortal.hpp" />
     <ClInclude Include="IJ_Button.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
@@ -104,6 +108,10 @@
     <ClCompile Include="yaTurretScript.cpp">
       <Filter>Scripts</Filter>
     </ClCompile>
+      <Filter>Scens</Filter>
+    <ClCompile Include="yaToolScene.cpp">
+    </ClCompile>
+    <ClCompile Include="yaPortal.cpp" />
     <ClCompile Include="IJ_Button.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>

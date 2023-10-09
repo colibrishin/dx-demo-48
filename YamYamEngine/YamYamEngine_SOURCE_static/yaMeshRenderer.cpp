@@ -16,6 +16,7 @@ namespace ya
 
 	void MeshRenderer::Initialize()
 	{
+		
 	}
 
 	void MeshRenderer::Update()

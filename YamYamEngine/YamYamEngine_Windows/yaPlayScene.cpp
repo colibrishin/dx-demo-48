@@ -164,4 +164,79 @@ namespace ya
 	{
 		Scene::Render();
 	}
+
+	void PlayScene::Load()
+	{
+		OPENFILENAME ofn = {};
+
+		wchar_t szFilePath[256] = L"..\\Resources\\Tile\\ForestMap_1.tm";
+
+		// rb : 이진수로 파일을 읽음
+		FILE* pFile = nullptr;
+		_wfopen_s(&pFile, szFilePath, L"rb");
+
+		if (pFile == nullptr)
+			return;
+
+		while (true)
+		{
+			int sourceX = -1;
+			int sourceY = -1;
+
+			int	myX = -1;
+			int myY = -1;
+
+			if (fread(&sourceX, sizeof(int), 1, pFile) == NULL)
+				break;
+			if (fread(&sourceY, sizeof(int), 1, pFile) == NULL)
+				break;
+			if (fread(&myX, sizeof(int), 1, pFile) == NULL)
+				break;
+			if (fread(&myY, sizeof(int), 1, pFile) == NULL)
+				break;
+
+			Vector2 offset = Vector2((TILE_WIDTH) / 2.0f, (TILE_HEIGHT) / 2.0f);
+			Tile* tile = object::Instantiate<Tile>(eLayerType::Tile
+				, Vector2(myX * (TILE_WIDTH)+offset.x + LEFT_TOP_X
+					, myY * (TILE_HEIGHT)+offset.y + LEFT_TOP_Y));
+
+			tile->SetTile(sourceX, sourceY);
+			// Crack(부서지며 충돌체가 있는 타일)
+			if ((sourceX == 0 && sourceY == 0) ||
+				(sourceX == 1 && sourceY == 0) ||
+				(sourceX == 2 && sourceY == 0))
+			{
+				tile->SetType(Tile::eType::Crack);
+			}
+			// Uncrushable(부서지지는 않지만 충돌체는 있는 타입)
+			if ((sourceX == 0 && sourceY == 3) ||
+				(sourceX == 1 && sourceY == 3))
+			{
+				tile->SetType(Tile::eType::Uncrushable);
+			}
+			// None(충돌체가 없는 바닥같은 타일)
+			if ((sourceX == 0 && sourceY == 1))
+			{
+				tile->SetType(Tile::eType::None);
+			}
+
+			if (tile->GetType() == Tile::eType::Crack || tile->GetType() == Tile::eType::Uncrushable)
+			{
+				Collider* Col = tile->AddComponent<Collider>();;
+				Col->SetSize(Vector2(40.0f, 40.0f));
+
+				CollisionManager::CollisionLayerCheck(eLayerType::Tile, eLayerType::Bomb, true);
+				CollisionManager::CollisionLayerCheck(eLayerType::Tile, eLayerType::Player, true);
+				CollisionManager::CollisionLayerCheck(eLayerType::Tile, eLayerType::Monster, true);
+				CollisionManager::CollisionLayerCheck(eLayerType::Tile, eLayerType::Bombflow, true);
+
+			}
+
+			tile->SetSourceTileIdx(sourceX, sourceY);
+			tile->SetTileIdx(myX, myY);
+
+			mTiles.push_back(tile);
+		}
+		fclose(pFile);
+	}
 }

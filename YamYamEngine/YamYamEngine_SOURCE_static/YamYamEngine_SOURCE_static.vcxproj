@@ -171,6 +171,7 @@
     <ClCompile Include="yaScript.cpp" />
     <ClCompile Include="yaShader.cpp" />
     <ClCompile Include="yaTexture.cpp" />
+    <ClCompile Include="yaTile.cpp" />
     <ClCompile Include="yaTime.cpp" />
     <ClCompile Include="yaTransform.cpp" />
   </ItemGroup>
@@ -209,6 +210,7 @@
     <ClInclude Include="yaShadowMesh.hpp" />
     <ClInclude Include="yaSquareMesh.hpp" />
     <ClInclude Include="yaTexture.hpp" />
+    <ClInclude Include="yaTile.h" />
     <ClInclude Include="yaTime.h" />
     <ClInclude Include="yaTransform.h" />
     <ClInclude Include="yaTriangleMesh.hpp" />
