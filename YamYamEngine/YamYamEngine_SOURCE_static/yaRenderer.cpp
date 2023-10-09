@@ -2,6 +2,7 @@
 #include "yaApplication.h"
 #include "yaLightingMesh.hpp"
 #include "yaResources.h"
+#include "yaShadowMesh.hpp"
 #include "yaSquareMesh.hpp"
 #include "yaTexture.hpp"
 #include "yaTriangleMesh.hpp"
@@ -30,6 +31,7 @@ namespace ya::renderer
 		Resources::Insert<Mesh>(L"TriangleMesh", new TriangleMesh());
 		Resources::Insert<Mesh>(L"SquareMesh", new SquareMesh());
 		Resources::Insert<Mesh>(L"LightingMesh", new LightingMesh());
+		Resources::Insert<Mesh>(L"ShadowMesh", new ShadowMesh());
 		Resources::Insert<Texture>(L"Texture", new Texture(L"Texture", L"../Resources/Textures/Texture.png"));
 		
 		constantBuffers[(UINT)graphics::eCBType::Transform] = new ConstantBuffer(eCBType::Transform);

@@ -8,6 +8,7 @@
 #include "yaRigidbody.h"
 #include "yaCollider.h"
 #include "yaRigidbody.h"
+#include "yaSceneManager.h"
 
 namespace ya
 {
@@ -84,36 +85,47 @@ namespace ya
 	}
 	void Player::OnCollisionEnter(Collider* other)
 	{
-		// �Ѿ� �浹 ��
-		if (other->GetOwner()->GetLayer() == LAYER::ATTACK || other->GetOwner()->GetLayer() == LAYER::MONSTER)
+		const auto layer = other->GetOwner()->GetLayer();
+
+		if (layer == LAYER::ATTACK || layer == LAYER::MONSTER)
 		{
 			mState = eState::Hit;
 		}
 
 		// ��Ż �浹 �� 
-		else if (other->GetOwner()->GetLayer() == LAYER::PORTAL)
+		else if (layer == LAYER::PORTAL)
 		{
 			
 		}
 
-		else if (other->GetOwner()->GetLayer() == LAYER::TILE)
+		else if (layer == LAYER::TILE)
 		{
 			
 		}
 
-		else if (other->GetOwner()->GetLayer() == LAYER::ITEM)
+		else if (layer == LAYER::ITEM)
 		{
 
+		}
+		else if(layer == LAYER::LIGHT)
+		{
+			m_shadow_->OnCollisionEnter(other);
 		}
 
 	}
 	void Player::OnCollisionStay(Collider* other)
 	{
-	
+		if(other->GetOwner()->GetLayer() == LAYER::LIGHT)
+		{
+			m_shadow_->OnCollisionStay(other);
+		}
 	}
 	void Player::OnCollisionExit(Collider* other)
 	{
-	
+		if(other->GetOwner()->GetLayer() == LAYER::LIGHT)
+		{
+			m_shadow_->OnCollisionExit(other);
+		}
 	}
 	void Player::Idle()
 	{
