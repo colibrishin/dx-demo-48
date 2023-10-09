@@ -30,6 +30,11 @@ namespace ya
 
 	void MeshRenderer::Render()
 	{
+		if(!IsEnabled())
+		{
+			return;
+		}
+
 		GetOwner()->GetComponent<Transform>()->SetConstantBuffer();
 
 		if(mTexture != nullptr)

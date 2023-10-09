@@ -33,6 +33,11 @@ namespace ya
 
 	void Transform::SetConstantBuffer()
 	{
+		if(!IsEnabled())
+		{
+			return;
+		}
+
 		ConstantBuffer* cb = renderer::constantBuffers[(UINT)graphics::eCBType::Transform];
 		
 		renderer::TransformCB data = {};
