@@ -29,10 +29,10 @@ namespace ya::graphics
 
         DXGI_SWAP_CHAIN_DESC swapChainDesc = {};
 
-        swapChainDesc.OutputWindow = application.GetHwnd();	                // Front Buffer ¸¦ Ãâ·Â½ÃÅ³ À©µµ¿ì ÇÚµé
-        swapChainDesc.Windowed = true;		                // À©µµ¿ì, ÀüÃ¼È­¸é ¸ðµå
+        swapChainDesc.OutputWindow = application.GetHwnd();	                // Front Buffer ë¥¼ ì¶œë ¥ì‹œí‚¬ ìœˆë„ìš° í•¸ë“¤
+        swapChainDesc.Windowed = true;		                // ìœˆë„ìš°, ì „ì²´í™”ë©´ ëª¨ë“œ
         swapChainDesc.BufferCount = 2;
-        swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD; // ÀÌÀü ÇÁ·¹ÀÓ Àå¸éÀ» À¯ÁöÇÏÁö ¾Ê´Â´Ù.
+        swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD; // ì´ì „ í”„ë ˆìž„ ìž¥ë©´ì„ ìœ ì§€í•˜ì§€ ì•ŠëŠ”ë‹¤.
 
         swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
         swapChainDesc.BufferDesc.Width = application.GetWidth();
@@ -194,7 +194,7 @@ namespace ya::graphics
     //        , &renderer::trianglePSShader);
 
 
-    //    // Input layout Á¤Á¡ ±¸Á¶ Á¤º¸
+    //    // Input layout ì •ì  êµ¬ì¡° ì •ë³´
     //    D3D11_INPUT_ELEMENT_DESC arrLayout[2] = {};
 
     //    arrLayout[0].AlignedByteOffset = 0;
@@ -427,7 +427,7 @@ namespace ya::graphics
 
     void GraphicsDevice_DX11::Present()
     {
-        // ¹é¹öÆÛ¿¡ ±×·ÁÁØ´Ù
+        // ë°±ë²„í¼ì— ê·¸ë ¤ì¤€ë‹¤
         mSwapChain->Present(0, 0);
     }
 
@@ -456,5 +456,32 @@ namespace ya::graphics
             default:
 				break;
         }
+    }
+
+    bool GraphicsDevice_DX11::CreateBlendState(ID3D11BlendState** blend_state) const
+    {
+        D3D11_BLEND_DESC blendStateDesc{};
+		blendStateDesc.AlphaToCoverageEnable = FALSE;
+		blendStateDesc.IndependentBlendEnable = FALSE;        
+		blendStateDesc.RenderTarget[0].BlendEnable = TRUE;
+		blendStateDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+		blendStateDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+		blendStateDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+		blendStateDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_SRC_ALPHA;
+		blendStateDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_DEST_ALPHA;
+		blendStateDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+		blendStateDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+		        
+		if(FAILED(mDevice->CreateBlendState(&blendStateDesc, blend_state)))
+		{
+		    return false;
+		}
+
+        return true;
+    }
+
+    void GraphicsDevice_DX11::BindBlendState(ID3D11BlendState* blend_state)
+    {
+        mContext->OMSetBlendState(blend_state, nullptr, 0xFFFFFFFF);
     }
 }

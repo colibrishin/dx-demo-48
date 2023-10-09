@@ -45,6 +45,8 @@ namespace ya::graphics
 		void Present();
 
 		void BindSampler(ID3D11SamplerState* sampler, eShaderStage stage) const;
+		bool CreateBlendState(ID3D11BlendState** blend_state) const;
+		void BindBlendState(ID3D11BlendState* blend_state);
 
 	private:
 		Microsoft::WRL::ComPtr<ID3D11Device>			mDevice;
