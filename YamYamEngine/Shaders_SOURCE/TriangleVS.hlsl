@@ -34,9 +34,9 @@ VTX_OUT VS_Test(VTX_IN _in)
     VTX_OUT output = (VTX_OUT) 0.f;
     
     output.vPos = float4(_in.vPos, 1.f);
-    output.vPos.xyz *= cbScale;    
     output.vPos = mul(output.vPos, cbRotMat);
     output.vPos = output.vPos + float4(cbPos, 0.f);
+    output.vPos.xyz *= cbScale;
 
     output.vPos = mul(output.vPos, cbWorld);
     output.vPos = mul(output.vPos, cbView);
