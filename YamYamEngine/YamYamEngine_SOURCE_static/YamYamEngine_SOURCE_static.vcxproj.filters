@@ -271,6 +271,12 @@
     <ClInclude Include="yaSquareMesh.hpp">
       <Filter>Engine\Resource\Mesh</Filter>
     </ClInclude>
+    <ClInclude Include="yaLightingMesh.hpp">
+      <Filter>Engine\Resource\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="yaShadowMesh.hpp">
+      <Filter>Engine\Resource\Mesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

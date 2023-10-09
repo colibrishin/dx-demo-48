@@ -149,6 +149,8 @@
     <ClInclude Include="IJ_ButtonConnectedObject.h" />
     <ClInclude Include="IJ_PlayerAim_Temp.h" />
     <ClInclude Include="yaBullet.h" />
+    <ClInclude Include="yaLight.h" />
+    <ClInclude Include="yaLighting.h" />
     <ClInclude Include="yaLoadScene.h" />
     <ClInclude Include="yaPlayer.h" />
     <ClInclude Include="yaPlayerScript.h" />
@@ -166,6 +168,8 @@
     <ClCompile Include="IJ_ButtonConnectedObject.cpp" />
     <ClCompile Include="IJ_PlayerAim_Temp.cpp" />
     <ClCompile Include="yaBullet.cpp" />
+    <ClCompile Include="yaLight.cpp" />
+    <ClCompile Include="yaLighting.cpp" />
     <ClCompile Include="yaPlayer.cpp" />
     <ClCompile Include="yaPlayerScript.cpp" />
     <ClCompile Include="yaPlayerShadow.cpp" />
