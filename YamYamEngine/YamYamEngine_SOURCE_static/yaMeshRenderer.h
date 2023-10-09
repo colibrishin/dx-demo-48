@@ -2,6 +2,7 @@
 #include "yaComponent.h"
 #include "yaMesh.h"
 #include "yaShader.h"
+#include "yaTexture.hpp"
 
 
 namespace ya
@@ -12,7 +13,7 @@ namespace ya
 	{
 	public:
 		MeshRenderer();
-		~MeshRenderer();
+		~MeshRenderer() override;
 		
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -21,9 +22,13 @@ namespace ya
 
 		void SetMesh(Mesh* mesh) { mMesh = mesh; }
 		void SetShader(Shader* shader) { mShader = shader; }
+		void SetTexture(Texture* texture) { mTexture = texture; }
+		void SetColor(const Vector4& color) { mColor = color; }
 
 	private:
 		Mesh* mMesh;
 		Shader* mShader;
+		Texture* mTexture;
+		Vector4 mColor;
 	};
 }
