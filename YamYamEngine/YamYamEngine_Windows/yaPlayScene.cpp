@@ -9,6 +9,7 @@
 #include "yaInput.h"
 #include "yaRigidbody.h"
 #include "yaCollisionManager.h"
+#include "yaLight.h"
 #include "yaPortal.hpp"
 #include "yaTurret.h"
 #include "yaTurretScript.h"
@@ -129,6 +130,14 @@ namespace ya
 			turret->AddComponent<TurretScript>();
 			AddGameObject(turret, LAYER::TURRET);
 			turret->AddComponent<Collider>()->SetSize(Vector3(0.1f, 0.1f, 1.0f));
+		}
+
+		// Light
+		{
+			Light* light = new Light(2.5f);
+			light->Initialize();
+			light->GetComponent<Transform>()->SetPosition(Vector3(0.1f, 0.1f, 1.0f));
+			AddGameObject(light, LAYER::LIGHT);
 		}
 
 		CollisionManager::CollisionLayerCheck(LAYER::PLAYER, LAYER::PLAYER, true);
