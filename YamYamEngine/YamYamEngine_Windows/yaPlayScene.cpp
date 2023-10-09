@@ -134,14 +134,20 @@ namespace ya
 
 		// Light
 		{
-			Light* light = new Light(2.5f);
+			Light* light = new Light(5.0f);
 			light->Initialize();
 			light->GetComponent<Transform>()->SetPosition(Vector3(0.1f, 0.1f, 1.0f));
 			AddGameObject(light, LAYER::LIGHT);
+
+			for(const auto& lights : light->GetLightings())
+			{
+				AddGameObject(lights, LAYER::LIGHT);
+			}
 		}
 
 		CollisionManager::CollisionLayerCheck(LAYER::PLAYER, LAYER::PLAYER, true);
 		CollisionManager::CollisionLayerCheck(LAYER::PLAYER, LAYER::PORTAL, true);
+		CollisionManager::CollisionLayerCheck(LAYER::PLAYER, LAYER::LIGHT, true);
 	}
 
 	void PlayScene::Update()
