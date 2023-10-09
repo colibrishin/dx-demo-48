@@ -29,6 +29,7 @@ namespace ya
 
 		{
 			Player* player = new Player();
+			player->Initialize();
 
 			MeshRenderer* meshRenderer = player->AddComponent<MeshRenderer>();
 			meshRenderer->SetMesh(Resources::Find<Mesh>(L"TriangleMesh"));
@@ -50,7 +51,6 @@ namespace ya
 			rb->SetFriction(0.25f);
 
 			AddGameObject(player, LAYER::PLAYER);
-			player->Initialize();
 		}
 
 		GameObject* wall_a = new GameObject();

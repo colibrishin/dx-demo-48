@@ -152,6 +152,7 @@
     <ClInclude Include="yaLoadScene.h" />
     <ClInclude Include="yaPlayer.h" />
     <ClInclude Include="yaPlayerScript.h" />
+    <ClInclude Include="yaPlayerShadow.h" />
     <ClInclude Include="yaPlayScene.h" />
     <ClInclude Include="yaPortal.hpp" />
     <ClInclude Include="yaTurret.h" />
@@ -167,6 +168,7 @@
     <ClCompile Include="yaBullet.cpp" />
     <ClCompile Include="yaPlayer.cpp" />
     <ClCompile Include="yaPlayerScript.cpp" />
+    <ClCompile Include="yaPlayerShadow.cpp" />
     <ClCompile Include="yaPlayScene.cpp" />
     <ClCompile Include="yaPortal.cpp" />
     <ClCompile Include="yaTurret.cpp" />

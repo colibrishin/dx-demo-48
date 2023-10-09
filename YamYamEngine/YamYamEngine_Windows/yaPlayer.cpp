@@ -16,9 +16,6 @@ namespace ya
 		//jumptime(0.f),
 		mState(eState::Idle)
 	{
-		AddComponent<Transform>();
-		AddComponent<Rigidbody>();
-		AddComponent<Collider>();
 	}
 
 	Player::~Player()
@@ -29,14 +26,20 @@ namespace ya
 	{
 		GameObject::Initialize();
 
+		AddComponent<Transform>();
+		AddComponent<Rigidbody>();
+		AddComponent<Collider>();
+		m_shadow_ = new PlayerShadow(this);
+		m_shadow_->Initialize();
+
 		rb = GetComponent<Rigidbody>();
 		rb->SetGround(true);
-		
-		
 	}
+
 	void Player::Update()
 	{
 		GameObject::Update();
+		m_shadow_->Update();
 
 		switch (mState)
 		{
@@ -77,6 +80,7 @@ namespace ya
 	void Player::Render()
 	{
 		GameObject::Render();
+		m_shadow_->Render();
 	}
 	void Player::OnCollisionEnter(Collider* other)
 	{

@@ -58,6 +58,9 @@
     <ClInclude Include="IJ_ButtonConnectedDoor.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="yaPlayerShadow.h">
+      <Filter>Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="yaPlayScene.cpp">
@@ -96,6 +99,9 @@
     </ClCompile>
     <ClCompile Include="IJ_ButtonConnectedDoor.cpp">
       <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="yaPlayerShadow.cpp">
+      <Filter>Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
