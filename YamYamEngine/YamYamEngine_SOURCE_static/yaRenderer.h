@@ -19,6 +19,7 @@ namespace ya::renderer
 	{
 		Vector3 pos;
 		Vector4 color;
+		Vector2 uv;
 	};
 
 	CBUFFER(TransformCB, CBSLOT_TRANSFORM)
@@ -37,9 +38,8 @@ namespace ya::renderer
 		XMMATRIX proj;
 	};
 
-	extern Mesh* mesh;
-	extern Shader* shader;
 	extern ConstantBuffer* constantBuffers[];
+	extern Microsoft::WRL::ComPtr<ID3D11SamplerState> PSSamplerState;
 
 	// Initialize the renderer
 	void Initialize();

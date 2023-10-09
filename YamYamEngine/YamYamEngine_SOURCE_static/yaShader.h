@@ -10,7 +10,7 @@ namespace ya::graphics
 		Shader();
 		~Shader();
 
-		virtual HRESULT Load(const std::wstring& path) override;
+		virtual HRESULT Load(const std::filesystem::path& path) override;
 
 		void Create(const graphics::eShaderStage stage, const std::wstring& file, const std::string& funcName);
 		void Update();
