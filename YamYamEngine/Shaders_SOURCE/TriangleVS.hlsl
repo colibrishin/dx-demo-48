@@ -19,6 +19,7 @@ cbuffer TRANSFORM : register(b0)
     int padd1;
     float3 cbScale;
     int padd2;
+    float4x4 cbRotMat;
 };
 
 cbuffer PERSPECTIVE : register(b2)
@@ -33,11 +34,13 @@ VTX_OUT VS_Test(VTX_IN _in)
     VTX_OUT output = (VTX_OUT) 0.f;
     
     output.vPos = float4(_in.vPos + cbPos.xyz, 1.f);
-    output.vPos.xyz *= cbScale;
-    
+    output.vPos.xyz *= cbScale;    
+    output.vPos = mul(output.vPos, cbRotMat);
+
     output.vPos = mul(output.vPos, cbWorld);
     output.vPos = mul(output.vPos, cbView);
     output.vPos = mul(output.vPos, cbProj);
+    
     output.vColor = _in.vColor;
     output.vTex = _in.vTex;
     

@@ -29,6 +29,8 @@ namespace ya::renderer
 
 		Vector3 scale;
 		int padd2;
+
+		XMMATRIX rotMatrix;
 	};
 
 	CBUFFER(PerspectiveCB, CBSLOT_PERSPECTIVE)
