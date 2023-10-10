@@ -1,5 +1,6 @@
 #pragma once
 #include "yaGameObject.h"
+#include "yaPlayerShadow.h"
 #include "yaRigidbody.h"
 
 namespace ya
@@ -43,6 +44,7 @@ namespace ya
 		int HP;
 		Rigidbody* rb;
 		//float jumptime;
+		PlayerShadow* m_shadow_;
 
 	};
 }

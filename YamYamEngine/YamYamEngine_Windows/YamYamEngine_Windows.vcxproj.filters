@@ -16,6 +16,12 @@
     <Filter Include="Turret">
       <UniqueIdentifier>{3fda4ee5-435c-4189-8148-6f63bf648f01}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObjects\Light">
+      <UniqueIdentifier>{b3bbf6c6-633b-433c-875f-ed297b0c77d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\Lighting">
+      <UniqueIdentifier>{30198b27-d1af-4743-9f0d-71e8c4ff7bc1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="yaPlayScene.h">
@@ -48,7 +54,6 @@
     <ClInclude Include="yaTurretScript.h">
       <Filter>Scripts</Filter>
     </ClInclude>
-    <ClInclude Include="yaPortal.hpp" />
     <ClInclude Include="IJ_Button.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
@@ -56,6 +61,18 @@
       <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="IJ_ButtonConnectedDoor.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="yaPlayerShadow.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="yaLight.h">
+      <Filter>GameObjects\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="yaLighting.h">
+      <Filter>GameObjects\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="yaPortal.hpp">
       <Filter>GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
@@ -87,7 +104,6 @@
     <ClCompile Include="yaTurretScript.cpp">
       <Filter>Scripts</Filter>
     </ClCompile>
-    <ClCompile Include="yaPortal.cpp" />
     <ClCompile Include="IJ_Button.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
@@ -95,6 +111,18 @@
       <Filter>GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="IJ_ButtonConnectedDoor.cpp">
+      <Filter>GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="yaPlayerShadow.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="yaLight.cpp">
+      <Filter>GameObjects\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="yaLighting.cpp">
+      <Filter>GameObjects\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="yaPortal.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>
   </ItemGroup>

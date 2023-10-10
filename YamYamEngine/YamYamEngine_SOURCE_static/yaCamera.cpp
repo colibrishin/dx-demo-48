@@ -11,7 +11,7 @@ extern ya::Application application;
 
 void ya::Camera::Initialize()
 {
-	// LookAtLH¿¡¼­ z °ª 0À» ¹ŞÁö ¾ÊÀ½
+	// LookAtLHì—ì„œ z ê°’ 0ì„ ë°›ì§€ ì•ŠìŒ
 	mLookPosition = Vector3::Forward;
 	mPosition = Vector3{0, 0, -2};
 }
@@ -33,17 +33,17 @@ void ya::Camera::Update()
 		positionVector = XMLoadFloat3(&object_pos);
 	}
 
-	// ÄõÅä´Ï¾È °ª¿¡¼­ È¸Àü Çà·ÄÀ» ±¸ÇÔ
+	// ì¿¼í† ë‹ˆì•ˆ ê°’ì—ì„œ íšŒì „ í–‰ë ¬ì„ êµ¬í•¨
 	const XMMATRIX rotationMatrix = XMMatrixRotationQuaternion(mRotation);
 
-	// È¸Àü Çà·ÄÀ» ÀÌ¿ëÇØ¼­ È¸ÀüµÈ Ä«¸Ş¶óÀÇ ¹Ù¶óº¸´Â ¹æÇâ°ú À§¸¦ ±¸ÇÔ
+	// íšŒì „ í–‰ë ¬ì„ ì´ìš©í•´ì„œ íšŒì „ëœ ì¹´ë©”ë¼ì˜ ë°”ë¼ë³´ëŠ” ë°©í–¥ê³¼ ìœ„ë¥¼ êµ¬í•¨
 	lookAtVector = XMVector3TransformCoord(lookAtVector, rotationMatrix);
 	upVector = XMVector3TransformCoord(upVector, rotationMatrix);
 
-	// ¹Ù¶óº¸´Â À§Ä¡¿¡ Ä«¸Ş¶ó À§Ä¡¸¦ ´õÇÔ
+	// ë°”ë¼ë³´ëŠ” ìœ„ì¹˜ì— ì¹´ë©”ë¼ ìœ„ì¹˜ë¥¼ ë”í•¨
 	lookAtVector = XMVectorAdd(positionVector, lookAtVector);
 
-	// Ä«¸Ş¶ó¿¡ ÀÇÇØ »ı±â´Â ºä Çà·ÄÀ» ±¸ÇÔ
+	// ì¹´ë©”ë¼ì— ì˜í•´ ìƒê¸°ëŠ” ë·° í–‰ë ¬ì„ êµ¬í•¨
 	mViewMatrix = XMMatrixLookAtLH(positionVector, lookAtVector, upVector);
 
 	SetConstantBuffer();
@@ -53,7 +53,7 @@ void ya::Camera::SetConstantBuffer()
 {
 	graphics::ConstantBuffer* cb = renderer::constantBuffers[(UINT)graphics::eCBType::Perspective];
 
-	// DirectX 11Àº XMMATRIX¸¦ TransposeÇØ¼­ ³Ñ°ÜÁÖ¾î¾ß ÇÔ
+	// DirectX 11ì€ XMMATRIXë¥¼ Transposeí•´ì„œ ë„˜ê²¨ì£¼ì–´ì•¼ í•¨
 	renderer::PerspectiveCB data{
 		XMMatrixTranspose(mWorldMatrix),
 		XMMatrixTranspose(mViewMatrix),

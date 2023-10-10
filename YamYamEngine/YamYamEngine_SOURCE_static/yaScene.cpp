@@ -47,5 +47,6 @@ namespace ya
     void Scene::AddGameObject(GameObject* gameObject, UINT layerIndex)
     {
         mLayers[layerIndex].AddGameObject(gameObject);
+        gameObject->SetLayer(static_cast<LAYER>(layerIndex));
     }
 }

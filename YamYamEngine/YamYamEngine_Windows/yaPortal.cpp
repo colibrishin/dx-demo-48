@@ -12,6 +12,8 @@ namespace ya
 		// 포탈은 벽에 붙어있어야 함
 		// TODO: GameObject가 벽인지 확인하기
 		assert(wall != nullptr);
+
+		SetName(L"Portal");
 	}
 
 	void Portal::OnCollisionEnter(Collider* other)

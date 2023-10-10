@@ -3,7 +3,7 @@
 #include "yaScene.h"
 #include "yaSceneManager.h"
 
-//Ãæµ¹À» ÇÏ±â À§ÇÑ ÇÏ³ªÀÇ µµÇü
+//ì¶©ëŒì„ í•˜ê¸° ìœ„í•œ í•˜ë‚˜ì˜ ë„í˜•
 namespace ya
 {
 	Collider::Collider()
@@ -40,14 +40,29 @@ namespace ya
 
 	void Collider::OnCollisionEnter(Collider* other)
 	{
+		if(!IsEnabled())
+		{
+			return;
+		}
+
 		GetOwner()->OnCollisionEnter(other);
 	}
 	void Collider::OnCollisionStay(Collider* other)
 	{
+		if(!IsEnabled())
+		{
+			return;
+		}
+
 		GetOwner()->OnCollisionStay(other);
 	}
-	void Collider::OnCollisionExit(Collider* other)		// ¸· ºüÁ®³ª°¬À» ¶§(Ãæµ¹ X)
+	void Collider::OnCollisionExit(Collider* other)		// ë§‰ ë¹ ì ¸ë‚˜ê°”ì„ ë•Œ(ì¶©ëŒ X)
 	{
+		if(!IsEnabled())
+		{
+			return;
+		}
+
 		GetOwner()->OnCollisionExit(other);
 	}
 
