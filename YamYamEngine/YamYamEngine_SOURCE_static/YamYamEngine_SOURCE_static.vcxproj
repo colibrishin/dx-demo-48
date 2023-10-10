@@ -179,6 +179,7 @@
     <ClInclude Include="yaApplication.h" />
     <ClInclude Include="yaCamera.h" />
     <ClInclude Include="yaCanvas.h" />
+    <ClInclude Include="yaCircleMesh.hpp" />
     <ClInclude Include="yaCollider.h" />
     <ClInclude Include="yaCollisionManager.h" />
     <ClInclude Include="yaComponent.h" />
