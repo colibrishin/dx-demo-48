@@ -1,8 +1,7 @@
 #include "yaToolScene.h"
 #include "yaRenderer.h"
-//#include "yaObject.h"
 #include "yaInput.h"
-// #include "yaTexture.h"
+#include "yaTexture.hpp"
 #include "yaTransform.h"
 #include "yaResources.h"
 #include "yaCamera.h"
@@ -11,8 +10,8 @@
 #include "yaCollider.h"
 
 
-// ToolScene¿¡¼­ ÇÏ´ø ÀÛ¾÷À» °¢ ¾À¿¡¼­ ºÒ·¯¿ÍÁÖ¸é µÊ
-// Àı´ë°æ·Î »ç¿ë
+// ToolSceneì—ì„œ í•˜ë˜ ì‘ì—…ì„ ê° ì”¬ì—ì„œ ë¶ˆëŸ¬ì™€ì£¼ë©´ ë¨
+// ì ˆëŒ€ê²½ë¡œ ì‚¬ìš©
 
 namespace ya
 {
@@ -27,14 +26,9 @@ namespace ya
 	{
 
 		Scene::Initialize();
-		// Å¸ÀÏ ÁÖ¼®
-		Texture* Tile_
-			= Resources::Load<Texture>(L"Tile", L"..\\Resources\\Tile.bmp");
+		// íƒ€ì¼ ì£¼ì„
+		Texture* Tile_= Resources::Load<Texture>(L"Tile", L"..\\Resources\\Tile.bmp");
 
-		
-		// Å¸ÀÏ À§Ä¡..?
-		/*Tile* tile_
-			= object::Instantiate<Tile>(eLayerType::Tile, Vector2(600.0f, 400.0f));*/
 
 	}
 
@@ -43,16 +37,16 @@ namespace ya
 		Scene::Update();
 
 
-		// GetFocus : À©µµ¿ì°¡ È°¼ºµÉ ¶§¸¸ ÇÒ ¼ö ÀÖ°Ô ÇØÁÖ´Â ÇÔ¼ö
+		// GetFocus : ìœˆë„ìš°ê°€ í™œì„±ë  ë•Œë§Œ í•  ìˆ˜ ìˆê²Œ í•´ì£¼ëŠ” í•¨ìˆ˜
 		if (Input::GetKeyDown(eKeyCode::LBTN) && GetFocus())
 		{
 			Vector2 mousePos = Input::GetMousePosition();
 
-			// ¸¶¿ì½º Ä¿¼­ÀÇ À§Ä¡¸¦ Å¸ÀÏÀÇ ÀÎµ¦½º·Î ¹Ù²ãÁÖ´Â ÀÛ¾÷
+			// ë§ˆìš°ìŠ¤ ì»¤ì„œì˜ ìœ„ì¹˜ë¥¼ íƒ€ì¼ì˜ ì¸ë±ìŠ¤ë¡œ ë°”ê¿”ì£¼ëŠ” ì‘ì—…
 			int idxX = (mousePos.x - LEFT_TOP_X) / (TILE_WIDTH);
 			int idxY = (mousePos.y - LEFT_TOP_Y) / (TILE_HEIGHT);
 
-			// Å¸ÀÏÀÇ Áß¾ÓÀ» Áß½ÉÀ¸·Î ¿ÀÇÁ¼Â ¼³Á¤
+			// íƒ€ì¼ì˜ ì¤‘ì•™ì„ ì¤‘ì‹¬ìœ¼ë¡œ ì˜¤í”„ì…‹ ì„¤ì •
 			Vector3 offset = Vector3((TILE_WIDTH) / 2.0f, (TILE_HEIGHT) / 2.0f, 1);
 
 			offset.x += LEFT_TOP_X;
@@ -69,8 +63,8 @@ namespace ya
 			mTiles.push_back(tile);
 		}
 
-		// Å¸ÀÏÀ» ±ò°í ¾îµò°¡¿¡ ÀúÀåÀ» ÇØ¾ß ÇÔ 
-		// ÆÄÀÏ ÀÔÃâ·Â(·¥¿¡ ÀÖ´Â µ¥ÀÌÅÍ¸¦ SSD¿¡ ¿Å±â´Â ÀÛ¾÷)
+		// íƒ€ì¼ì„ ê¹”ê³  ì–´ë”˜ê°€ì— ì €ì¥ì„ í•´ì•¼ í•¨ 
+		// íŒŒì¼ ì…ì¶œë ¥(ë¨ì— ìˆëŠ” ë°ì´í„°ë¥¼ SSDì— ì˜®ê¸°ëŠ” ì‘ì—…)
 		if (Input::GetKeyDown(eKeyCode::S))
 		{
 			Save();
@@ -84,77 +78,14 @@ namespace ya
 	void ToolScene::Render()
 	{
 		Scene::Render();
-
-		// DeviceContext »ı¼º
-		/*ID3D11Device* pDevice;
-		D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr, 0, nullptr, 0, D3D11_SDK_VERSION, &pDevice, nullptr, nullptr);
-		ID3D11DeviceContext* pContext;
-		pDevice->GetImmediateContext(&pContext);*/
-
-		ID3D11Device* device;
-		ID3D11DeviceContext* context;
-		D3D11_VIEWPORT viewport;
-
-		// Direct3D 11 ÃÊ±âÈ­ÇÕ´Ï´Ù.
-		D3D11CreateDevice
-		(
-			NULL,
-			D3D_DRIVER_TYPE_HARDWARE,
-			NULL,
-			0,
-			NULL,
-			0,
-			D3D11_SDK_VERSION,
-			&device,
-			NULL,
-			&context
-		);
-
-		// 20, 40
-		// 620,560
-		// °İÀÚ ¸¸µé±â
-		
-		 // ºäÆ÷Æ®¸¦ ¼³Á¤ÇÕ´Ï´Ù.
-		//viewport.TopLeftX = 0;
-		//viewport.TopLeftY = 0;
-		//viewport.Width = 100;
-		//viewport.Height = 100;
-		//viewport.MinDepth = 0.0f;
-		//viewport.MaxDepth = 1.0f;
-		//context->SetViewport(&viewport);
-
-		//// (100, 100)±îÁö ¼±À» ±×¸³´Ï´Ù.
-		//context->DrawLine(0, 0, 100, 100);
-
-		//// Direct3D 11 °´Ã¼¸¦ ÇØÁ¦ÇÕ´Ï´Ù.
-		//device->Release();
-		//context->Release();
-
-		int maxRow = RIGHT_BOTTOM_Y / (TILE_HEIGHT);
-		for (size_t y = 0; y < maxRow; y++)
-		{
-			MoveToEx(hdc, 0, TILE_HEIGHT * y * 3, NULL);	//      ¶óÀÎ(¼±) ½ÃÀÛºÎÅÍ
-			LineTo(hdc, 1280, TILE_HEIGHT * y * 3);			//      ¶óÀÎ(¼±) ³¡±îÁö ¼±À» ±×¸²
-		}
-
-
-		int maxColumn = RIGHT_BOTTOM_X / (TILE_WIDTH)+1;
-		for (size_t x = 0; x < maxColumn; x++)
-		{
-			MoveToEx(hdc, TILE_WIDTH * x * 3, 0, NULL);		//      ¶óÀÎ(¼±) ½ÃÀÛ
-			LineTo(hdc, TILE_WIDTH * x * 3, 720);			//      ¶óÀÎ(¼±) ³¡
-		}
-
-		DrawLine(pContext, p1, p2);
-		DrawLine(pContext, p3, p4);
 	}
-	// ÆÄÀÏ ÀÔÃâ·Â
+	// íŒŒì¼ ì…ì¶œë ¥
 	void ToolScene::Save()
 	{
 		// open a file name
 		OPENFILENAME ofn = {};
 
-		//szFilePath - °æ·Î
+		//szFilePath - ê²½ë¡œ
 		wchar_t szFilePath[256] = {};
 
 		ZeroMemory(&ofn, sizeof(ofn));
@@ -175,9 +106,9 @@ namespace ya
 
 		FILE* pFile = nullptr;
 
-		// ÆÄÀÏÀ» ¿©´Â ÇÔ¼ö
-		// wb : ÆÄÀÏÀ» ÀÌÁø¼ö·Î ÀúÀåÇÒ °ÍÀÎÁö
-		// wt : ÅØ½ºÆ®·Î ÀúÀåÇÒ °ÍÀÎÁö
+		// íŒŒì¼ì„ ì—¬ëŠ” í•¨ìˆ˜
+		// wb : íŒŒì¼ì„ ì´ì§„ìˆ˜ë¡œ ì €ì¥í•  ê²ƒì¸ì§€
+		// wt : í…ìŠ¤íŠ¸ë¡œ ì €ì¥í•  ê²ƒì¸ì§€
 		_wfopen_s(&pFile, szFilePath, L"wb");
 		if (pFile == nullptr)
 			return;
@@ -193,16 +124,16 @@ namespace ya
 			int	myX = idx.x;
 			int myY = idx.y;
 
-			// ¿­¾î³õÀº ÆÄÀÏ¿¡ ¿øÇÏ´Â Å©±â¸¸Å­ ÆÄÀÏ¿¡ ±â·Ï
-			// sourceX, sourceY - ¿ìÃøÀÇ Å¸ÀÏÀÇ ¼Ò½º ÀÎµ¦½º
-			// myX, myY - ÁÂÃøÀÇ Å¸ÀÏ ÀÎµ¦½º
+			// ì—´ì–´ë†“ì€ íŒŒì¼ì— ì›í•˜ëŠ” í¬ê¸°ë§Œí¼ íŒŒì¼ì— ê¸°ë¡
+			// sourceX, sourceY - ìš°ì¸¡ì˜ íƒ€ì¼ì˜ ì†ŒìŠ¤ ì¸ë±ìŠ¤
+			// myX, myY - ì¢Œì¸¡ì˜ íƒ€ì¼ ì¸ë±ìŠ¤
 			fwrite(&sourceX, sizeof(int), 1, pFile);
 			fwrite(&sourceY, sizeof(int), 1, pFile);
 			fwrite(&myX, sizeof(int), 1, pFile);
 			fwrite(&myY, sizeof(int), 1, pFile);
 		}
 
-		// ¸Ş¸ğ¸® ÇÒ´çµÈ °ÍÀ» »èÁ¦ÇØÁÖ´Â ÇÔ¼ö
+		// ë©”ëª¨ë¦¬ í• ë‹¹ëœ ê²ƒì„ ì‚­ì œí•´ì£¼ëŠ” í•¨ìˆ˜
 		fclose(pFile);
 	}
 
@@ -228,7 +159,7 @@ namespace ya
 		if (false == GetOpenFileName(&ofn))
 			return;
 
-		// rb : ÀÌÁø¼ö·Î ÆÄÀÏÀ» ÀĞÀ½
+		// rb : ì´ì§„ìˆ˜ë¡œ íŒŒì¼ì„ ì½ìŒ
 		FILE* pFile = nullptr;
 		_wfopen_s(&pFile, szFilePath, L"rb");
 
@@ -257,16 +188,16 @@ namespace ya
 			Vector3 pos = tile->GetComponent<Transform>()->SetPosition(myX * (TILE_WIDTH)+offset.x + LEFT_TOP_X
 				, myY * (TILE_HEIGHT)+offset.y + LEFT_TOP_Y, 1);
 
-			tile->SetTile(sourceX, sourceY, 1);
-			tile->SetSourceTileIdx(sourceX, sourceY, 1);
-			tile->SetTileIdx(myX, myY, 1);
+			tile->SetTile(sourceX, sourceY);
+			tile->SetSourceTileIdx(sourceX, sourceY);
+			tile->SetTileIdx(myX, myY);
 
 			AddGameObject(tile, LAYER::TILE);
 
 			mTiles.push_back(tile);
 		}
 
-		// ¸Ş¸ğ¸® ÇÒ´çµÈ °ÍÀ» »èÁ¦ÇØÁÖ´Â ÇÔ¼ö
+		// ë©”ëª¨ë¦¬ í• ë‹¹ëœ ê²ƒì„ ì‚­ì œí•´ì£¼ëŠ” í•¨ìˆ˜
 		fclose(pFile);
 	}
 	void ToolScene::Enter()

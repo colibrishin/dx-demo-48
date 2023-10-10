@@ -25,6 +25,8 @@ namespace ya
 		void SetTexture(Texture* texture) { mTexture = texture; }
 		void SetColor(const Vector4& color) { mColor = color; }
 
+		void SetTile(int x, int y) { mbTile = true; mTileIndexX = x; mTileIndexY = y; }
+
 	private:
 		Mesh* mMesh;
 		Shader* mShader;

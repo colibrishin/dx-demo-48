@@ -5,7 +5,6 @@
 //#include "yaTexture.h"
 #include "yaResources.h"
 #include "yaCollisionManager.h"
-#include "yaObject.h"
 #include "yaToolScene.h"
 
 
@@ -37,12 +36,12 @@ namespace ya
 		mMeshRenderer = AddComponent<MeshRenderer>();
 		//AddComponent<Collider>();
 
-		// ≈∏¿œ ¡÷ºÆ
+		// ÌÉÄÏùº Ï£ºÏÑù
 		ya::Texture* Tile_
 			= ya::Resources::Find<ya::Texture>(L"Tile");
 
 		mMeshRenderer->SetImage(Tile_);
-		mMeshRenderer->SetScale(Vector2(1.0f, 1.0f));
+		mMeshRenderer->SetScale(Vector3(1.0f, 1.0f));
 	}
 
 	void Tile::Update()
@@ -55,29 +54,27 @@ namespace ya
 		GameObject::Render();
 	}
 
-	void Tile::SetTile(int x, int y, int z)
+	void Tile::SetTile(int x, int y)
 	{
-		mMeshRenderer->SetTile(x, y, z);
+		mMeshRenderer->SetTile(x, y);
 	}
 
 	void Tile::OnCollisionEnter(Collider* other)
 	{
 		if (other->GetOwner()->GetLayer() == LAYER::ATTACK)
 		{
-			// ∫Œº≠¡ˆ¥¬ ≈∏¿œ¿« ∞ÊøÏ ƒ›∂Û¿Ã¥ı ƒƒ∆˜≥Õ∆Æ∏¶ Delete «ÿ¡÷¥¬ «‘ºˆ∞° « ø‰
-			// √Êµπ«œ∞‘ µ«∏È æÓ∂≤ ≈∏¿œ∑Œ πŸ≤Ó∞‘ µ«¥¬¡ˆ SetSourceTileIdx∑Œ ¡ˆ¡§
-			// ∫Œº≠¡ˆ∞‘ µ«∏È ≈∏¿œ¿« ≈∏¿‘¿ª None¿∏∑Œ πŸ≤„¡‹
+			// Î∂ÄÏÑúÏßÄÎäî ÌÉÄÏùºÏùò Í≤ΩÏö∞ ÏΩúÎùºÏù¥Îçî Ïª¥Ìè¨ÎÑåÌä∏Î•º Delete Ìï¥Ï£ºÎäî Ìï®ÏàòÍ∞Ä ÌïÑÏöî
+			// Ï∂©ÎèåÌïòÍ≤å ÎêòÎ©¥ Ïñ¥Îñ§ ÌÉÄÏùºÎ°ú Î∞îÎÄåÍ≤å ÎêòÎäîÏßÄ SetSourceTileIdxÎ°ú ÏßÄÏ†ï
+			// Î∂ÄÏÑúÏßÄÍ≤å ÎêòÎ©¥ ÌÉÄÏùºÏùò ÌÉÄÏûÖÏùÑ NoneÏúºÎ°ú Î∞îÍøîÏ§å
 			if (this->GetType() == eType::Crack)
 			{
-				Transform* tiletr = this->GetComponent<Transform>();
-				Vector3  Steampos = tiletr->GetPosition();
 				if (this->GetSourceTileIdx() == Vector3(0, 0, 1) ||
 					this->GetSourceTileIdx() == Vector3(1, 0, 1) ||
 					this->GetSourceTileIdx() == Vector3(2, 0, 1))
 				{
 					this->SetSourceTileIdx(0, 1, 1);
 					this->DeleteComponent<Collider>();
-					mMeshRenderer->SetTile(0, 1, 0);
+					mMeshRenderer->SetTile(0, 1);
 					this->SetType(eType::None);
 				}
 
@@ -86,7 +83,7 @@ namespace ya
 				{
 					this->SetSourceTileIdx(1, 1, 1);
 					this->DeleteComponent<Collider>();
-					mMeshRenderer->SetTile(1, 1, 1);
+					mMeshRenderer->SetTile(1, 1);
 					this->SetType(eType::None);
 				}
 
@@ -95,7 +92,7 @@ namespace ya
 				{
 					this->SetSourceTileIdx(3, 4, 1);
 					this->DeleteComponent<Collider>();
-					mMeshRenderer->SetTile(3, 4, 1);
+					mMeshRenderer->SetTile(3, 4);
 					this->SetType(eType::None);
 				}
 

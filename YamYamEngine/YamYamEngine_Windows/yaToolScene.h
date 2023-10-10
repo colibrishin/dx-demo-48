@@ -1,15 +1,14 @@
 #pragma once
 #include "yaScene.h"
 #include "yaTile.h"
-#include <d3d11.h>
 
 namespace ya
 {
-#define LEFT_TOP_Y 40.f
-#define LEFT_TOP_X 20.f
+#define LEFT_TOP_Y 0.f
+#define LEFT_TOP_X 0.f
 
-#define RIGHT_BOTTOM_Y 560.f
-#define RIGHT_BOTTOM_X 620.f
+#define RIGHT_BOTTOM_Y 1600.f
+#define RIGHT_BOTTOM_X 900.f
 
 
 	class ToolScene : public Scene
@@ -31,7 +30,6 @@ namespace ya
 		virtual void Enter();
 		virtual void Exit();
 
-		void ID3D11DeviceContext::SetViewport(const D3D11_VIEWPORT* pViewport);
 
 	private:
 		std::vector<Tile*> mTiles;

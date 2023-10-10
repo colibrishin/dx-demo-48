@@ -13,6 +13,8 @@
 #include "yaPortal.hpp"
 #include "yaTurret.h"
 #include "yaTurretScript.h"
+#include "yaTile.h"
+
 
 namespace ya
 {
@@ -169,6 +171,7 @@ namespace ya
 	{
 		OPENFILENAME ofn = {};
 
+		// 맵 저장한 파일 경로
 		wchar_t szFilePath[256] = L"..\\Resources\\Tile\\ForestMap_1.tm";
 
 		// rb : 이진수로 파일을 읽음
@@ -196,9 +199,11 @@ namespace ya
 				break;
 
 			Vector2 offset = Vector2((TILE_WIDTH) / 2.0f, (TILE_HEIGHT) / 2.0f);
-			Tile* tile = object::Instantiate<Tile>(eLayerType::Tile
-				, Vector2(myX * (TILE_WIDTH)+offset.x + LEFT_TOP_X
-					, myY * (TILE_HEIGHT)+offset.y + LEFT_TOP_Y));
+
+
+			Tile* tile = new Tile();
+			Vector3 pos = tile->GetComponent<Transform>()->SetPosition(Vector3(myX * (TILE_WIDTH)+offset.x + LEFT_TOP_X
+				, myY * (TILE_HEIGHT)+offset.y + LEFT_TOP_Y), 1);
 
 			tile->SetTile(sourceX, sourceY);
 			// Crack(부서지며 충돌체가 있는 타일)
@@ -223,17 +228,14 @@ namespace ya
 			if (tile->GetType() == Tile::eType::Crack || tile->GetType() == Tile::eType::Uncrushable)
 			{
 				Collider* Col = tile->AddComponent<Collider>();;
-				Col->SetSize(Vector2(40.0f, 40.0f));
+				Col->SetSize(Vector3(40.0f, 40.0f), 0);
 
-				CollisionManager::CollisionLayerCheck(eLayerType::Tile, eLayerType::Bomb, true);
-				CollisionManager::CollisionLayerCheck(eLayerType::Tile, eLayerType::Player, true);
-				CollisionManager::CollisionLayerCheck(eLayerType::Tile, eLayerType::Monster, true);
-				CollisionManager::CollisionLayerCheck(eLayerType::Tile, eLayerType::Bombflow, true);
+				CollisionManager::CollisionLayerCheck(LAYER::TILE, LAYER::PLAYER, true);
 
 			}
 
-			tile->SetSourceTileIdx(sourceX, sourceY);
-			tile->SetTileIdx(myX, myY);
+			tile->SetSourceTileIdx(sourceX, sourceY, 1);
+			tile->SetTileIdx(myX, myY, 1);
 
 			mTiles.push_back(tile);
 		}

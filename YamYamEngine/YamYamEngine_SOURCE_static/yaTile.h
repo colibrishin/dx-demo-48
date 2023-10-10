@@ -11,13 +11,13 @@ namespace ya
 
 		enum class eType
 		{
-			// Æ÷Å» ºÎÂøÀÌ °¡´ÉÇÑ Å¸ÀÏ
+			// í¬íƒˆ ë¶€ì°©ì´ ê°€ëŠ¥í•œ íƒ€ì¼
 
-			// floor °°ÀÌ Ãæµ¹Ã¼°¡ ¾ø´Â Å¸ÀÏ
+			// floor ê°™ì´ ì¶©ëŒì²´ê°€ ì—†ëŠ” íƒ€ì¼
 			None,
-			// ºÎ¼­Áö¸ç Ãæµ¹Ã¼°¡ ÀÖ´Â Å¸ÀÏ
+			// ë¶€ì„œì§€ë©° ì¶©ëŒì²´ê°€ ìˆëŠ” íƒ€ì¼
 			Crack,
-			// ºÎ¼­ÁöÁö´Â ¾ÊÁö¸¸ Ãæµ¹Ã¼´Â ÀÖ´Â Å¸ÀÔ
+			// ë¶€ì„œì§€ì§€ëŠ” ì•Šì§€ë§Œ ì¶©ëŒì²´ëŠ” ìˆëŠ” íƒ€ì…
 			Uncrushable,
 
 			End,
@@ -33,11 +33,11 @@ namespace ya
 		virtual void Update() override;
 		virtual void Render() override;
 
-		void SetSourceTileIdx(int x, int y, int z) { mSourceIndexX = x;  mSourceIndexY = y; }
-		void SetTileIdx(int x, int y, int z) { mIndexX = x;  mIndexY = y; }
+		void SetSourceTileIdx(int x, int y) { mSourceIndexX = x;  mSourceIndexY = y; }
+		void SetTileIdx(int x, int y) { mIndexX = x;  mIndexY = y; }
 		Vector3 GetSourceTileIdx() { return Vector3(mSourceIndexX, mSourceIndexY, 1); }
 		Vector3 GetTileIdx() { return Vector3(mIndexX, mIndexY, 1); }
-		void SetTile(int x, int y, int z);
+		void SetTile(int x, int y);
 
 		eType GetType() { return mType; }
 		void SetType(eType type) { mType = type; }
@@ -50,17 +50,13 @@ namespace ya
 		UINT GetTileIndexY() const { return mIndexY; }
 
 
-		
-
 	private:
 		class MeshRenderer* mMeshRenderer;
 		UINT mSourceIndexX;
 		UINT mSourceIndexY;
-		UINT mSourceIndexZ;
 
 		UINT mIndexX;
 		UINT mIndexY;
-		UINT mIndexZ;
 
 		eType mType;
 

@@ -2,9 +2,9 @@
 
 namespace ya::enums
 {
-	// ≈∏¿œ ªÁ¿Ã¡Ó ∞°∑Œ, ºº∑Œ
-	#define TILE_WIDTH 40
-	#define TILE_HEIGHT 40
+	// ÌÉÄÏùº ÏÇ¨Ïù¥Ï¶à Í∞ÄÎ°ú, ÏÑ∏Î°ú
+	#define TILE_WIDTH 24
+	#define TILE_HEIGHT 24
 
 	enum LAYER
 	{
