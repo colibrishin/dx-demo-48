@@ -19,8 +19,9 @@ void ya::Camera::Initialize()
 void ya::Camera::Update()
 {
 	mWorldMatrix = XMMatrixIdentity();
-	mProjectionMatrix = XMMatrixPerspectiveFovLH(DirectX::XM_PI / 2, application.GetWidth() / application.GetHeight(),
-	                                             0.1f, 1000.f);
+
+	// 시야 왜곡을 없애기 위해 투영행렬로 직교행렬을 사용함
+	mProjectionMatrix = XMMatrixOrthographicLH(mZoom * ((float)application.GetWidth() / application.GetHeight()), mZoom, 1.0f, 1000.f);
 
 	XMVECTOR upVector = XMLoadFloat3(&Vector3::Up);
 	XMVECTOR lookAtVector = XMLoadFloat3(&mLookPosition);

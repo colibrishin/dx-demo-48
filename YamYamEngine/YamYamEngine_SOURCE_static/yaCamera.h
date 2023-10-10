@@ -9,20 +9,21 @@ namespace ya
 		static void Initialize();
 		static void Update();
 
-		// Ä«¸Ş¶óÀÇ À§Ä¡, z ÃàÀ¸·Î Ä«¸Ş¶ó¸¦ ¾ÕµÚ·Î ÀÌµ¿½ÃÅ³ ¼ö ÀÖÀ½
+		// ì¹´ë©”ë¼ì˜ ìœ„ì¹˜, z ì¶•ìœ¼ë¡œ ì¹´ë©”ë¼ë¥¼ ì•ë’¤ë¡œ ì´ë™ì‹œí‚¬ ìˆ˜ ìˆìŒ
 		static void SetPosition(const Vector3& position) { mPosition = position; }
-		// Ä«¸Ş¶óÀÇ È¸Àü
+		// ì¹´ë©”ë¼ì˜ íšŒì „
 		static void SetRotation(const Quaternion& rotation) { mRotation = rotation; }
-		// Ä«¸Ş¶ó°¡ ¹Ù¶óº¸´Â ¹æÇâ
+		// ì¹´ë©”ë¼ê°€ ë°”ë¼ë³´ëŠ” ë°©í–¥
 		static void SetLookPosition(const Vector3& position) { mLookPosition = position; }
-		// ÃßÃ´ÇÏ´Â ¿ÀºêÁ§Æ®, ¼³Á¤µÉ °æ¿ì Ä«¸Ş¶óÀÇ À§Ä¡°¡ ¿ÀºêÁ§Æ®¸¦ µû¶ó°¨
+		// ì¶”ì²™í•˜ëŠ” ì˜¤ë¸Œì íŠ¸, ì„¤ì •ë  ê²½ìš° ì¹´ë©”ë¼ì˜ ìœ„ì¹˜ê°€ ì˜¤ë¸Œì íŠ¸ë¥¼ ë”°ë¼ê°
 		static void SetTarget(GameObject* gameObject) { mGameObject = gameObject; }
-		// ¿ÀºêÁ§Æ® ÃßÀûÀ» Áß´ÜÇÏ°í Ä«¸Ş¶óÀÇ À§Ä¡·Î µÇµ¹¾Æ°¨.
+		// ì˜¤ë¸Œì íŠ¸ ì¶”ì ì„ ì¤‘ë‹¨í•˜ê³  ì¹´ë©”ë¼ì˜ ìœ„ì¹˜ë¡œ ë˜ëŒì•„ê°.
 		static void ResetTarget() { mGameObject = nullptr; }
 
 	private:
-		// ÇöÀç Ä«¸Ş¶ó ÆÄ¶ó¸ŞÅÍ¸¦ »ó¼ö ¹öÆÛ·Î ¹ÙÀÎµù
+		// í˜„ì¬ ì¹´ë©”ë¼ íŒŒë¼ë©”í„°ë¥¼ ìƒìˆ˜ ë²„í¼ë¡œ ë°”ì¸ë”©
 		static void SetConstantBuffer();
+		static void SetZoom(float zoom) { mZoom = zoom; }
 
 		inline static GameObject* mGameObject{};
 
@@ -30,11 +31,14 @@ namespace ya
 		inline static Vector3 mPosition{};
 		inline static Quaternion mRotation{};
 
-		// Ä«¸Ş¶ó ±Û·Î¹ú ¿ùµåÀÇ Áß½ÉÁ¡
+		// ì¹´ë©”ë¼ ì¤Œ
+		inline static float mZoom = 5.0f;
+
+		// ì¹´ë©”ë¼ ê¸€ë¡œë²Œ ì›”ë“œì˜ ì¤‘ì‹¬ì 
 		inline static XMMATRIX mWorldMatrix{};
-		// È­¸é¿¡ µû¸¥ Åõ¿µ Çà·Ä
+		// í™”ë©´ì— ë”°ë¥¸ íˆ¬ì˜ í–‰ë ¬
 		inline static XMMATRIX mProjectionMatrix{};
-		// Ä«¸Ş¶óÀÇ À§Ä¡, È¸Àü¿¡ µû¸¥ ºä Çà·Ä
+		// ì¹´ë©”ë¼ì˜ ìœ„ì¹˜, íšŒì „ì— ë”°ë¥¸ ë·° í–‰ë ¬
 		inline static XMMATRIX mViewMatrix{};
 	};
 }
