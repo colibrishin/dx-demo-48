@@ -15,6 +15,8 @@
 
 namespace ya
 {
+
+
 	ToolScene::ToolScene()
 	{
 
@@ -24,12 +26,7 @@ namespace ya
 	}
 	void ToolScene::Initialize()
 	{
-
 		Scene::Initialize();
-		// 타일 주석
-		Texture* Tile_= Resources::Load<Texture>(L"Tile", L"..\\Resources\\Tile.bmp");
-
-
 	}
 
 	void ToolScene::Update()
@@ -38,7 +35,7 @@ namespace ya
 
 
 		// GetFocus : 윈도우가 활성될 때만 할 수 있게 해주는 함수
-		if (Input::GetKeyDown(eKeyCode::LBTN) && GetFocus())
+		if (Input::GetKeyDown(eKeyCode::LBTN) && GetFocus() /*&& Input::GetKeyDown(eKeyCode::B)*/)
 		{
 			Vector2 mousePos = Input::GetMousePosition();
 
@@ -53,15 +50,76 @@ namespace ya
 			offset.y += LEFT_TOP_Y;
 
 			Tile* tile = new Tile();
-			Vector3 pos = tile->GetComponent<Transform>()->SetPosition(Vector3(idxX * (TILE_WIDTH)+offset.x
-				, idxY * (TILE_HEIGHT)+offset.y, 1));
+			/*tile->GetComponent<Transform>()->SetPosition(Vector3((idxX * (TILE_WIDTH)+offset.x
+				)-800.f, (idxY * (TILE_HEIGHT)+offset.y)-450.f, 1));*/
 
-			tile->SetTile(Tile::mSelectedX, Tile::mSelectedY, 1);
-			tile->SetSourceTileIdx(Tile::mSelectedX, Tile::mSelectedY, 1);
-			tile->SetTileIdx(idxX, idxY, 1);
+			tile->GetComponent<Transform>()->SetPosition(Vector3(0,0,1));
+
+			tile->SetCircle(tile);
+
+			tile->SetTile(Tile::mSelectedX, Tile::mSelectedY);
+			//tile->SetSourceTileIdx(Tile::mSelectedX, Tile::mSelectedY);
+			tile->SetTileIdx(idxX, idxY);
+
+			AddGameObject(tile, LAYER::TILE);
 
 			mTiles.push_back(tile);
 		}
+
+		// GetFocus : 윈도우가 활성될 때만 할 수 있게 해주는 함수
+		//if (Input::GetKeyDown(eKeyCode::LBTN) && GetFocus() && Input::GetKeyDown(eKeyCode::N))
+		//{
+
+		//	Vector2 mousePos = Input::GetMousePosition();
+
+		//	// 마우스 커서의 위치를 타일의 인덱스로 바꿔주는 작업
+		//	int idxX = (mousePos.x - LEFT_TOP_X) / (TILE_WIDTH);
+		//	int idxY = (mousePos.y - LEFT_TOP_Y) / (TILE_HEIGHT);
+
+		//	// 타일의 중앙을 중심으로 오프셋 설정
+		//	Vector3 offset = Vector3((TILE_WIDTH) / 2.0f, (TILE_HEIGHT) / 2.0f, 1);
+
+		//	offset.x += LEFT_TOP_X;
+		//	offset.y += LEFT_TOP_Y;
+
+		//	Tile* tile = new Tile();
+		//	tile->GetComponent<Transform>()->SetPosition(Vector3(idxX * (TILE_WIDTH)+offset.x
+		//		, idxY * (TILE_HEIGHT)+offset.y, 1));
+
+		//	tile->SetTile(Tile::mSelectedX, Tile::mSelectedY);
+		//	//tile->SetSourceTileIdx(Tile::mSelectedX, Tile::mSelectedY);
+		//	tile->SetTileIdx(idxX, idxY);
+
+		//	mTiles.push_back(tile);
+		//}
+
+		//// GetFocus : 윈도우가 활성될 때만 할 수 있게 해주는 함수
+		//if (Input::GetKeyDown(eKeyCode::LBTN) && GetFocus() && Input::GetKeyDown(eKeyCode::M))
+		//{
+
+		//	Vector2 mousePos = Input::GetMousePosition();
+
+		//	// 마우스 커서의 위치를 타일의 인덱스로 바꿔주는 작업
+		//	int idxX = (mousePos.x - LEFT_TOP_X) / (TILE_WIDTH);
+		//	int idxY = (mousePos.y - LEFT_TOP_Y) / (TILE_HEIGHT);
+
+		//	// 타일의 중앙을 중심으로 오프셋 설정
+		//	Vector3 offset = Vector3((TILE_WIDTH) / 2.0f, (TILE_HEIGHT) / 2.0f, 1);
+
+		//	offset.x += LEFT_TOP_X;
+		//	offset.y += LEFT_TOP_Y;
+
+		//	Tile* tile = new Tile();
+		//	tile->GetComponent<Transform>()->SetPosition(Vector3(idxX * (TILE_WIDTH)+offset.x
+		//		, idxY * (TILE_HEIGHT)+offset.y, 1));
+
+
+		//	tile->SetTile(Tile::mSelectedX, Tile::mSelectedY);
+		//	//tile->SetSourceTileIdx(Tile::mSelectedX, Tile::mSelectedY);
+		//	tile->SetTileIdx(idxX, idxY);
+
+		//	mTiles.push_back(tile);
+		//}
 
 		// 타일을 깔고 어딘가에 저장을 해야 함 
 		// 파일 입출력(램에 있는 데이터를 SSD에 옮기는 작업)
@@ -185,7 +243,8 @@ namespace ya
 
 			Vector3 offset = Vector3((TILE_WIDTH) / 2.0f, (TILE_HEIGHT) / 2.0f, 1);
 			Tile* tile = new Tile();
-			Vector3 pos = tile->GetComponent<Transform>()->SetPosition(myX * (TILE_WIDTH)+offset.x + LEFT_TOP_X
+
+			tile->GetComponent<Transform>()->SetPosition(myX * (TILE_WIDTH)+offset.x + LEFT_TOP_X
 				, myY * (TILE_HEIGHT)+offset.y + LEFT_TOP_Y, 1);
 
 			tile->SetTile(sourceX, sourceY);

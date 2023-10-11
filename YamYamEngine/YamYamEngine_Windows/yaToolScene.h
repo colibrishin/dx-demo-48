@@ -7,8 +7,8 @@ namespace ya
 #define LEFT_TOP_Y 0.f
 #define LEFT_TOP_X 0.f
 
-#define RIGHT_BOTTOM_Y 1600.f
-#define RIGHT_BOTTOM_X 900.f
+#define RIGHT_BOTTOM_Y 900.f
+#define RIGHT_BOTTOM_X 1600.f
 
 
 	class ToolScene : public Scene

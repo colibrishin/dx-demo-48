@@ -1,5 +1,7 @@
 #pragma once
 #include "yaGameObject.h"
+#include "yaMeshRenderer.h"
+#include "yaResources.h"
 
 namespace ya
 {
@@ -9,17 +11,11 @@ namespace ya
 	{
 	public:
 
-		enum class eType
+		enum class eTileType
 		{
-			// 포탈 부착이 가능한 타일
-
-			// floor 같이 충돌체가 없는 타일
-			None,
-			// 부서지며 충돌체가 있는 타일
-			Crack,
-			// 부서지지는 않지만 충돌체는 있는 타입
-			Uncrushable,
-
+			Triangle,
+			Square,
+			Circle,
 			End,
 		};
 
@@ -39,8 +35,8 @@ namespace ya
 		Vector3 GetTileIdx() { return Vector3(mIndexX, mIndexY, 1); }
 		void SetTile(int x, int y);
 
-		eType GetType() { return mType; }
-		void SetType(eType type) { mType = type; }
+		eTileType GetType() { return mType; }
+		void SetType(eTileType type) { mType = type; }
 
 		virtual void OnCollisionEnter(class Collider* other) override;
 		virtual void OnCollisionStay(class Collider* other) override;
@@ -48,6 +44,10 @@ namespace ya
 
 		UINT GetTileIndexX() const { return mIndexX; }
 		UINT GetTileIndexY() const { return mIndexY; }
+
+		void SetCircle(Tile* tile);
+		void SetTriangle(Tile* tile);
+		void SetSquare(Tile* tile);
 
 
 	private:
@@ -58,7 +58,7 @@ namespace ya
 		UINT mIndexX;
 		UINT mIndexY;
 
-		eType mType;
+		eTileType mType;
 
 	};
 }

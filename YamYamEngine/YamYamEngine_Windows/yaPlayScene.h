@@ -1,6 +1,6 @@
 #pragma once
 #include "yaScene.h"
-
+#include "yaTile.h"
 
 namespace ya
 {
@@ -21,7 +21,7 @@ namespace ya
 		void LateUpdate() override;
 		void Render() override;
 
-		void Load();
+		//void Load();
 
 	private:
 		std::vector<Tile*> mTiles;
