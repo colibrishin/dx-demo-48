@@ -25,10 +25,19 @@ namespace ya
 		void SetTexture(Texture* texture) { mTexture = texture; }
 		void SetColor(const Vector4& color) { mColor = color; }
 
+		void SetTile(int x, int y) { mbTile = true; mTileIndexX = x; mTileIndexY = y; }
+
 	private:
 		Mesh* mMesh;
 		Shader* mShader;
+
+		bool mbTile;
+		int mTileIndexX;
+		int mTileIndexY;
+		int mTileIndexZ;
+
 		Texture* mTexture;
 		Vector4 mColor;
+		Vector2 mScale;
 	};
 }

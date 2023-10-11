@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="IJ_Box.cpp" />
+    <ClCompile Include="IJ_Button.cpp" />
+    <ClCompile Include="IJ_ButtonConnectedDoor.cpp" />
+    <ClCompile Include="IJ_ButtonConnectedObject.cpp" />
+    <ClCompile Include="IJ_PlayerAim_Temp.cpp" />
+    <ClCompile Include="yaBullet.cpp" />
+    <ClCompile Include="yaPlayer.cpp" />
+    <ClCompile Include="yaPlayerScript.cpp" />
+    <ClCompile Include="yaPlayScene.cpp" />
+    <ClCompile Include="yaPortal.cpp" />
+    <ClCompile Include="yaTurret.cpp" />
+    <ClCompile Include="yaBulletScript.cpp" />
+    <ClCompile Include="yaTurretScript.cpp" />
+    <ClCompile Include="yaToolScene.cpp" />
+    <ClCompile Include="yaTile.cpp" />
     <Filter Include="Scens">
       <UniqueIdentifier>{80edf01e-7bf3-4629-8663-b2d23fb1d1bc}</UniqueIdentifier>
     </Filter>
@@ -24,36 +39,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="yaPlayScene.h">
-      <Filter>Scens</Filter>
-    </ClInclude>
-    <ClInclude Include="yaPlayerScript.h">
-      <Filter>Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="yaLoadScene.h">
-      <Filter>Scens</Filter>
-    </ClInclude>
-    <ClInclude Include="yaPlayer.h">
-      <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="IJ_Box.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="IJ_PlayerAim_Temp.h">
-      <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="yaTurret.h">
-      <Filter>Turret</Filter>
-    </ClInclude>
-    <ClInclude Include="yaBullet.h">
-      <Filter>Turret</Filter>
-    </ClInclude>
-    <ClInclude Include="yaBulletScript.h">
-      <Filter>Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="yaTurretScript.h">
-      <Filter>Scripts</Filter>
-    </ClInclude>
+    <ClInclude Include="IJ_Box.h" />
+    <ClInclude Include="IJ_Button.h" />
+    <ClInclude Include="IJ_ButtonConnectedDoor.h" />
+    <ClInclude Include="IJ_ButtonConnectedObject.h" />
+    <ClInclude Include="IJ_PlayerAim_Temp.h" />
+    <ClInclude Include="yaBullet.h" />
+    <ClInclude Include="yaLoadScene.h" />
+    <ClInclude Include="yaPlayer.h" />
+    <ClInclude Include="yaPlayerScript.h" />
+    <ClInclude Include="yaPlayScene.h" />
+    <ClInclude Include="yaPortal.hpp" />
+    <ClInclude Include="yaTurret.h" />
+    <ClInclude Include="yaBulletScript.h" />
+    <ClInclude Include="yaTurretScript.h" />
+    <ClInclude Include="yaToolScene.h" />
+    <ClInclude Include="yaTile.h" />
     <ClInclude Include="IJ_Button.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
@@ -104,6 +105,10 @@
     <ClCompile Include="yaTurretScript.cpp">
       <Filter>Scripts</Filter>
     </ClCompile>
+      <Filter>Scens</Filter>
+    <ClCompile Include="yaToolScene.cpp">
+    </ClCompile>
+    <ClCompile Include="yaPortal.cpp" />
     <ClCompile Include="IJ_Button.cpp">
       <Filter>GameObjects</Filter>
     </ClCompile>

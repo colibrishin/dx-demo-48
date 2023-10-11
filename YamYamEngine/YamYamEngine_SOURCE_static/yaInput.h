@@ -72,7 +72,7 @@ namespace ya
 			return mKeys[(int)code].State == eKeyState::None;
 		}
 
-		static __forceinline Vector2 GetMousPosition()
+		static __forceinline Vector2 GetMousePosition()
 		{
 			return mMousPosition;
 		}

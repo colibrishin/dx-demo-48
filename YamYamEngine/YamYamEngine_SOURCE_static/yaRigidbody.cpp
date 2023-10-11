@@ -44,6 +44,7 @@ namespace ya
 		if (mbGround)
 		{
 			// 땅위에 있을때
+			// 분기를 나눠야 함
 			Vector3 gravity = mGravity;
 
 			// 중력 값이 0인 상태에서 정규화를 하면 벡터 값이 nan이 됨
@@ -57,7 +58,7 @@ namespace ya
 		else
 		{
 			// 공중에 있을 때
-			mVelocity += mGravity * Time::DeltaTime();
+			mVelocity -= mGravity * Time::DeltaTime();
 		}
 
 

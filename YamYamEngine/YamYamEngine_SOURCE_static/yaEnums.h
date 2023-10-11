@@ -2,6 +2,10 @@
 
 namespace ya::enums
 {
+	// 타일 사이즈 가로, 세로
+	#define TILE_WIDTH 32
+	#define TILE_HEIGHT 32
+
 	enum LAYER
 	{
 		NONE = 0,

@@ -36,6 +36,11 @@ namespace ya::renderer
 		Resources::Insert<Mesh>(L"ShadowMesh", new ShadowMesh());
 		Resources::Insert<Texture>(L"Texture", new Texture(L"Texture", L"../Resources/Textures/Texture.png"));
 		
+		// 타일 텍스처 삽입
+		Resources::Insert<Texture>(L"Tile_0", new Texture(L"Tile_0", L"../Resources/Tile/Circle.png"));
+		Resources::Insert<Texture>(L"Tile_1", new Texture(L"Tile_1", L"../Resources/Tile/Square.png"));
+		Resources::Insert<Texture>(L"Tile_2", new Texture(L"Tile_2", L"../Resources/Tile/Triangle.png"));
+
 		constantBuffers[(UINT)graphics::eCBType::Transform] = new ConstantBuffer(eCBType::Transform);
 		constantBuffers[(UINT)graphics::eCBType::Transform]->Create(sizeof(TransformCB));
 
