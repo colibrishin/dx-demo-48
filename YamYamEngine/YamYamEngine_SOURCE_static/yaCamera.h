@@ -28,12 +28,16 @@ namespace ya
 	private:
 		// 현재 카메라 파라메터를 상수 버퍼로 바인딩
 		static void SetConstantBuffer();
+		static void SetZoom(float zoom) { mZoom = zoom <= 0.0f ? 1.0f : zoom; }
 
 		inline static GameObject* mGameObject{};
 
 		inline static Vector3 mLookPosition{};	
 		inline static Vector3 mPosition{};
 		inline static Quaternion mRotation{};
+
+		// 카메라 줌
+		inline static float mZoom = 5.0f;
 
 		// 카메라 글로벌 월드의 중심점
 		inline static XMMATRIX mWorldMatrix{};
