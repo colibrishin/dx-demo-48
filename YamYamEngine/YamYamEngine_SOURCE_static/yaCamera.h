@@ -25,10 +25,12 @@ namespace ya
 		static XMMATRIX GetCameraPositionMatrix() { return XMMatrixTranslation(mPosition.x, mPosition.y, mPosition.z); }
 		static XMMATRIX GetProjectionMatrix() { return mProjectionMatrix; }
 
+		static void SetZoom(float zoom) { mZoom = zoom <= 0.0f ? 1.0f : zoom; }
+
 	private:
 		// 현재 카메라 파라메터를 상수 버퍼로 바인딩
 		static void SetConstantBuffer();
-		static void SetZoom(float zoom) { mZoom = zoom <= 0.0f ? 1.0f : zoom; }
+		
 
 		inline static GameObject* mGameObject{};
 

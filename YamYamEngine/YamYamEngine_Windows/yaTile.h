@@ -16,6 +16,7 @@ namespace ya
 			Triangle,
 			Square,
 			Circle,
+			Floor,
 			End,
 		};
 
@@ -48,6 +49,7 @@ namespace ya
 		void SetCircle(Tile* tile);
 		void SetTriangle(Tile* tile);
 		void SetSquare(Tile* tile);
+		void SetFloor(Tile* tile);
 
 
 	private:

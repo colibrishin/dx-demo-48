@@ -31,11 +31,11 @@ namespace ya
 		mMeshRenderer->SetShader(Resources::Find<Shader>(L"TextureShader"));
 
 		Transform* tr = GetComponent<Transform>();
-		tr->SetPosition({ 1.0f, 1.0f, 1.0f });
-		tr->SetScale(Vector3::One);
+		tr->SetPosition({ 0.0f, 0.0f, 1.0f });
+		tr->SetScale(TILE_WIDTH, TILE_HEIGHT, 1);
 
 		Collider* collider = GetComponent<Collider>();
-		collider->SetSize(Vector3::One);
+		collider->SetSize(Vector3(TILE_WIDTH, TILE_HEIGHT, 0));
 
 	}
 
@@ -79,7 +79,6 @@ namespace ya
 	{
 		tile->mMeshRenderer->SetTexture(Resources::Find<Texture>(L"Tile_0"));
 		tile->mMeshRenderer->SetMesh(Resources::Find<Mesh>(L"SquareMesh"));
-		//tile->mMeshRenderer->SetShader(Resources::Find<Shader>(L"ColorShader"));
 	}
 
 	void Tile::SetTriangle(Tile* tile)
@@ -91,6 +90,12 @@ namespace ya
 	void Tile::SetSquare(Tile* tile)
 	{
 		tile->mMeshRenderer->SetTexture(Resources::Find<Texture>(L"Tile_1"));
+		tile->mMeshRenderer->SetMesh(Resources::Find<Mesh>(L"SquareMesh"));
+	}
+
+	void Tile::SetFloor(Tile* tile)
+	{
+		tile->mMeshRenderer->SetTexture(Resources::Find<Texture>(L"Texture"));
 		tile->mMeshRenderer->SetMesh(Resources::Find<Mesh>(L"SquareMesh"));
 	}
 
