@@ -109,24 +109,29 @@ namespace ya
 		{
 
 		}
-		else if(layer == LAYER::LIGHT)
+		else if(const auto light = dynamic_cast<Lighting*>(other->GetOwner()); layer == LAYER::LIGHT)
 		{
-			m_shadow_->OnCollisionEnter(other);
+			m_shadow_->PlayerCollisionLightEnter(light);
 		}
 
 	}
 	void Player::OnCollisionStay(Collider* other)
 	{
-		if(other->GetOwner()->GetLayer() == LAYER::LIGHT)
+		const auto layer = other->GetOwner()->GetLayer();
+
+		if(const auto light = dynamic_cast<Lighting*>(other->GetOwner()); layer == LAYER::LIGHT)
 		{
-			m_shadow_->OnCollisionStay(other);
+			m_shadow_->PlayerCollisionLightEnter(light);
 		}
 	}
+
 	void Player::OnCollisionExit(Collider* other)
 	{
-		if(other->GetOwner()->GetLayer() == LAYER::LIGHT)
+		const auto layer = other->GetOwner()->GetLayer();
+
+		if(const auto light = dynamic_cast<Lighting*>(other->GetOwner()); layer == LAYER::LIGHT)
 		{
-			m_shadow_->OnCollisionExit(other);
+			m_shadow_->PlayerCollisionLightExit(dynamic_cast<Lighting*>(other->GetOwner()));
 		}
 	}
 	void Player::Idle()
