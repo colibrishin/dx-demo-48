@@ -9,6 +9,7 @@
 #include "yaInput.h"
 #include "yaRigidbody.h"
 #include "yaCollisionManager.h"
+#include "yaLight.h"
 #include "yaPortal.hpp"
 #include "yaTurret.h"
 #include "yaTurretScript.h"
@@ -29,6 +30,7 @@ namespace ya
 
 		{
 			Player* player = new Player();
+			player->Initialize();
 
 			MeshRenderer* meshRenderer = player->AddComponent<MeshRenderer>();
 			meshRenderer->SetMesh(Resources::Find<Mesh>(L"TriangleMesh"));
@@ -50,7 +52,6 @@ namespace ya
 			rb->SetFriction(0.25f);
 
 			AddGameObject(player, LAYER::PLAYER);
-			player->Initialize();
 		}
 
 		GameObject* wall_a = new GameObject();
@@ -131,8 +132,22 @@ namespace ya
 			turret->AddComponent<Collider>()->SetSize(Vector3(0.1f, 0.1f, 1.0f));
 		}
 
+		// Light
+		{
+			Light* light = new Light(5.0f);
+			light->Initialize();
+			light->GetComponent<Transform>()->SetPosition(Vector3(0.1f, 0.1f, 1.0f));
+			AddGameObject(light, LAYER::LIGHT);
+
+			for(const auto& lights : light->GetLightings())
+			{
+				AddGameObject(lights, LAYER::LIGHT);
+			}
+		}
+
 		CollisionManager::CollisionLayerCheck(LAYER::PLAYER, LAYER::PLAYER, true);
 		CollisionManager::CollisionLayerCheck(LAYER::PLAYER, LAYER::PORTAL, true);
+		CollisionManager::CollisionLayerCheck(LAYER::PLAYER, LAYER::LIGHT, true);
 	}
 
 	void PlayScene::Update()

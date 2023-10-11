@@ -179,6 +179,7 @@
     <ClInclude Include="yaApplication.h" />
     <ClInclude Include="yaCamera.h" />
     <ClInclude Include="yaCanvas.h" />
+    <ClInclude Include="yaCircleMesh.hpp" />
     <ClInclude Include="yaCollider.h" />
     <ClInclude Include="yaCollisionManager.h" />
     <ClInclude Include="yaComponent.h" />
@@ -191,6 +192,7 @@
     <ClInclude Include="yaGraphicsDevice_DX11.h" />
     <ClInclude Include="yaInput.h" />
     <ClInclude Include="yaLayer.h" />
+    <ClInclude Include="yaLightingMesh.hpp" />
     <ClInclude Include="yaMaterial.h" />
     <ClInclude Include="yaMath.h" />
     <ClInclude Include="yaMesh.h" />
@@ -204,6 +206,7 @@
     <ClInclude Include="yaSceneManager.h" />
     <ClInclude Include="yaScript.h" />
     <ClInclude Include="yaShader.h" />
+    <ClInclude Include="yaShadowMesh.hpp" />
     <ClInclude Include="yaSquareMesh.hpp" />
     <ClInclude Include="yaTexture.hpp" />
     <ClInclude Include="yaTime.h" />

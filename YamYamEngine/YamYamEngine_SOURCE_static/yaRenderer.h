@@ -29,6 +29,8 @@ namespace ya::renderer
 
 		Vector3 scale;
 		int padd2;
+
+		XMMATRIX rotMatrix;
 	};
 
 	CBUFFER(PerspectiveCB, CBSLOT_PERSPECTIVE)
@@ -40,6 +42,7 @@ namespace ya::renderer
 
 	extern ConstantBuffer* constantBuffers[];
 	extern Microsoft::WRL::ComPtr<ID3D11SamplerState> PSSamplerState;
+	extern Microsoft::WRL::ComPtr<ID3D11BlendState> AlphaBlendState;
 
 	// Initialize the renderer
 	void Initialize();

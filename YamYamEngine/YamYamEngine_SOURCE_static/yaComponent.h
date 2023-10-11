@@ -22,10 +22,14 @@ namespace ya
 		virtual void LateUpdate() = 0;
 		virtual void Render() = 0;
 
+		bool IsEnabled() const { return mIsEnabled; }
+		void SetEnabled(bool isEnabled) { mIsEnabled = isEnabled; }
+
 		GameObject* GetOwner() { return mOwner; }
 		UINT GetUpdateOrder() { return (UINT)mType; }
 
 	private:
+		bool mIsEnabled;
 		const COMPONENTTYPE mType;
 		GameObject* mOwner;
 	};

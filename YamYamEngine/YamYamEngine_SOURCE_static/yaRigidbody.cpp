@@ -27,6 +27,11 @@ namespace ya
 
 	void Rigidbody::Update()
 	{
+		if(!IsEnabled())
+		{
+			return;
+		}
+
 		// 이동
 		// F = M x A
 		// A = F / M

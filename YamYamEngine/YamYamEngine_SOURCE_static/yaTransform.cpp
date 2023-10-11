@@ -33,11 +33,17 @@ namespace ya
 
 	void Transform::SetConstantBuffer()
 	{
+		if(!IsEnabled())
+		{
+			return;
+		}
+
 		ConstantBuffer* cb = renderer::constantBuffers[(UINT)graphics::eCBType::Transform];
 		
 		renderer::TransformCB data = {};
 		data.pos = mPosition;
 		data.scale = mScale;
+		data.rotMatrix = XMMatrixTranspose(XMMatrixRotationQuaternion(mRotation));
 		cb->SetData(&data);
 
 		cb->Bind(graphics::eShaderStage::VS);

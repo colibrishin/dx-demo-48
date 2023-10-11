@@ -23,6 +23,7 @@ namespace ya
 		bool CreateIndexBuffer(void* data, UINT Count);
 		void BindBuffer();
 		void Render();
+		HRESULT Refresh();
 
 		void SetColor(const Vector4& color) { mColor = color; }
 		Vector4 GetColor() const { return mColor; }

@@ -14,6 +14,7 @@ namespace ya::enums
 		PLAYER,
 		TURRET,
 		ITEM,
+		LIGHT,
 		MONSTER,
 		BOSS,
 		EFFECT,

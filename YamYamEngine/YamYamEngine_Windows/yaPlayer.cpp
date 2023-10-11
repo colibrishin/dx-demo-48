@@ -8,6 +8,7 @@
 #include "yaRigidbody.h"
 #include "yaCollider.h"
 #include "yaRigidbody.h"
+#include "yaSceneManager.h"
 
 namespace ya
 {
@@ -16,9 +17,6 @@ namespace ya
 		//jumptime(0.f),
 		mState(eState::Idle)
 	{
-		AddComponent<Transform>();
-		AddComponent<Rigidbody>();
-		AddComponent<Collider>();
 	}
 
 	Player::~Player()
@@ -29,14 +27,22 @@ namespace ya
 	{
 		GameObject::Initialize();
 
+		AddComponent<Transform>();
+		AddComponent<Rigidbody>();
+		AddComponent<Collider>();
+		m_shadow_ = new PlayerShadow(this);
+		m_shadow_->Initialize();
+
 		rb = GetComponent<Rigidbody>();
 		rb->SetGround(true);
-		
-		
+
+		Camera::SetTarget(this);
 	}
+
 	void Player::Update()
 	{
 		GameObject::Update();
+		m_shadow_->Update();
 
 		switch (mState)
 		{
@@ -77,39 +83,56 @@ namespace ya
 	void Player::Render()
 	{
 		GameObject::Render();
+		m_shadow_->Render();
 	}
 	void Player::OnCollisionEnter(Collider* other)
 	{
-		// �Ѿ� �浹 ��
-		if (other->GetOwner()->GetLayer() == LAYER::ATTACK || other->GetOwner()->GetLayer() == LAYER::MONSTER)
+		const auto layer = other->GetOwner()->GetLayer();
+
+		if (layer == LAYER::ATTACK || layer == LAYER::MONSTER)
 		{
 			mState = eState::Hit;
 		}
 
 		// ��Ż �浹 �� 
-		else if (other->GetOwner()->GetLayer() == LAYER::PORTAL)
+		else if (layer == LAYER::PORTAL)
 		{
 			
 		}
 
-		else if (other->GetOwner()->GetLayer() == LAYER::TILE)
+		else if (layer == LAYER::TILE)
 		{
 			
 		}
 
-		else if (other->GetOwner()->GetLayer() == LAYER::ITEM)
+		else if (layer == LAYER::ITEM)
 		{
 
+		}
+		else if(const auto light = dynamic_cast<Lighting*>(other->GetOwner()); layer == LAYER::LIGHT)
+		{
+			m_shadow_->PlayerCollisionLightEnter(light);
 		}
 
 	}
 	void Player::OnCollisionStay(Collider* other)
 	{
-	
+		const auto layer = other->GetOwner()->GetLayer();
+
+		if(const auto light = dynamic_cast<Lighting*>(other->GetOwner()); layer == LAYER::LIGHT)
+		{
+			m_shadow_->PlayerCollisionLightEnter(light);
+		}
 	}
+
 	void Player::OnCollisionExit(Collider* other)
 	{
-	
+		const auto layer = other->GetOwner()->GetLayer();
+
+		if(const auto light = dynamic_cast<Lighting*>(other->GetOwner()); layer == LAYER::LIGHT)
+		{
+			m_shadow_->PlayerCollisionLightExit(dynamic_cast<Lighting*>(other->GetOwner()));
+		}
 	}
 	void Player::Idle()
 	{

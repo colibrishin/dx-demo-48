@@ -1,6 +1,9 @@
 #include "yaRenderer.h"
 #include "yaApplication.h"
+#include "yaCircleMesh.hpp"
+#include "yaLightingMesh.hpp"
 #include "yaResources.h"
+#include "yaShadowMesh.hpp"
 #include "yaSquareMesh.hpp"
 #include "yaTexture.hpp"
 #include "yaTriangleMesh.hpp"
@@ -13,17 +16,24 @@ namespace ya::renderer
 	ConstantBuffer* constantBuffers[(UINT)graphics::eCBType::End];
 
 	Microsoft::WRL::ComPtr<ID3D11SamplerState> PSSamplerState;
+	Microsoft::WRL::ComPtr<ID3D11BlendState> AlphaBlendState;
 	
 	void SetUpStates()
 	{
 		GetDevice()->CreateSampler(PSSamplerState.GetAddressOf());
 		GetDevice()->BindSampler(PSSamplerState.Get(), eShaderStage::PS);
+
+		GetDevice()->CreateBlendState(AlphaBlendState.GetAddressOf());
+		GetDevice()->BindBlendState(AlphaBlendState.Get());
 	}
 
 	void LoadBuffer()
 	{
 		Resources::Insert<Mesh>(L"TriangleMesh", new TriangleMesh());
 		Resources::Insert<Mesh>(L"SquareMesh", new SquareMesh());
+		Resources::Insert<Mesh>(L"CircleMesh", new CircleMesh());
+		Resources::Insert<Mesh>(L"LightingMesh", new LightingMesh());
+		Resources::Insert<Mesh>(L"ShadowMesh", new ShadowMesh());
 		Resources::Insert<Texture>(L"Texture", new Texture(L"Texture", L"../Resources/Textures/Texture.png"));
 		
 		constantBuffers[(UINT)graphics::eCBType::Transform] = new ConstantBuffer(eCBType::Transform);

@@ -24,19 +24,19 @@ namespace ya
 	{
 		mVertices.resize(4);
 
-		mVertices[0].pos = Vector3(-0.25f, 0.25f, 0.f);
+		mVertices[0].pos = Vector3(-0.5f, 0.5f, 0.f);
 		mVertices[0].color = Vector4(0.f, 1.f, 0.f, 1.f);
 		mVertices[0].uv = Vector2(0.f, 0.f);
 
-		mVertices[1].pos = Vector3(0.25f, 0.25f, 0.f);
+		mVertices[1].pos = Vector3(0.5f, 0.5f, 0.f);
 		mVertices[1].color = Vector4(1.f, 0.f, 0.f, 1.f);
 		mVertices[1].uv = Vector2(1.f, 0.f);
 
-		mVertices[2].pos = Vector3(-0.25f, -0.25f, 0.f);
+		mVertices[2].pos = Vector3(-0.5f, -0.5f, 0.f);
 		mVertices[2].color = Vector4(0.f, 0.f, 1.f, 1.f);
 		mVertices[2].uv = Vector2(0.f, 1.f);
 
-		mVertices[3].pos = Vector3(0.25f, -0.25f, 0.f);
+		mVertices[3].pos = Vector3(0.5f, -0.5f, 0.f);
 		mVertices[3].color = Vector4(0.f, 0.f, 1.f, 1.f);
 		mVertices[3].uv = Vector2(1.f, 1.f);
 
