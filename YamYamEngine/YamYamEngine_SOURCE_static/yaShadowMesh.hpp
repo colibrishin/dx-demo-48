@@ -11,6 +11,8 @@ namespace ya
 		ShadowMesh();
 		~ShadowMesh() override = default;
 
+		void ChangeTopPosition(Vector3 normal) { mVertices[0].pos = normal; }
+
 	protected:
 		renderer::Vertex* SetVertexData() override;
 		UINT* SetIndexData() override;
