@@ -21,7 +21,8 @@ namespace ya
 		mr->SetShader(Resources::Find<Shader>(L"ColorShader"));
 		mr->SetColor({1.0f, 1.0f, 1.0f, 0.5f});
 
-		AddComponent<Collider>();
+		const auto cldr = AddComponent<Collider>();
+		cldr->SetSize({1.0f, m_origin_->m_light_range_, 1.0f});
 		SetName(L"Lighting");
 	}
 
