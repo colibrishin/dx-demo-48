@@ -20,6 +20,11 @@ namespace ya
 		// 오브젝트 추적을 중단하고 카메라의 위치로 되돌아감.
 		static void ResetTarget() { mGameObject = nullptr; }
 
+		static Vector3 GetPosition() { return mPosition; }
+		static XMMATRIX GetViewMatrix() { return mViewMatrix; }
+		static XMMATRIX GetCameraPositionMatrix() { return XMMatrixTranslation(mPosition.x, mPosition.y, mPosition.z); }
+		static XMMATRIX GetProjectionMatrix() { return mProjectionMatrix; }
+
 	private:
 		// 현재 카메라 파라메터를 상수 버퍼로 바인딩
 		static void SetConstantBuffer();

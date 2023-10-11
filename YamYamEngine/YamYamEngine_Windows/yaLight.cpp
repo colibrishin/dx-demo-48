@@ -18,8 +18,8 @@ namespace ya
 		tr->SetScale(1.0f, 1.0f, 1.0f);
 
 		const auto mr = AddComponent<MeshRenderer>();
-		mr->SetMesh(Resources::Find<Mesh>(L"SquareMesh"));
-		mr->SetShader(Resources::Find<Shader>(L"TextureShader"));
+		mr->SetMesh(Resources::Find<Mesh>(L"CircleMesh"));
+		mr->SetShader(Resources::Find<Shader>(L"ColorShader"));
 		mr->SetTexture(Resources::Find<Texture>(L"Texture"));
 
 		m_lightings_.push_back(new Lighting(this));

@@ -35,6 +35,8 @@ namespace ya
 
 		rb = GetComponent<Rigidbody>();
 		rb->SetGround(true);
+
+		Camera::SetTarget(this);
 	}
 
 	void Player::Update()
