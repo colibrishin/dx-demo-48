@@ -10,6 +10,7 @@ namespace ya
 		:Component(COMPONENTTYPE::COLLIDER)
 		, mSize(Vector3::Zero)
 		, mOffset(Vector2::Zero)
+		, mRotation()
 		, mbIsCollision(false)
 	{
 
