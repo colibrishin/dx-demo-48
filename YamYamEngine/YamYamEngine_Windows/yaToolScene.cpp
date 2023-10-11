@@ -37,7 +37,7 @@ namespace ya
 		// GetFocus : 윈도우가 활성될 때만 할 수 있게 해주는 함수
 		if (Input::GetKeyDown(eKeyCode::LBTN) && GetFocus() /*&& Input::GetKeyDown(eKeyCode::B)*/)
 		{
-			Vector2 mousePos = Input::GetMousePosition();
+			Vector3 mousePos = Input::GetCoordinationMousePosition();
 
 			// 마우스 커서의 위치를 타일의 인덱스로 바꿔주는 작업
 			int idxX = (mousePos.x - LEFT_TOP_X) / (TILE_WIDTH);
@@ -50,10 +50,10 @@ namespace ya
 			offset.y += LEFT_TOP_Y;
 
 			Tile* tile = new Tile();
-			/*tile->GetComponent<Transform>()->SetPosition(Vector3((idxX * (TILE_WIDTH)+offset.x
-				)-800.f, (idxY * (TILE_HEIGHT)+offset.y)-450.f, 1));*/
+			tile->GetComponent<Transform>()->SetPosition(Vector3((idxX * (TILE_WIDTH)+offset.x
+				), (idxY * (TILE_HEIGHT)+offset.y), 1));
 
-			tile->GetComponent<Transform>()->SetPosition(Vector3(0,0,1));
+			//tile->GetComponent<Transform>()->SetPosition(Vector3(0,0,1));
 
 			tile->SetCircle(tile);
 
