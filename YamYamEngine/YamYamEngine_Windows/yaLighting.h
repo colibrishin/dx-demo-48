@@ -17,6 +17,8 @@ namespace ya
 		void LateUpdate() override;
 		void Render() override;
 
+		Light* GetOrigin() const { return m_origin_; }
+
 		void OnCollisionEnter(Collider* other) override;
 		void OnCollisionStay(Collider* other) override;
 		void OnCollisionExit(Collider* other) override;

@@ -19,6 +19,8 @@ namespace ya
 		void OnCollisionStay(Collider* other) override;
 		void OnCollisionExit(Collider* other) override;
 
+		float GetLightRange() const { return m_light_range_; }
+
 		const std::vector<Lighting*>& GetLightings() const { return m_lightings_; }
 
 	private:

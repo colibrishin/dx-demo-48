@@ -13,12 +13,7 @@ namespace ya
 
     HRESULT Mesh::Load(const std::filesystem::path& path)
     {
-        if (CreateVertexBuffer(SetVertexData(), SetVertexCount()) && CreateIndexBuffer(SetIndexData(), SetIndexCount()))
-        {
-	        return S_OK;
-        }
-
-        return E_FAIL;
+        return Refresh();
     }
 
     bool Mesh::CreateVertexBuffer(void* data, UINT Count)
@@ -68,5 +63,15 @@ namespace ya
         BindBuffer();
 
         GetDevice()->DrawIndexed(mIndexCount, 0, 0);
+    }
+
+    HRESULT Mesh::Refresh()
+    {
+        if (CreateVertexBuffer(SetVertexData(), SetVertexCount()) && CreateIndexBuffer(SetIndexData(), SetIndexCount()))
+        {
+	        return S_OK;
+        }
+
+        return E_FAIL;
     }
 }
