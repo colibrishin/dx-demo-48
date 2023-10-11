@@ -4,7 +4,6 @@
 #include "yaToolScene.h"
 
 
-
 //#ifdef  _DEBUG
 //#pragma comment(lib, "..\\x64\\Debug\\YamYamEngine_Windows.lib")
 //#else
@@ -18,6 +17,6 @@ namespace ya
 		SceneManager::CreateScene<PlayScene>(L"PlayScene");
 		SceneManager::CreateScene<ToolScene>(L"ToolScene");
 
-		SceneManager::LoadScene(L"ToolScene");
+		SceneManager::LoadScene(L"PlayScene");
 	}
 }
