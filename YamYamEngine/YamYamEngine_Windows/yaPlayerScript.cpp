@@ -52,7 +52,9 @@ namespace ya
 		//Mouse
 		if (Input::GetKeyDown(eKeyCode::LBTN))
 		{
+			Vector3 mousePos = Input::GetCoordinationMousePosition();
 
+			GetOwner()->GetComponent<Transform>()->SetPosition(mousePos.x, mousePos.y, 1.0f);
 		}
 		if (Input::GetKeyDown(eKeyCode::RBTN))
 		{
