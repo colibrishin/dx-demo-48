@@ -13,8 +13,9 @@
 #include "yaPortal.hpp"
 #include "yaTurret.h"
 #include "yaTurretScript.h"
+#include "IJ_Button.h"
+#include "IJ_BCO_Light.h"
 #include "yaTile.h"
-
 
 namespace ya
 {
@@ -138,21 +139,43 @@ namespace ya
 		}
 
 		// Light
-		{
-			Light* light = new Light(5.0f);
-			light->Initialize();
-			light->GetComponent<Transform>()->SetPosition(Vector3(0.1f, 0.1f, 1.0f));
-			AddGameObject(light, LAYER::LIGHT);
+		//{
+		//	Light* light = new Light(5.0f);
+		//	light->Initialize();
+		//	light->GetComponent<Transform>()->SetPosition(Vector3(0.1f, 0.1f, 1.0f));
+		//	AddGameObject(light, LAYER::LIGHT);
 
-			for(const auto& lights : light->GetLightings())
+		//	for(const auto& lights : light->GetLightings())
+		//	{
+		//		AddGameObject(lights, LAYER::LIGHT);
+		//	}
+		//}
+
+		// Button
+		{
+			IJ::GO_Button* button = new IJ::GO_Button();
+			button->Initialize();
+			button->SetButtonType(IJ::GO_Button::eButtonType::Toggle);
+			button->GetComponent<Transform>()->SetPosition(Vector3(-3.0f, -3.0f, 1.0f));
+
+			IJ::BCO_Light* bco_light = new IJ::BCO_Light(3.0f);
+			bco_light->Initialize();
+			bco_light->GetComponent<Transform>()->SetPosition(Vector3(0.1f, 0.1f, 1.0f));
+			AddGameObject(bco_light, LAYER::LIGHT);
+
+			for (const auto& lights : bco_light->GetLightings())
 			{
 				AddGameObject(lights, LAYER::LIGHT);
 			}
+
+			button->ConnectGameObject(bco_light);
+			AddGameObject(button, LAYER::ITEM);
 		}
 
 		CollisionManager::CollisionLayerCheck(LAYER::PLAYER, LAYER::PLAYER, true);
 		CollisionManager::CollisionLayerCheck(LAYER::PLAYER, LAYER::PORTAL, true);
 		CollisionManager::CollisionLayerCheck(LAYER::PLAYER, LAYER::LIGHT, true);
+		CollisionManager::CollisionLayerCheck(LAYER::PLAYER, LAYER::ITEM, true);
 	}
 
 	void PlayScene::Update()

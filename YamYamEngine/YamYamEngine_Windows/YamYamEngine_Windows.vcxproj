@@ -143,9 +143,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="IJ_BCO_Light.h" />
+    <ClInclude Include="IJ_BCO_Lighting.h" />
     <ClInclude Include="IJ_Box.h" />
     <ClInclude Include="IJ_Button.h" />
-    <ClInclude Include="IJ_ButtonConnectedDoor.h" />
+    <ClInclude Include="IJ_BCO_Door.h" />
     <ClInclude Include="IJ_ButtonConnectedObject.h" />
     <ClInclude Include="IJ_PlayerAim_Temp.h" />
     <ClInclude Include="yaBullet.h" />
@@ -164,9 +166,11 @@
     <ClInclude Include="yaTurretScript.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="IJ_BCO_Light.cpp" />
+    <ClCompile Include="IJ_BCO_Lighting.cpp" />
     <ClCompile Include="IJ_Box.cpp" />
     <ClCompile Include="IJ_Button.cpp" />
-    <ClCompile Include="IJ_ButtonConnectedDoor.cpp" />
+    <ClCompile Include="IJ_BCO_Door.cpp" />
     <ClCompile Include="IJ_ButtonConnectedObject.cpp" />
     <ClCompile Include="IJ_PlayerAim_Temp.cpp" />
     <ClCompile Include="yaBullet.cpp" />

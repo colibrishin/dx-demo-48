@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include "yaGameObject.h"
 
 
@@ -37,6 +37,8 @@ namespace IJ
 		void SetButtonType(eButtonType type) { m_Button_Type = type; }
 		eButtonState GetButtonState() { return m_Current_Button_State; }
 		void SetButtonState(eButtonState state) { m_Current_Button_State = state; }
+
+		void ConnectGameObject(ya::GameObject* gameobject) { Connected_GameObjects.push_back(gameobject); }
 
 	private:
 		eButtonType m_Button_Type;

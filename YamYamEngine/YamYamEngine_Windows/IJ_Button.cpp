@@ -1,5 +1,7 @@
-﻿#include "IJ_Button.h"
+#include "IJ_Button.h"
 #include "yaCollider.h"
+#include "yaMeshRenderer.h"
+#include "yaResources.h"
 #include "IJ_ButtonConnectedObject.h"
 
 
@@ -11,6 +13,9 @@ namespace IJ
 		, Connected_GameObjects({})
 	{
 		Connected_GameObjects.reserve(5);
+		AddComponent<ya::Transform>();
+		AddComponent<ya::Collider>();
+		AddComponent<ya::MeshRenderer>();
 	}
 
 	GO_Button::~GO_Button()
@@ -20,6 +25,16 @@ namespace IJ
 	void GO_Button::Initialize()
 	{
 		ya::GameObject::Initialize();
+
+		ya::Transform* transform = GetComponent<ya::Transform>();
+		transform->SetScale(ya::Vector3::One);
+
+		ya::MeshRenderer* meshRenderer = GetComponent<ya::MeshRenderer>();
+		meshRenderer->SetMesh(ya::Resources::Find<ya::Mesh>(L"TriangleMesh"));
+		meshRenderer->SetShader(ya::Resources::Find<ya::Shader>(L"ColorShader"));
+
+		ya::Collider* collider = GetComponent<ya::Collider>();
+		collider->SetSize(ya::Vector3::One);
 	}
 
 	void GO_Button::Update()

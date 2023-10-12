@@ -1,14 +1,14 @@
-﻿#pragma once
+#pragma once
 #include "IJ_ButtonConnectedObject.h"
 
 
 namespace IJ
 {
-	class ButtonConnectedDoor : public ButtonConnectedObject
+	class BCO_Door : public ButtonConnectedObject
 	{
 	public:
-		ButtonConnectedDoor();
-		virtual ~ButtonConnectedDoor();
+		BCO_Door();
+		virtual ~BCO_Door();
 
 		virtual void OnCollisionEnter(class ya::Collider* other);
 		virtual void OnCollisionStay(class ya::Collider* other);
