@@ -14,7 +14,6 @@
 #include "yaTurret.h"
 #include "yaTurretScript.h"
 #include "IJ_Button.h"
-#include "IJ_BCO_Light.h"
 #include "yaTile.h"
 
 namespace ya
@@ -158,7 +157,7 @@ namespace ya
 			button->SetButtonType(IJ::GO_Button::eButtonType::Toggle);
 			button->GetComponent<Transform>()->SetPosition(Vector3(-3.0f, -3.0f, 1.0f));
 
-			IJ::BCO_Light* bco_light = new IJ::BCO_Light(3.0f);
+			Light* bco_light = new Light(3.0f);
 			bco_light->Initialize();
 			bco_light->GetComponent<Transform>()->SetPosition(Vector3(0.1f, 0.1f, 1.0f));
 			AddGameObject(bco_light, LAYER::LIGHT);
@@ -176,6 +175,8 @@ namespace ya
 		CollisionManager::CollisionLayerCheck(LAYER::PLAYER, LAYER::PORTAL, true);
 		CollisionManager::CollisionLayerCheck(LAYER::PLAYER, LAYER::LIGHT, true);
 		CollisionManager::CollisionLayerCheck(LAYER::PLAYER, LAYER::ITEM, true);
+
+		Camera::SetZoom(10.f);
 	}
 
 	void PlayScene::Update()
