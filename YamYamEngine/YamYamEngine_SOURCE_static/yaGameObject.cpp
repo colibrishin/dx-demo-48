@@ -4,7 +4,8 @@
 namespace ya
 {
 	GameObject::GameObject()
-		: mState(eState::Active)
+		: mState(eState::Active),
+		mLayer(LAYER::NONE)
 	{
 		mComponents.resize(COMPONENTTYPE::END);
 	}

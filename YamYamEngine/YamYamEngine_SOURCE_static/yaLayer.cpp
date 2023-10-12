@@ -1,17 +1,32 @@
 #include "yaLayer.h"
 
+#include "yaSceneManager.h"
+
 
 namespace ya
 {
-	Layer::Layer()
+	Layer::Layer() : mType(NONE)
 	{
 	}
+
 	Layer::~Layer()
 	{
-		for (GameObject* gameObject : mGameObjects)
+		for (const GameObject* gameObject : mGameObjects)
 		{
 			delete gameObject;
 			gameObject = nullptr;
+		}
+	}
+
+	void Layer::LayerItemCheck(GameObject* obj)
+	{
+		if (obj->GetLayer() != mType)
+		{
+			SceneManager::GetActiveScene()->AddGameObject(obj, obj->GetLayer());
+			std::erase_if(mGameObjects, [&](const auto* cmp)
+			{
+				return cmp == obj;
+			});
 		}
 	}
 
@@ -19,6 +34,7 @@ namespace ya
 	{
 		for(int i = 0; i < mGameObjects.size(); i++)
 		{
+			LayerItemCheck(mGameObjects[i]);
 			mGameObjects[i]->Initialize();
 		}
 	}
@@ -27,6 +43,7 @@ namespace ya
 	{
 		for(int i = 0; i < mGameObjects.size(); i++)
 		{
+			LayerItemCheck(mGameObjects[i]);
 			mGameObjects[i]->Update();
 		}
 	}
@@ -35,6 +52,7 @@ namespace ya
 	{
 		for(int i = 0; i < mGameObjects.size(); i++)
 		{
+			LayerItemCheck(mGameObjects[i]);
 			mGameObjects[i]->LateUpdate();
 		}
 	}
@@ -43,6 +61,7 @@ namespace ya
 	{
 		for(int i = 0; i < mGameObjects.size(); i++)
 		{
+			LayerItemCheck(mGameObjects[i]);
 			mGameObjects[i]->Render();
 		}
 	}
