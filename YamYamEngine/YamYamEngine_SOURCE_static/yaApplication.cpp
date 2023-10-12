@@ -75,11 +75,5 @@ namespace ya
 			ya::graphics::GetDevice() = graphicsDevice.get();
 			//ya::device = graphicsDevice.get();
 		}
-
-		RECT rt = { 0, 0, (LONG)width , (LONG)height };
-		AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, false);
-		SetWindowPos(mHwnd, nullptr, 0, 0, rt.right - rt.left, rt.bottom - rt.top, 0);
-		ShowWindow(mHwnd, true);
-		UpdateWindow(mHwnd);
 	}
 }
