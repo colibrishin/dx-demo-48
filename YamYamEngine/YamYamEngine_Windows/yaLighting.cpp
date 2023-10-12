@@ -12,7 +12,7 @@ namespace ya
 
 	void ya::Lighting::Initialize()
 	{
-		GameObject::Initialize();
+		IJ::ButtonConnectedObject::Initialize();
 		const auto tr = AddComponent<Transform>();
 		tr->SetScale(1.0f, m_origin_->m_light_range_, 1.0f);
 
@@ -28,36 +28,44 @@ namespace ya
 
 	void Lighting::Update()
 	{
-		GameObject::Update();
-		const auto tr = GetComponent<Transform>();
-		const auto light_origin_pos = m_origin_->GetComponent<Transform>()->GetPosition();
-		const auto light_origin_scale = m_origin_->GetComponent<Transform>()->GetScale();
+		if (m_origin_->GetBCOState() == ButtonConnectedObject::eBCOState::Activated)
+		{
+			ButtonConnectedObject::Update();
+			const auto tr = GetComponent<ya::Transform>();
+			const auto light_origin_pos = m_origin_->GetComponent<ya::Transform>()->GetPosition();
+			const auto light_origin_scale = m_origin_->GetComponent<ya::Transform>()->GetScale();
 
-		tr->SetPosition(light_origin_pos - Vector3(0.0f, light_origin_scale.y / 2, 0.0f));
+			tr->SetPosition(light_origin_pos - ya::Vector3(0.0f, light_origin_scale.y / 2, 0.0f));
+			SetLayer(ya::LAYER::LIGHT);
+		}
+		else
+		{
+			SetLayer(ya::LAYER::NONE);
+		}
 	}
 
 	void Lighting::LateUpdate()
 	{
-		GameObject::LateUpdate();
+		IJ::ButtonConnectedObject::LateUpdate();
 	}
 
 	void Lighting::Render()
 	{
-		GameObject::Render();
+		IJ::ButtonConnectedObject::Render();
 	}
 
 	void Lighting::OnCollisionEnter(Collider* other)
 	{
-		GameObject::OnCollisionEnter(other);
+		IJ::ButtonConnectedObject::OnCollisionEnter(other);
 	}
 
 	void Lighting::OnCollisionStay(Collider* other)
 	{
-		GameObject::OnCollisionStay(other);
+		IJ::ButtonConnectedObject::OnCollisionStay(other);
 	}
 
 	void Lighting::OnCollisionExit(Collider* other)
 	{
-		GameObject::OnCollisionExit(other);
+		IJ::ButtonConnectedObject::OnCollisionExit(other);
 	}
 }

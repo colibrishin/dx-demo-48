@@ -1,4 +1,5 @@
 #pragma once
+#include "IJ_ButtonConnectedObject.h"
 #include "yaGameObject.h"
 #include "yaTransform.h"
 
@@ -6,7 +7,7 @@ namespace ya
 {
 	class Light;
 
-	class Lighting : public GameObject
+	class Lighting : public IJ::ButtonConnectedObject
 	{
 	public:
 		Lighting(Light* origin);

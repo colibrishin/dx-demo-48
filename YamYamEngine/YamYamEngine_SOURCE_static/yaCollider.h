@@ -17,9 +17,9 @@ namespace ya
 		virtual void LateUpdate() override;
 		virtual void Render() override;
 
-		void OnCollisionEnter(Collider* other);		// Ãæµ¹ ½ÃÀÛ
-		void OnCollisionStay(Collider* other);		// Ãæµ¹ Áß
-		void OnCollisionExit(Collider* other);		// Ãæµ¹ ºüÁ®³ª°¨
+		void OnCollisionEnter(Collider* other);		// ì¶©ëŒ ì‹œì‘
+		void OnCollisionStay(Collider* other);		// ì¶©ëŒ ì¤‘
+		void OnCollisionExit(Collider* other);		// ì¶©ëŒ ë¹ ì ¸ë‚˜ê°
 
 		void ColliderOff();
 
@@ -33,8 +33,8 @@ namespace ya
 		void  SetPosition(Vector2 position) { mPosition = position; }*/
 		Vector3 GetPosition() { return mPosition; }
 		void  SetPosition(Vector3 position) { mPosition = position; }
-
-
+		void SetRotation(Quaternion rotation) { mRotation = rotation; }
+		Quaternion GetRotation() { return mRotation; }
 
 	private:
 		void UpdatePosition();
@@ -45,8 +45,9 @@ namespace ya
 		Vector2 mOffset;
 		/*Vector2 mPosition;*/
 		Vector3 mPosition;
+		Quaternion mRotation;
 		//COLLIDERTYPE mType;
 
-		bool mbIsCollision;						// Ãæµ¹ÇÏ´Â°Ô ´«¿¡ º¸ÀÌ°Ô ÇÏ°í ½Í¾úÀ» ¶§ º¯¼ö
+		bool mbIsCollision;						// ì¶©ëŒí•˜ëŠ”ê²Œ ëˆˆì— ë³´ì´ê²Œ í•˜ê³  ì‹¶ì—ˆì„ ë•Œ ë³€ìˆ˜
 	};
 }

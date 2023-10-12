@@ -28,8 +28,7 @@ namespace ya
 		void PlayerCollisionLightExit(Lighting* light);
 
 		Lighting* GetClosestLight();
-		void FlipShadowIfLower(Transform* tr, Vector3 player_pos, Vector3& mouse_position);
-		void LimitShadowCasting(Vector3& mouse_position, Collider* const cldr, const float diff, const float light_range);
+		void FlipShadowIfLower(Transform* const tr, const Vector3 player_pos, Vector3& mouse_position);
 
 		std::set<Lighting*> m_meeting_lights_;
 		Player*	m_player_;

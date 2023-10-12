@@ -36,7 +36,7 @@ namespace ya
 
 	Lighting* PlayerShadow::GetClosestLight()
 	{
-		if(m_meeting_lights_.empty())
+		if (m_meeting_lights_.empty())
 		{
 			return nullptr;
 		}
@@ -62,13 +62,7 @@ namespace ya
 	{
 		if(mouse_position.y < 0.0f)
 		{
-			tr->SetRotation(0.0f, 0.0f, Radian(180.0f));
-			tr->SetPosition(player_pos.x, player_pos.y - 1.0f, player_pos.z);
 			mouse_position = -mouse_position;
-		}
-		else
-		{
-			tr->SetRotation(0, 0, 0);
 		}
 	}
 
@@ -76,28 +70,73 @@ namespace ya
 	{
 		GameObject::Update();
 
-		const auto tr = GetComponent<Transform>();
-		const auto player_pos = m_player_->GetComponent<Transform>()->GetPosition();
-		tr->SetPosition(player_pos);
-
 		// 플레이어가 광원 아래에 있을 경우
 		if(GetComponent<MeshRenderer>()->IsEnabled())
 		{
+			const auto tr = GetComponent<Transform>();
+			const auto player_pos = m_player_->GetComponent<Transform>()->GetPosition();
+
 			assert(m_meeting_lights_.size() > 0);
 
-			auto mouse_position = Input::GetNormalizedMousePosition();
+			auto mouse_norm = Input::GetNormalizedMousePosition();
 			const auto cldr = GetComponent<Collider>();
 			const auto mesh = Resources::Find<ShadowMesh>(L"ShadowMesh");
 
-			constexpr float triangle_unit_size = 0.5f;
-			const auto diff = (std::fabs(mouse_position.y) - triangle_unit_size);
+			// 근처에서 가장 가까운 빛의 속성을 따라감.
+			const auto light = GetClosestLight()->GetOrigin();
 
 			// NOTE: D3D11_RASTERIZER_DESC에서 CullMode를 None으로 설정하면 반대편 삼각형도 그릴 수 있음.
 			// 충돌처리 고려를 위해 삼각형 꼭지점 이동과 동시에 회전하고 움직인 Collider를 사용하기로 함.
-			FlipShadowIfLower(tr, player_pos, mouse_position);
+			Vector3 flipped_mouse_norm = mouse_norm;
+			FlipShadowIfLower(tr, player_pos, flipped_mouse_norm);
+			const auto aspect_ratio = application.GetWidth() / static_cast<float>(application.GetHeight());
+			const auto mouse_aspect = flipped_mouse_norm * aspect_ratio;
 
-			// TODO: 충돌처리 (충돌에 회전각이 필요함)
-			mesh->ChangeTopPosition(mouse_position);
+			// 플레이어가 항상 카메라 가운데 있을 것이라고 가정.
+			const auto distance = std::sqrt(mouse_aspect.LengthSquared());
+
+			if(distance > light->GetLightRange())
+			{
+				return;
+			}
+
+			// 마우스 방향으로 충돌 박스를 회전 (중심점은 삼각형의 중심)
+			cldr->SetRotation(
+				Quaternion::CreateFromAxisAngle(
+					Vector3::Forward, atan2(mouse_norm.y, mouse_norm.x)));
+
+			cldr->SetSize({1.0f, distance, 1.0f});
+
+			if(distance > 1.0f)
+			{
+				tr->SetScale(1.0f, distance, 1.0f);
+
+				if(mouse_norm.y < 0.0f) // 아래로 가면
+				{
+					tr->SetRotation(0.0f, 0.0f, Radian(180.0f));
+					tr->SetPosition(player_pos.x, (player_pos.y - distance / 2) - 0.5f, player_pos.z);
+				}
+				else
+				{
+					tr->SetRotation(0, 0, 0);
+					tr->SetPosition(player_pos.x, (player_pos.y + distance / 2) - 0.5f, player_pos.z);
+				}
+			}
+			else
+			{
+				if(mouse_norm.y < 0.0f)
+				{
+					tr->SetRotation(0.0f, 0.0f, Radian(180.0f));
+					tr->SetPosition(player_pos.x, player_pos.y - 1.0f, player_pos.z);
+				}
+				else
+				{
+					tr->SetRotation(0, 0, 0);
+					tr->SetPosition(player_pos.x, player_pos.y, player_pos.z);
+				}
+			}
+
+			mesh->ChangeTopPosition(mouse_aspect);
 			mesh->Refresh();
 		}
 	}
