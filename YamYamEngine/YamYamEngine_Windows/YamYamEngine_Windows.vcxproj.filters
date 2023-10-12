@@ -1,176 +1,167 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="IJ_Box.cpp" />
-    <ClCompile Include="IJ_Button.cpp" />
-    <ClCompile Include="IJ_ButtonConnectedDoor.cpp" />
-    <ClCompile Include="IJ_ButtonConnectedObject.cpp" />
     <ClCompile Include="IJ_PlayerAim_Temp.cpp" />
-    <ClCompile Include="yaBullet.cpp" />
-    <ClCompile Include="yaPlayer.cpp" />
-    <ClCompile Include="yaPlayerScript.cpp" />
-    <ClCompile Include="yaPlayScene.cpp" />
-    <ClCompile Include="yaPortal.cpp" />
-    <ClCompile Include="yaTurret.cpp" />
-    <ClCompile Include="yaBulletScript.cpp" />
-    <ClCompile Include="yaTurretScript.cpp" />
-    <ClCompile Include="yaToolScene.cpp" />
-    <ClCompile Include="yaTile.cpp" />
-    <Filter Include="Scens">
-      <UniqueIdentifier>{80edf01e-7bf3-4629-8663-b2d23fb1d1bc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts">
-      <UniqueIdentifier>{98d80dc2-7ef3-46b2-918b-e93d40e5ead2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObjects">
-      <UniqueIdentifier>{ddf577a3-351d-416f-92c0-6086e4c11f0a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Player">
-      <UniqueIdentifier>{6659dd5f-8960-4ad2-b7c9-57c3cc90c63d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Turret">
-      <UniqueIdentifier>{3fda4ee5-435c-4189-8148-6f63bf648f01}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObjects\Light">
-      <UniqueIdentifier>{b3bbf6c6-633b-433c-875f-ed297b0c77d5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObjects\Lighting">
-      <UniqueIdentifier>{30198b27-d1af-4743-9f0d-71e8c4ff7bc1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObjects\Button">
-      <UniqueIdentifier>{44bc96e6-f414-43ee-95c7-596dd0bee912}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-
-    <ClInclude Include="yaPlayScene.h">
-      <Filter>Scens</Filter>
-    </ClInclude>
-    <ClInclude Include="yaPlayerScript.h">
-      <Filter>Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="yaLoadScene.h">
-      <Filter>Scens</Filter>
-    </ClInclude>
-    <ClInclude Include="yaPlayer.h">
-      <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="IJ_Box.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="IJ_PlayerAim_Temp.h">
-      <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="yaTurret.h">
-      <Filter>Turret</Filter>
-    </ClInclude>
-    <ClInclude Include="yaBullet.h">
-      <Filter>Turret</Filter>
-    </ClInclude>
-    <ClInclude Include="yaBulletScript.h">
-      <Filter>Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="yaTurretScript.h">
-      <Filter>Scripts</Filter>
-    <ClInclude Include="yaToolScene.h" />
-    <ClInclude Include="yaTile.h" />
-    <ClInclude Include="IJ_Button.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="IJ_ButtonConnectedObject.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="IJ_ButtonConnectedDoor.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="yaPlayerShadow.h">
-      <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="yaLight.h">
-      <Filter>GameObjects\Light</Filter>
-    </ClInclude>
-    <ClInclude Include="yaLighting.h">
-      <Filter>GameObjects\Lighting</Filter>
-    </ClInclude>
-    <ClInclude Include="yaPortal.hpp">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="IJ_Button.h">
-      <Filter>GameObjects\Button</Filter>
-    </ClInclude>
-    <ClInclude Include="IJ_BCO_Door.h">
-      <Filter>GameObjects\Button</Filter>
-    </ClInclude>
-    <ClInclude Include="IJ_ButtonConnectedObject.h">
-      <Filter>GameObjects\Button</Filter>
-    </ClInclude>
-    <ClInclude Include="IJ_BCO_Light.h">
-      <Filter>GameObjects\Button</Filter>
-    </ClInclude>
-    <ClInclude Include="IJ_BCO_Lighting.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="yaPlayScene.cpp">
-      <Filter>Scens</Filter>
-    </ClCompile>
-    <ClCompile Include="yaPlayerScript.cpp">
-      <Filter>Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="yaPlayer.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
-    <ClCompile Include="IJ_Box.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="IJ_PlayerAim_Temp.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
-    <ClCompile Include="yaTurret.cpp">
-      <Filter>Turret</Filter>
-    </ClCompile>
-    <ClCompile Include="yaBullet.cpp">
-      <Filter>Turret</Filter>
-    </ClCompile>
-    <ClCompile Include="yaBulletScript.cpp">
-      <Filter>Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="yaTurretScript.cpp">
-      <Filter>Scripts</Filter>
+      <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="yaToolScene.cpp">
-    <ClCompile Include="IJ_ButtonConnectedObject.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="IJ_ButtonConnectedDoor.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="yaPlayerShadow.cpp">
-      <Filter>Player</Filter>
+      <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="yaLight.cpp">
-      <Filter>GameObjects\Light</Filter>
+      <Filter>GameObject\Light</Filter>
     </ClCompile>
     <ClCompile Include="yaLighting.cpp">
-      <Filter>GameObjects\Lighting</Filter>
-    </ClCompile>
-    <ClCompile Include="yaPortal.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="IJ_Button.cpp">
-      <Filter>GameObjects\Button</Filter>
+      <Filter>GameObject\Lighting</Filter>
     </ClCompile>
     <ClCompile Include="IJ_BCO_Door.cpp">
-      <Filter>GameObjects\Button</Filter>
+      <Filter>GameObject\Door</Filter>
+    </ClCompile>
+    <ClCompile Include="IJ_Box.cpp">
+      <Filter>GameObject\Box</Filter>
+    </ClCompile>
+    <ClCompile Include="IJ_Button.cpp">
+      <Filter>GameObject\Button</Filter>
     </ClCompile>
     <ClCompile Include="IJ_ButtonConnectedObject.cpp">
-      <Filter>GameObjects\Button</Filter>
+      <Filter>GameObject\Button</Filter>
     </ClCompile>
-    <ClCompile Include="IJ_BCO_Light.cpp">
-      <Filter>GameObjects\Button</Filter>
+    <ClCompile Include="yaBullet.cpp">
+      <Filter>GameObject\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="IJ_BCO_Lighting.cpp" />
+    <ClCompile Include="yaPlayer.cpp">
+      <Filter>GameObject\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="yaPlayerShadow.cpp">
+      <Filter>GameObject\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="yaBulletScript.cpp">
+      <Filter>Script\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="yaPlayerScript.cpp">
+      <Filter>Script\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="yaPortal.cpp">
+      <Filter>GameObject\Portal</Filter>
+    </ClCompile>
+    <ClCompile Include="yaTile.cpp">
+      <Filter>GameObject\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="yaTurret.cpp">
+      <Filter>GameObject\Turret</Filter>
+    </ClCompile>
+    <ClCompile Include="yaTurretScript.cpp">
+      <Filter>Script\Turret</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="IJ_PlayerAim_Temp.h" />
+    <ClInclude Include="yaPlayScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="yaToolScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="yaLoadScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="yaLight.h">
+      <Filter>GameObject\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="yaLighting.h">
+      <Filter>GameObject\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="IJ_BCO_Door.h">
+      <Filter>GameObject\Door</Filter>
+    </ClInclude>
+    <ClInclude Include="IJ_Box.h">
+      <Filter>GameObject\Box</Filter>
+    </ClInclude>
+    <ClInclude Include="IJ_Button.h">
+      <Filter>GameObject\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="IJ_ButtonConnectedObject.h">
+      <Filter>GameObject\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBullet.h">
+      <Filter>GameObject\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="yaPlayer.h">
+      <Filter>GameObject\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="yaPlayerShadow.h">
+      <Filter>GameObject\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="yaBulletScript.h">
+      <Filter>Script\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="yaPlayerScript.h">
+      <Filter>Script\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="yaPortal.hpp">
+      <Filter>GameObject\Portal</Filter>
+    </ClInclude>
+    <ClInclude Include="yaTile.h">
+      <Filter>GameObject\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="yaTurret.h">
+      <Filter>GameObject\Turret</Filter>
+    </ClInclude>
+    <ClInclude Include="yaTurretScript.h">
+      <Filter>Script\Turret</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{f043e130-7988-4851-b4f2-194f7c6e4f7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{08c37585-eda5-4500-91d4-17bfedcdc35f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Light">
+      <UniqueIdentifier>{f1d7398f-7e3d-4858-85e6-ff39ab648603}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Lighting">
+      <UniqueIdentifier>{eb26ecb0-fc77-4b46-9ad9-51a2ccf375cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Door">
+      <UniqueIdentifier>{745bf5a7-1934-4f55-998b-8478dbeaf68e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Box">
+      <UniqueIdentifier>{3a703190-613d-4b94-b0c7-3a677ca3994c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Button">
+      <UniqueIdentifier>{28d35a29-3278-4e20-9d37-835c0bf0705f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Bullet">
+      <UniqueIdentifier>{225f5631-86f7-4d94-94e6-291f4985388b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Player">
+      <UniqueIdentifier>{b6462c90-10eb-4855-8958-b7d61194d37f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script">
+      <UniqueIdentifier>{03e0272d-2eaa-4d19-9380-7ddd260d0f30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Bullet">
+      <UniqueIdentifier>{34b6a845-be1d-4bd2-9cab-6f5e8849d268}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Player">
+      <UniqueIdentifier>{93cfb413-f95e-4164-a89a-978fdd3e4cf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Portal">
+      <UniqueIdentifier>{1402ed91-63c6-4586-b255-74522e9be129}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Tile">
+      <UniqueIdentifier>{d303cf46-8870-4917-8616-0ce50d2c493e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Turret">
+      <UniqueIdentifier>{e5ea6130-6d2e-4f70-a8b9-9177cab4f522}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script\Turret">
+      <UniqueIdentifier>{62be56bb-4708-44ab-8566-d1f645f234c2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
