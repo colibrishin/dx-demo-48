@@ -3,6 +3,8 @@
 #include "yaTransform.h"
 #include "yaTime.h"
 #include "yaBullet.h"
+#include "yaPlayerScript.h"
+#include "yaTurretScript.h"
 
 namespace ya
 {
@@ -14,6 +16,7 @@ namespace ya
 	}
 	void BulletScript::Initialize()
 	{
+		
 	}
 	void BulletScript::Update()
 	{
@@ -22,8 +25,10 @@ namespace ya
 
 		Transform* tr = obj->GetComponent<Transform>();
 		Vector3 pos = tr->GetPosition();
-		pos.x -= 2.0f * Time::DeltaTime();
 
+		pos.x += bullet->GetOrbit().x * 5.0f * Time::DeltaTime();
+		pos.y += bullet->GetOrbit().y * 5.0f * Time::DeltaTime();
+		
 		tr->SetPosition(pos);
 	}
 	void BulletScript::LateUpdate()

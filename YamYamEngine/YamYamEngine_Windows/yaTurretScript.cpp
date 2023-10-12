@@ -10,9 +10,10 @@
 
 namespace ya
 {
-	float TurretScript::mTime = 0.0f;
+	Vector3 TurretScript::mTurretPos = Vector3::Zero;
 
 	TurretScript::TurretScript()
+		: mTime(0.0f)
 	{
 	}
 	TurretScript::~TurretScript()
@@ -33,10 +34,11 @@ namespace ya
 		if (mTime >= 0.5f)
 		{
 			Bullet* bullet = new Bullet();
+			bullet->Initialize();
 
 			Transform* bullettr = bullet->AddComponent<Transform>();
 			bullettr->SetPosition(tr->GetPosition());
-			bullettr->SetScale(tr->GetScale());
+			bullettr->SetScale(Vector3(0.5f, 0.5f, 1.0f));
 			bullet->AddComponent<BulletScript>();
 
 			MeshRenderer* bulletmr = bullet->AddComponent<MeshRenderer>();

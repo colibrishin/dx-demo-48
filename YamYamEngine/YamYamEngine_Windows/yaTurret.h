@@ -6,6 +6,14 @@ namespace ya
 	class Turret : public GameObject
 	{
 	public:
+		enum class eState
+		{
+			Idle,
+			Grabbed,
+			Distroy,
+			End,
+		};
+
 		Turret();
 		virtual ~Turret();
 
@@ -18,7 +26,11 @@ namespace ya
 		virtual void OnCollisionStay(class Collider* other);
 		virtual void OnCollisionExit(class Collider* other);
 
-	private:
+		void Idle();
+		void Grabbed();
+		void Distroy();
 
+	private:
+		eState mState;
 	};
 }

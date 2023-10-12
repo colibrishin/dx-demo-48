@@ -15,7 +15,13 @@ namespace ya
 		void LateUpdate() override;
 		void Render() override;
 
+		Vector3 GetPosition()
+		{
+			return mTurretPos;
+		}
+
 	private:
-		static float mTime;
+		float mTime;
+		static Vector3 mTurretPos;
 	};
 }
