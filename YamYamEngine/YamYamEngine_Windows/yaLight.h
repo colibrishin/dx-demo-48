@@ -1,10 +1,11 @@
 #pragma once
+#include "IJ_ButtonConnectedObject.h"
 #include "yaGameObject.h"
 #include "yaLighting.h"
 
 namespace ya
 {
-	class Light : public GameObject
+	class Light : public IJ::ButtonConnectedObject
 	{
 	public:
 		Light(float light_range);

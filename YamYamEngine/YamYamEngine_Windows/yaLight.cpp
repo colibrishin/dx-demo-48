@@ -12,7 +12,7 @@ namespace ya
 
 	void Light::Initialize()
 	{
-		GameObject::Initialize();
+		IJ::ButtonConnectedObject::Initialize();
 
 		const auto tr = AddComponent<Transform>();
 		tr->SetScale(1.0f, 1.0f, 1.0f);
@@ -29,39 +29,45 @@ namespace ya
 
 	void Light::Update()
 	{
-		GameObject::Update();
-		for (const auto& child : m_lightings_)
+		IJ::ButtonConnectedObject::Update();
+		if (GetBCOState() == eBCOState::Activated)
 		{
-			child->Update();
+			for (const auto& child : m_lightings_)
+			{
+				child->Update();
+			}
 		}
 	}
 
 	void Light::LateUpdate()
 	{
-		GameObject::LateUpdate();
+		IJ::ButtonConnectedObject::LateUpdate();
 	}
 
 	void Light::Render()
 	{
-		GameObject::Render();
-		for (const auto& child : m_lightings_)
+		IJ::ButtonConnectedObject::Render();
+		if (GetBCOState() == eBCOState::Activated)
 		{
-			child->Render();
+			for (const auto& child : m_lightings_)
+			{
+				child->Render();
+			}
 		}
 	}
 
 	void Light::OnCollisionEnter(Collider* other)
 	{
-		GameObject::OnCollisionEnter(other);
+		IJ::ButtonConnectedObject::OnCollisionEnter(other);
 	}
 
 	void Light::OnCollisionStay(Collider* other)
 	{
-		GameObject::OnCollisionStay(other);
+		IJ::ButtonConnectedObject::OnCollisionStay(other);
 	}
 
 	void Light::OnCollisionExit(Collider* other)
 	{
-		GameObject::OnCollisionExit(other);
+		IJ::ButtonConnectedObject::OnCollisionExit(other);
 	}
 }
