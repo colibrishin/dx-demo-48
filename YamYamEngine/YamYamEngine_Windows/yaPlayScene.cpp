@@ -55,6 +55,9 @@ namespace ya
 			rb->SetFriction(0.25f);
 
 			AddGameObject(player, LAYER::PLAYER);
+			AddGameObject(player->GetPlayerShadow(), LAYER::PLAYER);
+			AddGameObject(player->GetMeleeHitBox(), LAYER::ATTACK);
+			AddGameObject(player->GetPlayerShadow()->GetMeleeHitBox(), LAYER::ATTACK);
 		}
 
 		GameObject* wall_a = new GameObject();
