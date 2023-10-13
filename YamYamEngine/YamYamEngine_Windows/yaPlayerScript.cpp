@@ -4,6 +4,7 @@
 #include "yaTransform.h"
 #include "yaTime.h"
 #include "yaInput.h"
+#include "yaPlayer.h"
 #include "yaRigidbody.h"
 
 namespace ya
@@ -53,9 +54,7 @@ namespace ya
 		//Mouse
 		if (Input::GetKeyDown(eKeyCode::LBTN))
 		{
-			Vector3 mousePos = Input::GetCoordinationMousePosition();
-
-			GetOwner()->GetComponent<Transform>()->SetPosition(mousePos.x, mousePos.y, 1.0f);
+			dynamic_cast<Player*>(obj)->SetState(Player::eState::Attack);
 		}
 		if (Input::GetKeyDown(eKeyCode::RBTN))
 		{
