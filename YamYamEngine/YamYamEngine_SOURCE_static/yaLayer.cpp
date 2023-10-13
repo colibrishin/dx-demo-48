@@ -34,8 +34,8 @@ namespace ya
 	{
 		for(int i = 0; i < mGameObjects.size(); i++)
 		{
-			LayerItemCheck(mGameObjects[i]);
 			mGameObjects[i]->Initialize();
+			LayerItemCheck(mGameObjects[i]);
 		}
 	}
 
@@ -43,8 +43,8 @@ namespace ya
 	{
 		for(int i = 0; i < mGameObjects.size(); i++)
 		{
-			LayerItemCheck(mGameObjects[i]);
 			mGameObjects[i]->Update();
+			LayerItemCheck(mGameObjects[i]);
 		}
 	}
 
@@ -52,8 +52,8 @@ namespace ya
 	{
 		for(int i = 0; i < mGameObjects.size(); i++)
 		{
-			LayerItemCheck(mGameObjects[i]);
 			mGameObjects[i]->LateUpdate();
+			LayerItemCheck(mGameObjects[i]);
 		}
 	}
 
@@ -61,8 +61,8 @@ namespace ya
 	{
 		for(int i = 0; i < mGameObjects.size(); i++)
 		{
-			LayerItemCheck(mGameObjects[i]);
 			mGameObjects[i]->Render();
+			LayerItemCheck(mGameObjects[i]);
 		}
 	}
 
