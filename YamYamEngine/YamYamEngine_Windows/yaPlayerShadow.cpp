@@ -66,6 +66,7 @@ namespace ya
 		}
 	}
 
+
 	void PlayerShadow::Update()
 	{
 		GameObject::Update();
@@ -75,69 +76,45 @@ namespace ya
 		{
 			const auto tr = GetComponent<Transform>();
 			const auto player_pos = m_player_->GetComponent<Transform>()->GetPosition();
+			const auto player_scale = m_player_->GetComponent<Transform>()->GetScale();
+			auto mouse_coord = Input::GetCoordinationMousePosition();
+
+			tr->SetPosition(player_pos);
+			mouse_coord.z = player_pos.z;
 
 			assert(m_meeting_lights_.size() > 0);
 
-			auto mouse_norm = Input::GetNormalizedMousePosition();
 			const auto cldr = GetComponent<Collider>();
 			const auto mesh = Resources::Find<ShadowMesh>(L"ShadowMesh");
 
-			// 근처에서 가장 가까운 빛의 속성을 따라감.
+			// 근처에서 가장 가까운 빛의 속성(최대 그림자의 거리)을 따라감.
 			const auto light = GetClosestLight()->GetOrigin();
 
-			// NOTE: D3D11_RASTERIZER_DESC에서 CullMode를 None으로 설정하면 반대편 삼각형도 그릴 수 있음.
-			// 충돌처리 고려를 위해 삼각형 꼭지점 이동과 동시에 회전하고 움직인 Collider를 사용하기로 함.
-			Vector3 flipped_mouse_norm = mouse_norm;
-			FlipShadowIfLower(tr, player_pos, flipped_mouse_norm);
-			const auto aspect_ratio = application.GetWidth() / static_cast<float>(application.GetHeight());
-			const auto mouse_aspect = flipped_mouse_norm * aspect_ratio;
+			// 마우스와 플레이어의 각을 구함.
+			const auto norm = (player_pos - mouse_coord).normalize();
 
-			// 플레이어가 항상 카메라 가운데 있을 것이라고 가정.
-			const auto distance = std::sqrt(mouse_aspect.LengthSquared());
+			// PI / 2는 꼭지점이 마우스를 향하도록 하기 위함.
+			// TODO: 이걸 껐다 킬 수 있게 해서 방어용으로도 만들 수 있지 않을까?
+			const auto angle = atan2(norm.y, norm.x) + XM_PI / 2;
+
+			// 각도에 맞춰 Transform 그리고 충돌체를 회전
+			tr->SetRotation(Quaternion::CreateFromAxisAngle(Vector3::Forward, angle));
+			cldr->SetRotation(Quaternion::CreateFromAxisAngle(Vector3::Forward, angle));
+			
+			const auto distance = Vector3::Distance(player_pos, mouse_coord);
+			// 그림자가 플레이어 주변을 겉돌게 하기 위해서 투영된 플레이어의 크기를 구함.
+			const auto projected_scale = player_scale.Dot(Vector3::UnitX);
 
 			if(distance > light->GetLightRange())
 			{
-				return;
-			}
-
-			// 마우스 방향으로 충돌 박스를 회전 (중심점은 삼각형의 중심)
-			cldr->SetRotation(
-				Quaternion::CreateFromAxisAngle(
-					Vector3::Forward, atan2(mouse_norm.y, mouse_norm.x)));
-
-			cldr->SetSize({1.0f, distance, 1.0f});
-
-			if(distance > 1.0f)
-			{
-				tr->SetScale(1.0f, distance, 1.0f);
-
-				if(mouse_norm.y < 0.0f) // 아래로 가면
-				{
-					tr->SetRotation(0.0f, 0.0f, Radian(180.0f));
-					tr->SetPosition(player_pos.x, (player_pos.y - distance / 2) - 0.5f, player_pos.z);
-				}
-				else
-				{
-					tr->SetRotation(0, 0, 0);
-					tr->SetPosition(player_pos.x, (player_pos.y + distance / 2) - 0.5f, player_pos.z);
-				}
+				tr->SetPosition(player_pos - norm * (light->GetLightRange() - projected_scale));
+				tr->SetScale(1.0f, light->GetLightRange(), 1.0f);
 			}
 			else
 			{
-				if(mouse_norm.y < 0.0f)
-				{
-					tr->SetRotation(0.0f, 0.0f, Radian(180.0f));
-					tr->SetPosition(player_pos.x, player_pos.y - 1.0f, player_pos.z);
-				}
-				else
-				{
-					tr->SetRotation(0, 0, 0);
-					tr->SetPosition(player_pos.x, player_pos.y, player_pos.z);
-				}
+				tr->SetPosition(player_pos - norm * (distance - projected_scale));
+				tr->SetScale(1.0f, distance, 1.0f);
 			}
-
-			mesh->ChangeTopPosition(mouse_aspect);
-			mesh->Refresh();
 		}
 	}
 
