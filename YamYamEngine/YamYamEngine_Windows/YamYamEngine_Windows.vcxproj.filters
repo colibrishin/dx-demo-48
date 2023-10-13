@@ -53,6 +53,9 @@
     <ClCompile Include="yaTurretScript.cpp">
       <Filter>Script\Turret</Filter>
     </ClCompile>
+    <ClCompile Include="yaMeleeHitBox.cpp">
+      <Filter>GameObject\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IJ_PlayerAim_Temp.h" />
@@ -109,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="yaTurretScript.h">
       <Filter>Script\Turret</Filter>
+    </ClInclude>
+    <ClInclude Include="yaMeleeHitBox.hpp">
+      <Filter>GameObject\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
