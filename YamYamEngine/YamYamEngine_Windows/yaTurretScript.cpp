@@ -33,20 +33,7 @@ namespace ya
 
 		if (mTime >= 0.5f)
 		{
-			Bullet* bullet = new Bullet();
-			bullet->Initialize();
-
-			Transform* bullettr = bullet->AddComponent<Transform>();
-			bullettr->SetPosition(tr->GetPosition());
-			bullettr->SetScale(Vector3(0.5f, 0.5f, 1.0f));
-			bullet->AddComponent<BulletScript>();
-
-			MeshRenderer* bulletmr = bullet->AddComponent<MeshRenderer>();
-			bulletmr->SetMesh(Resources::Find<Mesh>(L"TriangleMesh"));
-			bulletmr->SetShader(Resources::Find<Shader>(L"ColorShader"));
-
-			SceneManager::GetActiveScene()->AddGameObject(bullet, LAYER::TURRET);
-
+			Bullet::InstantiateBullet(tr);
 			mTime = 0.0f;
 		}
 
