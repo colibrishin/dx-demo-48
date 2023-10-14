@@ -1,6 +1,7 @@
 #pragma once
 #include "yaGameObject.h"
 #include "yaPlayerScript.h"
+#include "yaTransform.h"
 
 namespace ya
 {
@@ -23,6 +24,8 @@ namespace ya
 		{
 			return mOrbit;
 		}
+
+		static void InstantiateBullet(Transform* tr);
 
 	private:
 		Vector3 mBulletPos;
