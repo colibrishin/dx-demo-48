@@ -6,6 +6,7 @@
 #include "yaLighting.h"
 #include "yaPlayer.h"
 #include "yaMath.h"
+#include "yaMeleeHitBox.hpp"
 #include "yaMeshRenderer.h"
 #include "yaResources.h"
 #include "yaShadowMesh.hpp"
@@ -31,6 +32,8 @@ namespace ya
 		// TODO: 다른 그림자 또는 광원에 충돌했을떄의 처리
 		AddComponent<Collider>()->SetSize({1.0f, 1.0f, 1.0f});
 
+		m_melee_hitbox_ = new MeleeHitBox(m_player_);
+		m_melee_hitbox_->Initialize();
 		SetName(L"Shadow");
 	}
 
@@ -121,8 +124,6 @@ namespace ya
 	void PlayerShadow::OnCollisionEnter(Collider* other)
 	{
 		GameObject::OnCollisionEnter(other);
-
-		
 	}
 
 	void PlayerShadow::OnCollisionStay(Collider* other)
@@ -133,6 +134,11 @@ namespace ya
 	void PlayerShadow::OnCollisionExit(Collider* other)
 	{
 		GameObject::OnCollisionExit(other);
+	}
+
+	void PlayerShadow::Attack()
+	{
+		MeleeHitBox::ProcessMeleeAttack(m_player_, m_melee_hitbox_->GetHitObjects());
 	}
 
 	void PlayerShadow::PlayerCollisionLightEnter(Lighting* light)

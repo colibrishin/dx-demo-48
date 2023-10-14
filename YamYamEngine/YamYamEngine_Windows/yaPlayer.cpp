@@ -7,6 +7,7 @@
 #include "yaResources.h"
 #include "yaRigidbody.h"
 #include "yaCollider.h"
+#include "yaMeleeHitBox.hpp"
 #include "yaRigidbody.h"
 #include "yaSceneManager.h"
 
@@ -36,12 +37,17 @@ namespace ya
 
 		rb = GetComponent<Rigidbody>();
 		rb->SetGround(true);
+
+		m_melee_hitbox_ = new MeleeHitBox(this);
+		m_melee_hitbox_->Initialize();
 	}
 
 	void Player::Update()
 	{
 		GameObject::Update();
 		m_shadow_->Update();
+
+		m_melee_hitbox_->GetComponent<Transform>()->SetPosition(GetComponent<Transform>()->GetPosition());
 
 		switch (mState)
 		{
@@ -53,16 +59,12 @@ namespace ya
 			Idle();
 			break;
 
+		case ya::Player::eState::Attack:
+			Attack();
+			break;
+
 		case ya::Player::eState::Shoot:
 			Shoot();
-			break;
-
-		case ya::Player::eState::Jump:
-			Jump();
-			break;
-
-		case ya::Player::eState::Fall:
-			Fall();
 			break;
 
 		case ya::Player::eState::Hit:
@@ -94,6 +96,12 @@ namespace ya
 
 		if (layer == LAYER::ATTACK || layer == LAYER::MONSTER)
 		{
+			if (other->GetOwner() == m_shadow_->m_melee_hitbox_ || 
+				other->GetOwner() == m_melee_hitbox_)
+			{
+				return;
+			}
+
 			mState = eState::Hit;
 		}
 
@@ -139,49 +147,35 @@ namespace ya
 	}
 	void Player::Idle()
 	{
-		// ����
-		if (Input::GetKeyDown(eKeyCode::W))
-		{
-			mState = eState::Jump;
-		}
 	}
+
 	void Player::Live()
 	{
 	}
+
 	void Player::Shoot()
 	{
 	}
-	void Player::Jump()
+
+	void Player::DispatchShadowAttack()
 	{
-		//jumptime += Time::DeltaTime();
-		Transform* tr = GetComponent<Transform>();
-		Vector3 pos = tr->GetPosition();
-
-		//Vector3 velocity = rb->GetVelocity();
-		//velocity.y = +100.0f;
-		//rb->SetVelocity(velocity);
-		//rb->SetGround(false);
-
-		tr->SetPosition(pos);
-
-		if (Input::GetKeyUp(eKeyCode::W))
-		{
-			//mState = eState::Fall;
-		}
-		
+		m_shadow_->Attack();
 	}
-	void Player::Fall()
+
+	void Player::Attack()
 	{
-		Transform* tr = GetComponent<Transform>();
-		Vector3 pos = tr->GetPosition();
-
-		pos.y = -100.0f;
-		//rb->SetGround(true);
-
-		tr->SetPosition(pos);
+		if (mPlayerAs == ePlayerAs::Shadow)
+		{
+			DispatchShadowAttack();
+		}
+		else
+		{
+			MeleeHitBox::ProcessMeleeAttack(this, m_melee_hitbox_->GetHitObjects());
+		}
 
 		mState = eState::Idle;
 	}
+
 	void Player::Hit()
 	{
 		if(HP != 0)
