@@ -54,11 +54,12 @@ namespace ya
 		//Mouse
 		if (Input::GetKeyDown(eKeyCode::LBTN))
 		{
-			dynamic_cast<Player*>(obj)->SetState(Player::eState::Attack);
+			dynamic_cast<Player*>(obj)->SetState(Player::eState::MeleeAttack);
 		}
+
 		if (Input::GetKeyDown(eKeyCode::RBTN))
 		{
-
+			dynamic_cast<Player*>(obj)->SetState(Player::eState::RangeAttack);
 		}
 
 		if (Input::GetKeyDown(eKeyCode::N_1))

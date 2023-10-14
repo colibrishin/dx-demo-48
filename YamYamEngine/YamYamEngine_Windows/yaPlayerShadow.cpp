@@ -1,5 +1,6 @@
 #include "yaPlayerShadow.h"
 
+#include "yaBullet.h"
 #include "yaCollider.h"
 #include "yaInput.h"
 #include "yaLight.h"
@@ -138,7 +139,14 @@ namespace ya
 
 	void PlayerShadow::Attack()
 	{
-		MeleeHitBox::ProcessMeleeAttack(m_player_, m_melee_hitbox_->GetHitObjects());
+		if(m_player_->GetState() == Player::eState::MeleeAttack)
+		{
+			MeleeHitBox::ProcessMeleeAttack(m_player_, m_melee_hitbox_->GetHitObjects());
+		}
+		else if (m_player_->GetState() == Player::eState::RangeAttack)
+		{
+			Bullet::InstantiateBullet(GetComponent<Transform>());
+		}
 	}
 
 	void PlayerShadow::PlayerCollisionLightEnter(Lighting* light)
