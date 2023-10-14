@@ -72,7 +72,7 @@ namespace ya
 			return mKeys[(int)code].State == eKeyState::None;
 		}
 
-		static __forceinline Vector2 GetMousePosition()
+		static __forceinline Vector3 GetMousePosition()
 		{
 			return mMousPosition;
 		}
@@ -113,7 +113,7 @@ namespace ya
 
 	private:
 		static std::vector<Key> mKeys;
-		static Vector2 mMousPosition;
+		static Vector3 mMousPosition;
 	};
 }
 

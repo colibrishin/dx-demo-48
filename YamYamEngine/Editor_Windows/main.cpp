@@ -119,11 +119,11 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
-	const int posX = (GetSystemMetrics(SM_CXSCREEN) - 1600)  / 2;
-	const int posY = (GetSystemMetrics(SM_CYSCREEN) - 900) / 2;
+	const int posX = (GetSystemMetrics(SM_CXSCREEN) - 800)  / 2;
+	const int posY = (GetSystemMetrics(SM_CYSCREEN) - 600) / 2;
 
    HWND hWnd = CreateWindowExW(WS_EX_APPWINDOW, szWindowClass, szTitle, WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_POPUP,
-      posX, posY, 1600, 900, nullptr, nullptr, hInstance, nullptr);
+      posX, posY, 800, 600, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
    {
@@ -138,7 +138,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    if (FAILED(hr))
 	  return FALSE;
 
-   application.SetWindow(hWnd, 1600, 900);
+   application.SetWindow(hWnd, 800, 600);
    application.Initialize();
    ya::InitializeScenes();
    

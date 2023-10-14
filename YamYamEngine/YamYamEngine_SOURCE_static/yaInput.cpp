@@ -7,7 +7,7 @@ extern ya::Application application;
 namespace ya
 {
 	std::vector<Input::Key> Input::mKeys;
-	Vector2 Input::mMousPosition;
+	Vector3 Input::mMousPosition;
 
 	int ASCII[(UINT)eKeyCode::END] =
 	{
@@ -53,22 +53,23 @@ namespace ya
 
         POINT MousePos = {};
 
-        // ÇöÀç ¸¶¿ì½º Pos ¸¦ ¹Ş¾Æ¿Â´Ù
+        // í˜„ì¬ ë§ˆìš°ìŠ¤ Pos ë¥¼ ë°›ì•„ì˜¨ë‹¤
         GetCursorPos(&MousePos);
 
-        // ¸¶¿ì½º Pos ¸¦ ½ºÅ©¸° ÁÂÇ¥¿¡¼­ Æ¯Á¤ Å¬¶óÀÌ¾ğÆ® ÁÂÇ¥·Î ¹Ù²ãÁØ´Ù
+        // ë§ˆìš°ìŠ¤ Pos ë¥¼ ìŠ¤í¬ë¦° ì¢Œí‘œì—ì„œ íŠ¹ì • í´ë¼ì´ì–¸íŠ¸ ì¢Œí‘œë¡œ ë°”ê¿”ì¤€ë‹¤
         ScreenToClient(hwnd, &MousePos);
         mMousPosition.x = (float)MousePos.x;
         mMousPosition.y = (float)MousePos.y;
+        mMousPosition.z = 1.f;
 
         if (hwnd == Nowhwnd)
         {
             for (int i = 0; i < (int)eKeyCode::END; i++)
             {
-                //ÀÌÀü¿¡ ´©¸¥ ÀûÀÌ ¾ø°í È£Ãâ ½ÃÁ¡¿¡¼­ ´­¸° »óÅÂ (0x8000)
+                //ì´ì „ì— ëˆ„ë¥¸ ì ì´ ì—†ê³  í˜¸ì¶œ ì‹œì ì—ì„œ ëˆŒë¦° ìƒíƒœ (0x8000)
                 if (GetAsyncKeyState(ASCII[i]) & 0x8000)
                 {
-                    //ÀÌÀü ´­·ÁÁ® ÀÖ´ø »óÅÂ (pressed)
+                    //ì´ì „ ëˆŒë ¤ì ¸ ìˆë˜ ìƒíƒœ (pressed)
                     if (mKeys[i].bPressed == true) //true
                     {
                         mKeys[i].State = eKeyState::Pressed;
@@ -81,9 +82,9 @@ namespace ya
                     mKeys[i].bPressed = true;
                 }
                 //else if (GetAsyncKeyState(ASCII[i]) & 0)
-                else //ÀÌÀü¿¡ ´©¸¥ ÀûÀÌ ¾ø°í È£Ãâ ½ÃÁ¡¿¡¼­ ÀÔ·ÂÀÌ ¾ÈµÈ »óÅÂ (0x0000)
+                else //ì´ì „ì— ëˆ„ë¥¸ ì ì´ ì—†ê³  í˜¸ì¶œ ì‹œì ì—ì„œ ì…ë ¥ì´ ì•ˆëœ ìƒíƒœ (0x0000)
                 {
-                    //ÀÌÀü¿¡ ´­·ÁÁ® ÀÖ´ø »óÅÂ
+                    //ì´ì „ì— ëˆŒë ¤ì ¸ ìˆë˜ ìƒíƒœ
                     if (mKeys[i].bPressed == true)
                     {
                         mKeys[i].State = eKeyState::Up;
@@ -98,7 +99,7 @@ namespace ya
             }
 
         }
-        else // ÇöÀç Æ÷Ä¿½ºÁßÀÌ ¾Æ´Ï´Ù 
+        else // í˜„ì¬ í¬ì»¤ìŠ¤ì¤‘ì´ ì•„ë‹ˆë‹¤ 
         {
             for (UINT i = 0; i < (UINT)eKeyCode::END; i++)
             {

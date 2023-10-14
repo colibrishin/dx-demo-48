@@ -1,6 +1,5 @@
 #pragma once
 #include "yaGameObject.h"
-#include "yaMeshRenderer.h"
 #include "yaResources.h"
 
 namespace ya
@@ -20,8 +19,8 @@ namespace ya
 			End,
 		};
 
-		static UINT mSelectedX;
-		static UINT mSelectedY;
+		static int mSelectedX;
+		static int mSelectedY;
 
 		Tile();
 		~Tile();
@@ -30,9 +29,7 @@ namespace ya
 		virtual void Update() override;
 		virtual void Render() override;
 
-		void SetSourceTileIdx(int x, int y) { mSourceIndexX = x;  mSourceIndexY = y; }
 		void SetTileIdx(int x, int y) { mIndexX = x;  mIndexY = y; }
-		Vector3 GetSourceTileIdx() { return Vector3(mSourceIndexX, mSourceIndexY, 1); }
 		Vector3 GetTileIdx() { return Vector3(mIndexX, mIndexY, 1); }
 		void SetTile(int x, int y);
 
@@ -43,22 +40,22 @@ namespace ya
 		virtual void OnCollisionStay(class Collider* other) override;
 		virtual void OnCollisionExit(class Collider* other) override;
 
-		UINT GetTileIndexX() const { return mIndexX; }
-		UINT GetTileIndexY() const { return mIndexY; }
+		int GetTileIndexX() const { return mIndexX; }
+		int GetTileIndexY() const { return mIndexY; }
 
 		void SetCircle(Tile* tile);
 		void SetTriangle(Tile* tile);
 		void SetSquare(Tile* tile);
 		void SetFloor(Tile* tile);
 
+		//Transform* GetPos() { return mTransform; }
+
 
 	private:
 		class MeshRenderer* mMeshRenderer;
-		UINT mSourceIndexX;
-		UINT mSourceIndexY;
-
-		UINT mIndexX;
-		UINT mIndexY;
+		class Transform* mTransform;
+		int mIndexX;
+		int mIndexY;
 
 		eTileType mType;
 

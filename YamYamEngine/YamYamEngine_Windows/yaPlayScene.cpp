@@ -30,6 +30,8 @@ namespace ya
 	{
 		Scene::Initialize();
 
+		//PlayScene::Load();
+
 		//Player
 		{
 			Player* player = new Player();
@@ -180,6 +182,11 @@ namespace ya
 	void PlayScene::Update()
 	{
 		Scene::Update();
+
+		if (Input::GetKeyDown(eKeyCode::U))
+		{
+			PlayScene::Load();
+		}
 	}
 
 	void PlayScene::LateUpdate()
@@ -192,78 +199,75 @@ namespace ya
 		Scene::Render();
 	}
 
-	//void PlayScene::Load()
-	//{
-	//	OPENFILENAME ofn = {};
+	void PlayScene::Load()
+	{
+		OPENFILENAME ofn = {};
 
-	//	// 맵 저장한 파일 경로
-	//	wchar_t szFilePath[256] = L"..\\Resources\\Tile\\F.tm";
+		wchar_t szFilePath[256] = L"..\\Resources\\Map\\Stage_R.tm";
 
-	//	// rb : 이진수로 파일을 읽음
-	//	FILE* pFile = nullptr;
-	//	_wfopen_s(&pFile, szFilePath, L"rb");
+		// rb : 이진수로 파일을 읽음
+		FILE* pFile = nullptr;
+		_wfopen_s(&pFile, szFilePath, L"rb");
 
-	//	if (pFile == nullptr)
-	//		return;
+		if (pFile == nullptr)
+			return;
 
-	//	while (true)
-	//	{
-	//		int sourceX = -1;
-	//		int sourceY = -1;
+		while (true)
+		{
+			int	myX = -1;
+			int myY = -1;
 
-	//		int	myX = -1;
-	//		int myY = -1;
+			Tile::eTileType myType = Tile::eTileType::End;
 
-	//		if (fread(&sourceX, sizeof(int), 1, pFile) == NULL)
-	//			break;
-	//		if (fread(&sourceY, sizeof(int), 1, pFile) == NULL)
-	//			break;
-	//		if (fread(&myX, sizeof(int), 1, pFile) == NULL)
-	//			break;
-	//		if (fread(&myY, sizeof(int), 1, pFile) == NULL)
-	//			break;
+			//Vector3 myPos = Vector3::Zero;
 
-	//		Vector2 offset = Vector2((TILE_WIDTH) / 2.0f, (TILE_HEIGHT) / 2.0f);
+			if (fread(&myX, sizeof(int), 1, pFile) == NULL)
+				break;
+			if (fread(&myY, sizeof(int), 1, pFile) == NULL)
+				break;
+			if (fread(&myType, sizeof(Tile::eTileType), 1, pFile) == NULL)
+				break;
+			//if (fread(&myPos, sizeof(Vector3), 1, pFile) == NULL)
+				//break;
 
 
-	//		Tile* tile = new Tile();
-	//		Vector3 pos = tile->GetComponent<Transform>()->SetPosition(Vector3(myX * (TILE_WIDTH)+offset.x + LEFT_TOP_X
-	//			, myY * (TILE_HEIGHT)+offset.y + LEFT_TOP_Y), 1.f);
+			Vector3 offset = Vector3::Zero;
 
-	//		tile->SetTile(sourceX, sourceY);
-	//		// Crack(부서지며 충돌체가 있는 타일)
-	//		if ((sourceX == 0 && sourceY == 0) ||
-	//			(sourceX == 1 && sourceY == 0) ||
-	//			(sourceX == 2 && sourceY == 0))
-	//		{
-	//			tile->SetType(Tile::eTileType::);
-	//		}
-	//		// Uncrushable(부서지지는 않지만 충돌체는 있는 타입)
-	//		if ((sourceX == 0 && sourceY == 3) ||
-	//			(sourceX == 1 && sourceY == 3))
-	//		{
-	//			tile->SetType(Tile::eTileType::Uncrushable);
-	//		}
-	//		// None(충돌체가 없는 바닥같은 타일)
-	//		if ((sourceX == 0 && sourceY == 1))
-	//		{
-	//			tile->SetType(Tile::eTileType::None);
-	//		}
+			Tile* tile = new Tile();
 
-	//		if (tile->GetType() == Tile::eTileType::Crack || tile->GetType() == Tile::eTileType::Uncrushable)
-	//		{
-	//			Collider* Col = tile->AddComponent<Collider>();;
-	//			Col->SetSize(Vector2(40.0f, 40.0f));
+			tile->GetComponent<Transform>()->SetPosition(myX * (TILE_WIDTH)+offset.x + LEFT_TOP_X
+				, myY * (TILE_HEIGHT)+offset.y + LEFT_TOP_Y, 1);
 
-	//			CollisionManager::CollisionLayerCheck(LAYER::TILE, LAYER::PLAYER, true);
+			//tile->GetComponent<Transform>()->SetPosition(myPos);
 
-	//		}
+			tile->SetTileIdx(myX, myY);
+			// 불러온 myType을 tile 객체에 텋는다
+			tile->SetType(myType);
 
-	//		tile->SetSourceTileIdx(sourceX, sourceY);
-	//		tile->SetTileIdx(myX, myY);
+			if (tile->GetType() == Tile::eTileType::Circle)
+			{
+				tile->SetCircle(tile);
 
-	//		mTiles.push_back(tile);
-	//	}
-	//	fclose(pFile);
-	//}
+			}
+			else if (tile->GetType() == Tile::eTileType::Triangle)
+			{
+				tile->SetTriangle(tile);
+			}
+			else if (tile->GetType() == Tile::eTileType::Square)
+			{
+				tile->SetSquare(tile);
+			}
+			else if (tile->GetType() == Tile::eTileType::Floor)
+			{
+				tile->SetFloor(tile);
+			}
+
+			AddGameObject(tile, LAYER::TILE);
+
+			mTiles.push_back(tile);
+		}
+
+		// 메모리 할당된 것을 삭제해주는 함수
+		fclose(pFile);
+	}
 }

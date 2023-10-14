@@ -10,20 +10,19 @@
 
 namespace ya
 {
-	UINT Tile::mSelectedX = 0;
-	UINT Tile::mSelectedY = 0;
+	int Tile::mSelectedX = 0;
+	int Tile::mSelectedY = 0;
 
 
 	Tile::Tile()
 		: mMeshRenderer(nullptr)
-		, mSourceIndexX(0)
-		, mSourceIndexY(0)
+		, mTransform(nullptr)
 		, mIndexX(0)
 		, mIndexY(0)
 		, mType(eTileType::Square)
 
 	{
-		AddComponent<Transform>();
+		mTransform = AddComponent<Transform>();
 		AddComponent<Collider>();
 
 		mMeshRenderer = AddComponent<MeshRenderer>();

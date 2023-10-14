@@ -5,6 +5,7 @@
 #include <cstdint>
 #include <type_traits>
 #include <bitset>
+//#include <Gdiplus.h>
 
 #define arraysize(a) (sizeof(a) / sizeof(a[0]))
 

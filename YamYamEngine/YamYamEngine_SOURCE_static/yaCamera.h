@@ -30,7 +30,6 @@ namespace ya
 	private:
 		// 현재 카메라 파라메터를 상수 버퍼로 바인딩
 		static void SetConstantBuffer();
-		
 
 		inline static GameObject* mGameObject{};
 
