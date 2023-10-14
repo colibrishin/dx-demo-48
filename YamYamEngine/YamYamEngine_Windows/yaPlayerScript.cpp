@@ -61,6 +61,15 @@ namespace ya
 
 		}
 
+		if (Input::GetKeyDown(eKeyCode::N_1))
+		{
+			dynamic_cast<Player*>(obj)->SetPlayerAs(Player::ePlayerAs::Self);
+		}
+		else if(Input::GetKeyDown(eKeyCode::N_2))
+		{
+			dynamic_cast<Player*>(obj)->SetPlayerAs(Player::ePlayerAs::Shadow);
+		}
+
 		//��ȣ�ۿ�
 		if (Input::GetKeyDown(eKeyCode::SPACE))
 		{

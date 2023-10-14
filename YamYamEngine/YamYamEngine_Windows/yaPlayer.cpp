@@ -164,7 +164,14 @@ namespace ya
 
 	void Player::Attack()
 	{
-		MeleeHitBox::ProcessMeleeAttack(this, m_melee_hitbox_->GetHitObjects());
+		if (mPlayerAs == ePlayerAs::Shadow)
+		{
+			DispatchShadowAttack();
+		}
+		else
+		{
+			MeleeHitBox::ProcessMeleeAttack(this, m_melee_hitbox_->GetHitObjects());
+		}
 
 		mState = eState::Idle;
 	}
