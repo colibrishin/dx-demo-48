@@ -77,6 +77,14 @@ namespace ya
 		// 플레이어가 광원 아래에 있을 경우
 		if(GetComponent<MeshRenderer>()->IsEnabled())
 		{
+			// TODO: 우회방식. 플레이어가 광원 위에 있는 상태에서 광원이 꺼질경우 그림자가 사라지도록 함.
+			if(const auto light = GetClosestLight(); light != nullptr && light->GetLayer() == LAYER::NONE)
+			{
+				GetComponent<MeshRenderer>()->SetEnabled(false);
+				m_meeting_lights_.erase(light);
+				return;
+			}
+
 			const auto tr = GetComponent<Transform>();
 			const auto player_pos = m_player_->GetComponent<Transform>()->GetPosition();
 			const auto player_scale = m_player_->GetComponent<Transform>()->GetScale();
