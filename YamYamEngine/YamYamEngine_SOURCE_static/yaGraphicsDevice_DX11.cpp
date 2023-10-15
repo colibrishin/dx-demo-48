@@ -66,8 +66,8 @@ namespace ya::graphics
         texdesc.CPUAccessFlags = 0;
 
         texdesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-        texdesc.Width = (UINT)1600;
-        texdesc.Height = (UINT)900;
+        texdesc.Width = (UINT)application.GetWidth();
+        texdesc.Height = (UINT)application.GetHeight();
         texdesc.ArraySize = 1;
 
         texdesc.SampleDesc.Count = 1;
