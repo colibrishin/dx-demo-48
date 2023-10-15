@@ -143,10 +143,6 @@ namespace ya
 		{
 			MeleeHitBox::ProcessMeleeAttack(m_player_, m_melee_hitbox_->GetHitObjects());
 		}
-		else if (m_player_->GetState() == Player::eState::RangeAttack)
-		{
-			Bullet::InstantiateBullet(GetComponent<Transform>());
-		}
 	}
 
 	void PlayerShadow::PlayerCollisionLightEnter(Lighting* light)

@@ -179,7 +179,10 @@ namespace ya
 	void Player::RangeAttack()
 	{
 		DispatchShadowAttack();
-		Bullet::InstantiateBullet(GetComponent<Transform>());
+		const auto mouse_pos = Input::GetCoordinationMousePosition();
+
+
+		Bullet::InstantiateBullet(GetComponent<Transform>(), (mouse_pos - GetComponent<Transform>()->GetPosition()).normalize(), 1.5f);
 
 		mState = eState::Idle;
 	}
