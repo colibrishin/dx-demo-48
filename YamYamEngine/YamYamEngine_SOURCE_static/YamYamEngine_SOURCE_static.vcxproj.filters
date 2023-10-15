@@ -280,8 +280,8 @@
     <ClInclude Include="yaCircleMesh.hpp">
       <Filter>Engine\Resource\Mesh</Filter>
     </ClInclude>
-    <ClInclude Include="yaTile.h">
-      <Filter>Engine\Scene</Filter>
+    <ClInclude Include="yaDimLightMesh.hpp">
+      <Filter>Engine\Resource\Mesh</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

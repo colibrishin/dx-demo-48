@@ -40,6 +40,7 @@ namespace ya
 		}
 		else
 		{
+			
 			SetLayer(ya::LAYER::NONE);
 		}
 	}
@@ -51,7 +52,10 @@ namespace ya
 
 	void Lighting::Render()
 	{
-		IJ::ButtonConnectedObject::Render();
+		if (m_origin_->GetBCOState() == ButtonConnectedObject::eBCOState::Activated)
+		{
+			IJ::ButtonConnectedObject::Render();
+		}
 	}
 
 	void Lighting::OnCollisionEnter(Collider* other)

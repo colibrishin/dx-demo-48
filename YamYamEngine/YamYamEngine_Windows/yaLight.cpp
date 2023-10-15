@@ -29,7 +29,19 @@ namespace ya
 
 	void Light::Update()
 	{
+		const auto mr = GetComponent<MeshRenderer>();
+
+		if (GetBCOState() == eBCOState::Activated)
+		{
+			mr->SetMesh(Resources::Find<Mesh>(L"CircleMesh"));
+		}
+		else
+		{
+			mr->SetMesh(Resources::Find<Mesh>(L"DimLightMesh"));
+		}
+
 		IJ::ButtonConnectedObject::Update();
+
 		if (GetBCOState() == eBCOState::Activated)
 		{
 			for (const auto& child : m_lightings_)

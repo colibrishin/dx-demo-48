@@ -1,6 +1,7 @@
 #include "yaRenderer.h"
 #include "yaApplication.h"
 #include "yaCircleMesh.hpp"
+#include "yaDimLightMesh.hpp"
 #include "yaLightingMesh.hpp"
 #include "yaResources.h"
 #include "yaShadowMesh.hpp"
@@ -32,6 +33,7 @@ namespace ya::renderer
 		Resources::Insert<Mesh>(L"TriangleMesh", new TriangleMesh());
 		Resources::Insert<Mesh>(L"SquareMesh", new SquareMesh());
 		Resources::Insert<Mesh>(L"CircleMesh", new CircleMesh());
+		Resources::Insert<Mesh>(L"DimLightMesh", new DimLightMesh());
 		Resources::Insert<Mesh>(L"LightingMesh", new LightingMesh());
 		Resources::Insert<Mesh>(L"ShadowMesh", new ShadowMesh());
 		Resources::Insert<Texture>(L"Texture", new Texture(L"Texture", L"../Resources/Textures/Texture.png"));

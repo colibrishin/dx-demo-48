@@ -184,6 +184,7 @@
     <ClInclude Include="yaCollisionManager.h" />
     <ClInclude Include="yaComponent.h" />
     <ClInclude Include="yaConstantBuffer.h" />
+    <ClInclude Include="yaDimLightMesh.hpp" />
     <ClInclude Include="yaEntity.h" />
     <ClInclude Include="yaEnums.h" />
     <ClInclude Include="yaGameObject.h" />
