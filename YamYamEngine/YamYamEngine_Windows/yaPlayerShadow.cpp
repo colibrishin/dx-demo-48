@@ -87,37 +87,64 @@ namespace ya
 
 			assert(m_meeting_lights_.size() > 0);
 
+			// 정사각형 높이, 정사각형 밑면으로 가는 길이, 
+			const auto h = sqrtf(3) / 2;
+			const auto tbm = sqrtf(3) / 6;
+
+			// 근처에 있는 광원
+			const auto light = GetClosestLight()->GetOrigin();
+
+			// 마우스가 삼각형의 바닥을 기준으로 이동함
+			const auto tri_bottom = player_pos - Vector3{0.0f, tbm, 0.0f};
+			const auto mouse_dist = Vector3::Distance(mouse_coord, tri_bottom);
+
+			// 광원이 제공하는 빛의 거리 이상으로는 그림자가 커지지 않음
+			const auto shadow_casting = std::min(light->GetLightRange(), mouse_dist);
+			// 밑변 x축 증가 상쇄용 비율
+			const auto cancel_ratio = std::abs(1 / shadow_casting);
+			const auto ratio = std::abs(shadow_casting);
+
+			Vector3 mouse_norm;
+			// 종점 - 시점
+			(mouse_coord - tri_bottom).Normalize(mouse_norm);
+			const auto angle = atan2f(mouse_norm.y, mouse_norm.x);
 			const auto cldr = GetComponent<Collider>();
 			const auto mesh = Resources::Find<ShadowMesh>(L"ShadowMesh");
 
-			// 근처에서 가장 가까운 빛의 속성(최대 그림자의 거리)을 따라감.
-			const auto light = GetClosestLight()->GetOrigin();
+			// 매쉬를 축소시켜서 크기 증가를 상쇄함
+			const auto left = Vector3(-0.5f, -(sqrt(3) / 6), 0.f) * cancel_ratio;
+			const auto right = Vector3(0.5f, -sqrt(3) / 6, 0.f) * cancel_ratio;
+			tr->SetScale(1.0f * ratio, 1.0f * ratio, 1.0f);
 
-			// 마우스와 플레이어의 각을 구함.
-			const auto norm = (player_pos - mouse_coord).normalize();
-
-			// PI / 2는 꼭지점이 마우스를 향하도록 하기 위함.
-			// TODO: 이걸 껐다 킬 수 있게 해서 방어용으로도 만들 수 있지 않을까?
-			const auto angle = atan2(norm.y, norm.x) + XM_PI / 2;
-
-			// 각도에 맞춰 Transform 그리고 충돌체를 회전
-			tr->SetRotation(Quaternion::CreateFromAxisAngle(Vector3::Forward, angle));
-			cldr->SetRotation(Quaternion::CreateFromAxisAngle(Vector3::Forward, angle));
-			
-			const auto distance = Vector3::Distance(player_pos, mouse_coord);
-			// 그림자가 플레이어 주변을 겉돌게 하기 위해서 투영된 플레이어의 크기를 구함.
-			const auto projected_scale = player_scale.Dot(Vector3::UnitX);
-
-			if(distance > light->GetLightRange())
+			// 마우스 포인터가 아래에 있을 경우
+			if(mouse_norm.y < 0)
 			{
-				tr->SetPosition(player_pos - norm * (light->GetLightRange() - projected_scale));
-				tr->SetScale(1.0f, light->GetLightRange(), 1.0f);
+				// 히트박스 회전, 이동
+				const auto bottom_fitting = (2 * h) / 3;
+				cldr->SetPosition(player_pos - Vector3{0.0f, bottom_fitting + (h * ratio), 0.0f});
+				cldr->SetSize({1.0f, 1.0f * ratio, 1.0f});
+				cldr->SetRotation(Quaternion::CreateFromAxisAngle(Vector3::Forward, angle));
+
+				// 뒷면 렌더링이 안되기 때문에 회전하고 바닥에 맞게 이동으로 우회
+				tr->SetRotation(Quaternion::CreateFromAxisAngle(Vector3::Forward, Radian(180.0f)));
+				tr->SetPosition(player_pos - Vector3{0.0f, bottom_fitting, 0.0f});
+				// 2, 3 분면 각도를 1, 4 분면 각도로 변환해야 하여 분기 처리
+				mesh->ChangeTopPosition({-cosf(angle) * h, -sinf(angle) * h - tbm, 0.0f});
 			}
 			else
 			{
-				tr->SetPosition(player_pos - norm * (distance - projected_scale));
-				tr->SetScale(1.0f, distance, 1.0f);
+				cldr->SetPosition(player_pos + Vector3{0.0f, h * ratio, 0.0f});
+				cldr->SetSize({1.0f, 1.0f * ratio, 1.0f});
+				cldr->SetRotation(Quaternion::CreateFromAxisAngle(Vector3::Forward, angle));
+
+				tr->SetPosition(player_pos);
+				tr->SetRotation(Quaternion::Identity);
+				mesh->ChangeTopPosition({cosf(angle) * h, sinf(angle) * h - tbm, 0.0f});
 			}
+
+			mesh->ChangeLeftPosition(left);
+			mesh->ChangeRightPosition(right);
+			mesh->Refresh();
 		}
 	}
 
