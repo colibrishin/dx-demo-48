@@ -1,4 +1,5 @@
 #pragma once
+#include "yaPlayer.h"
 #include "yaScene.h"
 #include "yaTile.h"
 
@@ -25,5 +26,6 @@ namespace ya
 
 	private:
 		std::vector<Tile*> mTiles;
+		Player* mPlayer;
 	};
 }

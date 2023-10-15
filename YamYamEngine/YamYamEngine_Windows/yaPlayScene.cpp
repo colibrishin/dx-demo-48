@@ -34,17 +34,17 @@ namespace ya
 
 		//Player
 		{
-			Player* player = new Player();
-			player->Initialize();
+			mPlayer = new Player();
+			mPlayer->Initialize();
 
-			MeshRenderer* meshRenderer = player->AddComponent<MeshRenderer>();
+			MeshRenderer* meshRenderer = mPlayer->AddComponent<MeshRenderer>();
 			meshRenderer->SetMesh(Resources::Find<Mesh>(L"TriangleMesh"));
 			meshRenderer->SetShader(Resources::Find<Shader>(L"ColorShader"));
 
-			Transform* tr = player->GetComponent<Transform>();
-			auto cld1 = player->GetComponent<Collider>();
-			auto rb = player->GetComponent<Rigidbody>();
-			player->AddComponent<PlayerScript>();
+			Transform* tr = mPlayer->GetComponent<Transform>();
+			auto cld1 = mPlayer->GetComponent<Collider>();
+			auto rb = mPlayer->GetComponent<Rigidbody>();
+			mPlayer->AddComponent<PlayerScript>();
 
 			tr->SetPosition(Vector3(-2.5f, 0.2f, 1.0f));
 			tr->SetScale(Vector3(1.0f, 1.0f, 1.0f));
@@ -56,10 +56,10 @@ namespace ya
 
 			rb->SetFriction(0.25f);
 
-			AddGameObject(player, LAYER::PLAYER);
-			AddGameObject(player->GetPlayerShadow(), LAYER::PLAYER);
-			AddGameObject(player->GetMeleeHitBox(), LAYER::ATTACK);
-			AddGameObject(player->GetPlayerShadow()->GetMeleeHitBox(), LAYER::ATTACK);
+			AddGameObject(mPlayer, LAYER::PLAYER);
+			AddGameObject(mPlayer->GetPlayerShadow(), LAYER::PLAYER);
+			AddGameObject(mPlayer->GetMeleeHitBox(), LAYER::ATTACK);
+			AddGameObject(mPlayer->GetPlayerShadow()->GetMeleeHitBox(), LAYER::ATTACK);
 		}
 
 		GameObject* wall_a = new GameObject();
@@ -138,6 +138,7 @@ namespace ya
 			turret->AddComponent<TurretScript>();
 			AddGameObject(turret, LAYER::TURRET);
 			turret->AddComponent<Collider>()->SetSize(Vector3(0.1f, 0.1f, 1.0f));
+			turret->SetPlayer(mPlayer);
 		}
 
 		// Light
